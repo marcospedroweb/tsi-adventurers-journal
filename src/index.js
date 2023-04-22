@@ -6,6 +6,7 @@ import { GlobalStorage } from './Components/Helpers/GlobalStorage';
 import Header from './Components/General/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

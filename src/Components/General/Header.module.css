@@ -1,0 +1,36 @@
+.divHeader {
+  background-color: #1C2331;
+}
+
+.divInside {
+  padding: 8px 0;
+}
+
+.divInside img {
+  max-height: 48px;
+}
+
+.divInside ul {
+  gap: 64px;
+  margin: 0;
+}
+
+.divInside ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.dropdown {
+  background-color: transparent;
+  border: unset;
+  transition: all .25s ease-out;
+}
+
+.dropdown:hover,
+.dropdown:active {
+  background-color: #2C4C8A;
+}
+
+.dropdown a {
+  text-decoration: none;
+}
