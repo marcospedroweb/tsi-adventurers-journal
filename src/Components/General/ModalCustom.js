@@ -107,6 +107,7 @@ const ModalCustom = ({ typeBtn = 'btn', textBtn, children = '' }) => {
             <InputCustom
               type="text"
               label="Nome Completo"
+              name="name"
               refComponent={name.ref}
               error={name.error}
               required
@@ -114,6 +115,7 @@ const ModalCustom = ({ typeBtn = 'btn', textBtn, children = '' }) => {
             <InputCustom
               type="email"
               label="Email"
+              name="email"
               refComponent={email.ref}
               error={email.error}
               required
@@ -121,6 +123,7 @@ const ModalCustom = ({ typeBtn = 'btn', textBtn, children = '' }) => {
             <InputCustom
               type="password"
               label="Senha"
+              name="password"
               refComponent={pass.ref}
               error={pass.error}
               required
