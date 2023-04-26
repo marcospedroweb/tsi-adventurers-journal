@@ -4,8 +4,13 @@ import { Link } from 'react-router-dom';
 import { BsPersonCircle } from 'react-icons/bs';
 import { FaUser } from 'react-icons/fa';
 import { Dropdown } from 'react-bootstrap';
+import { GlobalContext } from '../Helpers/GlobalStorage';
+import ModalCustom from './ModalCustom';
 
 const Header = () => {
+  const { session, setSession } = React.useContext(GlobalContext);
+  console.log(session);
+
   return (
     <header className={styles.divHeader}>
       <div className="container-xl">
@@ -28,18 +33,27 @@ const Header = () => {
               </li>
             </ul>
           </nav>
-          <div>
-            <Dropdown>
-              <Dropdown.Toggle className={styles.dropdown} id="dropdown-basic">
-                <BsPersonCircle color="#fff" size={'24px'} />
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item href="/">Meu perfil</Dropdown.Item>
-                <Dropdown.Item>Login</Dropdown.Item>
-                <Dropdown.Item href="/">Encerrar sessão</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </div>
+          {session.logged ? (
+            <div>
+              <Dropdown>
+                <Dropdown.Toggle
+                  className={styles.dropdown}
+                  id="dropdown-basic"
+                >
+                  <BsPersonCircle color="#fff" size={'24px'} />
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item href="/">Meu perfil</Dropdown.Item>
+                  <Dropdown.Item>Login</Dropdown.Item>
+                  <Dropdown.Item href="/">Encerrar sessão</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+          ) : (
+            <>
+              <ModalCustom textBtn="Login" />
+            </>
+          )}
         </div>
       </div>
     </header>

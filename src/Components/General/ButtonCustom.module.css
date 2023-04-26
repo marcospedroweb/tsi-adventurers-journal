@@ -1,0 +1,12 @@
+.btn {
+  background-color: #87FAD1 !important;
+  color: #323232 !important;
+  font-weight: 600 !important;
+  border: 1px solid #87FAD1 !important;
+  transition: all .25s ease-out !important;
+}
+
+.btn:hover {
+  background-color: #63d4ac !important;
+  border: 1px solid #63d4ac !important;
+}
