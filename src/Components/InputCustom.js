@@ -16,11 +16,7 @@ const InputCustom = ({
 }) => {
   return (
     <>
-      <FloatingLabel
-        controlId="floatingPassword"
-        label={label}
-        className="mt-3"
-      >
+      <FloatingLabel controlId={id} label={label} className="mt-3">
         <Form.Control
           type={type}
           placeholder={label}

@@ -2,14 +2,12 @@ import React from 'react';
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
 import { BsPersonCircle } from 'react-icons/bs';
-import { FaUser } from 'react-icons/fa';
 import { Dropdown } from 'react-bootstrap';
-import { GlobalContext } from '../Helpers/GlobalStorage';
 import ModalCustom from './ModalCustom';
+import { GlobalContext } from '../Context/GlobalStorage';
 
 const Header = () => {
   const { session, setSession } = React.useContext(GlobalContext);
-  console.log(session);
 
   return (
     <header className={styles.divHeader}>
@@ -45,13 +43,22 @@ const Header = () => {
                 <Dropdown.Menu>
                   <Dropdown.Item href="/">Meu perfil</Dropdown.Item>
                   <Dropdown.Item>Login</Dropdown.Item>
-                  <Dropdown.Item href="/">Encerrar sessão</Dropdown.Item>
+                  <Dropdown.Item
+                    onClick={() => {
+                      setSession({
+                        logged: false,
+                        user: '',
+                      });
+                    }}
+                  >
+                    Encerrar sessão
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </div>
           ) : (
             <>
-              <ModalCustom textBtn="Login" />
+              <ModalCustom textBtn="Fazer Login" />
             </>
           )}
         </div>

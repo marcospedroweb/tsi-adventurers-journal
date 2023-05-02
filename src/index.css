@@ -13,3 +13,13 @@ li,
 a {
   font-family: 'Montserrat', sans-serif;
 }
+
+.link-primary {
+  color: #4E5E7C !important;
+  cursor: pointer;
+  transition: all .25s ease-out;
+}
+
+.link-primary:hover {
+  color: #344360 !important;
+}
