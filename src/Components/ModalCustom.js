@@ -13,23 +13,27 @@ const ModalCustom = ({ typeBtn = 'btn', textBtn, children = '' }) => {
   const [showCadastro, setShowCadastro] = React.useState(false);
   const { session, setSession } = React.useContext(GlobalContext);
 
-  const name = {
-    validation: useForm('name'),
+  const [name, setName] = React.useState({
+    validationRegister: useForm('name'),
     error: '',
     refRegister: React.useRef(),
-  };
-  const email = {
-    validation: useForm('email'),
-    error: '',
-    refLogin: React.useRef(),
-    refRegister: React.useRef(),
-  };
-  const pass = {
-    validation: useForm('password'),
+  });
+  const [email, setEmail] = React.useState({
+    validationLogin: useForm('email'),
+    validationRegister: useForm('email'),
     error: '',
     refLogin: React.useRef(),
     refRegister: React.useRef(),
-  };
+  });
+  const [pass, setPass] = React.useState({
+    validationLogin: useForm('password'),
+    validationRegister: useForm('password'),
+    error: '',
+    refLogin: React.useRef(),
+    refRegister: React.useRef(),
+  });
+
+  const teste = useForm('email');
 
   const { data, loading, error, request } = useFetch();
 
@@ -50,13 +54,15 @@ const ModalCustom = ({ typeBtn = 'btn', textBtn, children = '' }) => {
   async function handleSubmitRegister(event) {
     event.preventDefault();
 
+    if (email.validation.validate()) {
+      console.log('teste');
+    }
+
     const nameData = name.refRegister.current.value;
     const emailData = email.refRegister.current.value;
     const passData = pass.refRegister.current.value;
-    console.log(nameData);
-    console.log(emailData);
-    console.log(passData);
-    const json = await request('http://localhost:8000/users', {
+
+    const { json } = await request('http://localhost:8000/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -65,15 +71,36 @@ const ModalCustom = ({ typeBtn = 'btn', textBtn, children = '' }) => {
         password: passData,
       }),
     });
-    setSession({
-      logged: true,
-      user: {
-        name: data.name,
-        email: data.email,
-      },
-    });
-    console.log('json' + json);
-    console.log('data' + data);
+
+    if (json.message) {
+      Object.keys(json.errors).forEach((errorName) => {
+        if (errorName === 'email') {
+          if (
+            json.errors[errorName][0] === 'The email has already been taken.'
+          ) {
+            email.error = 'Este email já esta sendo usado. Tente outro.';
+          }
+        }
+        if (errorName === 'password') {
+          if (
+            json.errors[errorName][0] ===
+            'The password field must be at least 6 characters.'
+          ) {
+            email.error = 'Sua senha deve ter pelo menos 6 caracteres.';
+          }
+        }
+        // json.errors[errorName];
+      });
+      console.log('erros');
+    }
+
+    // setSession({
+    //   logged: true,
+    //   user: {
+    //     name: data.name,
+    //     email: data.email,
+    //   },
+    // });
   }
 
   const handleCloseLogin = () => setShow(false);
@@ -105,8 +132,8 @@ const ModalCustom = ({ typeBtn = 'btn', textBtn, children = '' }) => {
               label="Email"
               name="emailLogin"
               refComponent={email.refLogin}
-              error={email.error}
               required
+              {...email.validationLogin}
             />
             <InputCustom
               id="passLogin"
@@ -114,9 +141,8 @@ const ModalCustom = ({ typeBtn = 'btn', textBtn, children = '' }) => {
               label="Senha"
               name="passLogin"
               refComponent={pass.refLogin}
-              error={pass.error}
               required
-              minLength="4"
+              {...pass.validationLogin}
             />
             <ButtonCustom type="submit" bsClass={'mt-3 w-100'}>
               Entrar
@@ -156,10 +182,10 @@ const ModalCustom = ({ typeBtn = 'btn', textBtn, children = '' }) => {
               label="Nome Completo"
               name="nameRegister"
               refComponent={name.refRegister}
-              error={name.error}
               required
               minLength="4"
               maxLength="25"
+              {...name.validationRegister}
             />
             <InputCustom
               id="emailRegister"
@@ -167,8 +193,8 @@ const ModalCustom = ({ typeBtn = 'btn', textBtn, children = '' }) => {
               label="Email"
               name="emailRegister"
               refComponent={email.refRegister}
-              error={email.error}
               required
+              {...email.validationRegister}
             />
             <InputCustom
               id="passRegister"
@@ -176,13 +202,20 @@ const ModalCustom = ({ typeBtn = 'btn', textBtn, children = '' }) => {
               label="Senha"
               name="password"
               refComponent={pass.refRegister}
-              error={pass.error}
               required
-              minLength="4"
+              minLength="6"
+              {...pass.validationRegister}
             />
-            <ButtonCustom type="submit" bsClass={'mt-3 w-100'}>
-              Criar conta
-            </ButtonCustom>
+            {loading && (
+              <ButtonCustom type="submit" bsClass={'mt-3 w-100'} loading={true}>
+                Carregando...
+              </ButtonCustom>
+            )}
+            {!loading && (
+              <ButtonCustom type="submit" bsClass={'mt-3 w-100'}>
+                Criar conta
+              </ButtonCustom>
+            )}
           </form>
         </Modal.Body>
         <Modal.Footer className="text-center d-flex flex-column">

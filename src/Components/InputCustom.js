@@ -5,25 +5,23 @@ import { FloatingLabel, Form } from 'react-bootstrap';
 const InputCustom = ({
   id,
   label,
-  value = '',
-  type = 'text',
-  refComponent,
+  value,
+  type,
   onChange,
   error,
   onBlur,
   placeholder,
-  ...props
+  refComponent,
 }) => {
   return (
     <>
       <FloatingLabel controlId={id} label={label} className="mt-3">
         <Form.Control
           type={type}
-          placeholder={label}
+          name={id}
           onChange={onChange}
           onBlur={onBlur}
-          ref={refComponent}
-          {...props}
+          placeholder={label}
         />
       </FloatingLabel>
       {error && <p className={styles.error}>{error}</p>}

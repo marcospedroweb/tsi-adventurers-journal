@@ -6,13 +6,16 @@ const ButtonCustom = ({
   onClick,
   onChange,
   bsClass,
+  loading = false,
   children,
   ...props
 }) => {
   return (
     <button
       type={type}
-      className={`${styles.btn} ${bsClass} btn`}
+      className={`${styles.btn} ${
+        loading ? styles.loading : ''
+      } ${bsClass} btn`}
       onClick={onClick}
       {...props}
     >

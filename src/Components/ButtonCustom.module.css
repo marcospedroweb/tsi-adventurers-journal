@@ -10,3 +10,8 @@
   background-color: #63d4ac !important;
   border: 1px solid #63d4ac !important;
 }
+
+.loading {
+  background-color: #63d4ac !important;
+  cursor: wait !important;
+}
