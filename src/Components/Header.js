@@ -42,7 +42,6 @@ const Header = () => {
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item href="/">Meu perfil</Dropdown.Item>
-                  <Dropdown.Item>Login</Dropdown.Item>
                   <Dropdown.Item
                     onClick={() => {
                       setSession({

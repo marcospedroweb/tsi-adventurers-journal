@@ -22,6 +22,7 @@ const InputCustom = ({
           onChange={onChange}
           onBlur={onBlur}
           placeholder={label}
+          ref={refComponent}
         />
       </FloatingLabel>
       {error && <p className={styles.error}>{error}</p>}

@@ -54,10 +54,6 @@ const ModalCustom = ({ typeBtn = 'btn', textBtn, children = '' }) => {
   async function handleSubmitRegister(event) {
     event.preventDefault();
 
-    if (email.validation.validate()) {
-      console.log('teste');
-    }
-
     const nameData = name.refRegister.current.value;
     const emailData = email.refRegister.current.value;
     const passData = pass.refRegister.current.value;
@@ -72,7 +68,7 @@ const ModalCustom = ({ typeBtn = 'btn', textBtn, children = '' }) => {
       }),
     });
 
-    if (json.message) {
+    if (json.message === 'Erro de validação') {
       Object.keys(json.errors).forEach((errorName) => {
         if (errorName === 'email') {
           if (
@@ -91,16 +87,16 @@ const ModalCustom = ({ typeBtn = 'btn', textBtn, children = '' }) => {
         }
         // json.errors[errorName];
       });
-      console.log('erros');
+      return;
     }
 
-    // setSession({
-    //   logged: true,
-    //   user: {
-    //     name: data.name,
-    //     email: data.email,
-    //   },
-    // });
+    setSession({
+      logged: true,
+      user: {
+        name: json.data.name,
+        email: json.data.email,
+      },
+    });
   }
 
   const handleCloseLogin = () => setShow(false);
