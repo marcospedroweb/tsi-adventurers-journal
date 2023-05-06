@@ -14,6 +14,7 @@ a {
   font-family: 'Montserrat', sans-serif;
 }
 
+/* LINKS */
 .link-primary {
   color: #4E5E7C !important;
   cursor: pointer;
@@ -22,4 +23,14 @@ a {
 
 .link-primary:hover {
   color: #344360 !important;
+}
+
+/* DROPDOWN */
+#dropdown-basic.show {
+  background-color: #87FAD1 !important;
+}
+
+.dropdown-item:hover {
+  background-color: #87FAD1;
+  color: #000;
 }

@@ -1,0 +1,13 @@
+.banner {
+  width: 100vw;
+  height: 450px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media screen and (min-width: 1920px) {
+  .banner {
+    height: 60vh;
+  }
+}

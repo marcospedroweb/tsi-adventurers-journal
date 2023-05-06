@@ -21,14 +21,15 @@
 }
 
 .dropdown {
-  background-color: transparent;
+  background-color: transparent !important;
   border: unset;
+  border: 1px solid transparent !important;
   transition: all .25s ease-out;
 }
 
 .dropdown:hover,
 .dropdown:active {
-  background-color: #2C4C8A;
+  background-color: #87FAD1 !important;
 }
 
 .dropdown a {

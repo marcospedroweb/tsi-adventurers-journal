@@ -1,0 +1,27 @@
+.seal {
+  width: fit-content;
+  padding: 4px 8px;
+  background-color: #bbb;
+  border-radius: 8px;
+  text-transform: uppercase;
+  color: #323232;
+  font-weight: 500;
+}
+
+.seal.adventurer,
+.seal.plus {
+  background-color: #1C2331;
+
+}
+
+.seal.adventurer span {
+  background: linear-gradient(to right, #87FAD1, #58D8AA);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.seal.plus span {
+  background: linear-gradient(to right, #87FAD1, #00A3FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

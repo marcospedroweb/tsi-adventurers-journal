@@ -12,6 +12,7 @@
 }
 
 .loading {
-  background-color: #63d4ac !important;
+  background-color: #aaa !important;
+  border: 1px solid #aaa !important;
   cursor: wait !important;
 }

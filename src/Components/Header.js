@@ -16,7 +16,9 @@ const Header = () => {
           className={`${styles.divInside} d-flex justify-content-between align-items-center`}
         >
           <div>
-            <img src="/imgs/logo.svg" alt="Logo Adventurer's Journal" />
+            <Link to="/">
+              <img src="/imgs/logo.svg" alt="Logo Adventurer's Journal" />
+            </Link>
           </div>
           <nav>
             <ul className="list-unstyled d-flex justify-content-betwenn align-items-center">
@@ -41,7 +43,9 @@ const Header = () => {
                   <BsPersonCircle color="#fff" size={'24px'} />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item href="/">Meu perfil</Dropdown.Item>
+                  <Link to="perfil" className="dropdown-item text-start">
+                    Meu perfil
+                  </Link>
                   <Dropdown.Item
                     onClick={() => {
                       setSession({

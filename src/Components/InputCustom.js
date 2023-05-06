@@ -9,9 +9,11 @@ const InputCustom = ({
   type,
   onChange,
   error,
+  errorBack,
   onBlur,
   placeholder,
   refComponent,
+  required,
 }) => {
   return (
     <>
@@ -23,9 +25,15 @@ const InputCustom = ({
           onBlur={onBlur}
           placeholder={label}
           ref={refComponent}
+          value={value}
+          required={required}
         />
+        {error || errorBack ? (
+          <p className={styles.error}>{error || errorBack}</p>
+        ) : (
+          ''
+        )}
       </FloatingLabel>
-      {error && <p className={styles.error}>{error}</p>}
     </>
   );
 };

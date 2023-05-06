@@ -1,6 +1,10 @@
 import React from 'react';
 
 const types = {
+  name: {
+    regex: /^[a-zA-Z0-9\s]+$/,
+    message: 'Nome inválido. (Não é permitido caracteres especiais)',
+  },
   cep: {
     regex: /^\d{5}-?\d{3}$/,
     message: 'Cep inválido',
@@ -9,6 +13,10 @@ const types = {
     regex:
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     message: 'Email inválido',
+  },
+  password: {
+    regex: /.{6,}/,
+    message: 'Senha inválido. Deve ter pelo menos 6 caracteres.',
   },
 };
 
@@ -39,6 +47,7 @@ const useForm = (type) => {
     value,
     setValue,
     error,
+    setError,
     onChange,
     onBlur: () => validate(value),
     validate: () => validate(value),
