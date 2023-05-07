@@ -6,7 +6,7 @@ const SealPlanCard = ({ type }) => {
     <div
       className={`${styles.seal}  ${
         type === 'adventurer' ? styles.adventurer : ''
-      } ${type === 'plus' ? styles.plus : ''}`}
+      } ${type === 'plus' ? styles.plus : ''} mx-auto`}
     >
       {type === 'gratis' ? (
         <span>Grátis</span>

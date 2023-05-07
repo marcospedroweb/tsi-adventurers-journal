@@ -1,0 +1,104 @@
+.divMain {
+  background-color: #80B9CA;
+  padding: 24px 16px;
+  position: relative;
+}
+
+.divImg {
+  border: 4px solid #1C2331;
+  border-radius: 50%;
+}
+
+.divImg img {
+  width: 100%;
+  min-width: 150px;
+  max-width: 322px;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 576px) {
+  .divImg img {
+    width: 100%;
+    max-width: 80vw;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 922px) {
+  .divImg img {
+    width: 100%;
+    max-width: 280px;
+    min-width: 280px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .divImg img {
+    min-width: 280px;
+  }
+}
+
+.divName {
+  margin-top: 161px;
+  text-align: center;
+}
+
+@media screen and (max-width: 400px) {
+  .divName {
+    margin-top: 92px !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .divName {
+    margin-top: 116px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .divName {
+    margin-top: 92px;
+  }
+}
+
+.divName h2 {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+@media screen and (max-width: 576px) {
+  .divName h2 {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+}
+
+.divAbout {
+  margin-top: 48px;
+}
+
+@media screen and (max-width: 576px) {
+  .divAbout {
+    margin-top: 32px;
+  }
+}
+
+.divAbout h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.aboutUser {
+  padding: 0 24px;
+  position: relative;
+  text-align: center;
+}
+
+@media screen and (max-width: 576px) {
+  .aboutUser p {
+    font-size: .8rem;
+    padding: 0 12px;
+  }
+}

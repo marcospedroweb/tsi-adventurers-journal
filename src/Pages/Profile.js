@@ -8,7 +8,7 @@ const Profile = () => {
     <>
       <BannerProfile />
       <div className="container-xl">
-        <div className="row justify-content-between align-items-center">
+        <div className="row flex-column flex-lg-row justify-content-between align-items-start">
           <ProfileUserSide />
           <ProfileContentSide />
         </div>

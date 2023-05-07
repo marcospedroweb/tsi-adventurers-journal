@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ModalCustom.module.css';
+import styles from './ModalLogin.module.css';
 import ButtonCustom from './ButtonCustom';
 import { Modal } from 'react-bootstrap';
 import InputCustom from './InputCustom';
@@ -10,7 +10,7 @@ import { noUserBannerBase64 } from '../Helpers/NoUserBanner64';
 import GetInputObj from '../Helpers/GetInputObj';
 import useForm from '../Hooks/userForm';
 
-const ModalCustom = ({ typeBtn = 'btn', textBtn, children = '' }) => {
+const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
   const [show, setShow] = React.useState(false);
   const [showCadastro, setShowCadastro] = React.useState(false);
   const { session, setSession } = React.useContext(GlobalContext);
@@ -168,7 +168,9 @@ const ModalCustom = ({ typeBtn = 'btn', textBtn, children = '' }) => {
       {/* Cadastro */}
       <Modal show={showCadastro} onHide={handleCloseCadastro} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Crie sua conta</Modal.Title>
+          <Modal.Title>
+            <h2 className="h4 fw-bold">Crie sua conta</h2>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <span className="text-start" style={{ fontWeight: '600' }}>
@@ -237,4 +239,4 @@ const ModalCustom = ({ typeBtn = 'btn', textBtn, children = '' }) => {
   );
 };
 
-export default ModalCustom;
+export default ModalLogin;

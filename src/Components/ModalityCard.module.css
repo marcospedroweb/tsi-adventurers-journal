@@ -1,0 +1,152 @@
+.showHome,
+.showProfile {
+  overflow: hidden;
+}
+
+@media screen and (max-width: 576px) {
+
+  .showHome+.showHome,
+  .showProfile+.showProfile {
+    margin-top: 8px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+
+  .showHome:nth-child(n+3),
+  .showProfile:nth-child(n+3) {
+    margin-top: 8px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+
+  .showHome:nth-child(n+4),
+  .showProfile:nth-child(n+4) {
+    margin-top: 8px;
+  }
+}
+
+.divImg {
+  min-height: 200px;
+  height: 325px;
+  background: #ccc url('../../public/imgs/noimage.png') no-repeat center/cover;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 16px;
+  position: relative;
+  cursor: pointer;
+}
+
+.divImg h2,
+.divImg h4 {
+  font-weight: 700;
+  color: #fff;
+  font-size: 1.5rem;
+  text-align: center;
+  transition: all .25s ease-out;
+}
+
+.divImg .filter {
+  background: linear-gradient(0deg, #000000 5%, rgba(0, 0, 0, 0) 100%);
+  border-radius: 16px;
+  width: 100%;
+  min-height: 200px;
+  height: 325px;
+  transition: all .25s ease-out;
+}
+
+.divImg.show .filter {
+  background: linear-gradient(0deg, rgba(0, 0, 0, .8), rgba(0, 0, 0, .8));
+}
+
+.divData {
+  width: 100%;
+  min-height: 200px;
+  height: 325px;
+}
+
+.showHome .divImg .divData h2 {
+  transform: translateY(700%);
+}
+
+.showHome .divImg .divData h2 {
+  transform: translateY(825%);
+}
+
+.divImg.show .divData h2 {
+  transform: translateY(-50%);
+}
+
+.divImg .divData p {
+  text-align: center;
+  opacity: 0;
+  padding: 0 16px;
+  color: #fff;
+  transform: translateY(10%);
+  transition: all .25s ease-out;
+}
+
+.divImg.show .divData p {
+  opacity: 1;
+}
+
+/* CARD IN PROFILE */
+.aboutAdventure {
+  max-width: 90%;
+}
+
+.showProfile .divImg img {
+  opacity: 0;
+  transition: all .25s ease-out;
+}
+
+.showProfile .divImg.show img {
+  opacity: 1;
+}
+
+.showProfile .divImg .divData h2 {
+  transform: translateY(1050%);
+}
+
+@media screen and (max-width: 576px) {
+  .showProfile .divImg .divData h2 {
+    transform: translateY(850%);
+    font-size: 1.40rem;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width:992px) {
+  .showProfile .divImg .divData h2 {
+    transform: translateY(900%);
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width:1200px) {
+  .showProfile .divImg .divData h2 {
+    transform: translateY(1150%);
+  }
+}
+
+.showProfile .divImg.show .divData h2 {
+  transform: translateY(-25%);
+}
+
+@media screen and (min-width: 992px) and (max-width:1200px) {
+  .showProfile .divImg.show .divData h2 {
+    transform: translateY(30%);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .showProfile p {
+    font-size: .8rem !important;
+  }
+}
+
+.showProfile .divAdventureText p {
+  margin-bottom: 4px;
+  text-align: start;
+  font-size: .95rem;
+}
