@@ -71,11 +71,7 @@
   transform: translateY(700%);
 }
 
-.showHome .divImg .divData h2 {
-  transform: translateY(825%);
-}
-
-.divImg.show .divData h2 {
+.showHome .divImg.show .divData h2 {
   transform: translateY(-50%);
 }
 
