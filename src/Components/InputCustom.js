@@ -28,12 +28,12 @@ const InputCustom = ({
           value={value}
           required={required}
         />
-        {error || errorBack ? (
-          <p className={styles.error}>{error || errorBack}</p>
-        ) : (
-          ''
-        )}
       </FloatingLabel>
+      {error || errorBack ? (
+        <p className={styles.error}>{error || errorBack}</p>
+      ) : (
+        ''
+      )}
     </>
   );
 };

@@ -8,6 +8,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import './index.css';
 import { GlobalStorage } from './Context/GlobalStorage';
 import Profile from './Pages/Profile';
+import Loading from './Components/Loading';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,6 +19,7 @@ root.render(
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/perfil" element={<Profile />} />
+          <Route path="/loading" element={<Loading />} />
         </Routes>
       </BrowserRouter>
     </GlobalStorage>

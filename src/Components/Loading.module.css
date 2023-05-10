@@ -1,0 +1,35 @@
+.divMain {
+  background-color: #283040;
+  width: 99.09vw;
+  height: 100vh;
+}
+
+.containerLoading {
+  height: calc(100vh - 64px);
+}
+
+.loading {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #000;
+  border-top: 5px solid #87FAD1;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.containerLoading h2 {
+  color: #fff;
+  font-size: 1.25rem;
+  margin-top: 16px;
+}
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

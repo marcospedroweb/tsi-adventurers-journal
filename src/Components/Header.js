@@ -1,13 +1,33 @@
 import React from 'react';
 import styles from './Header.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BsPersonCircle } from 'react-icons/bs';
 import { Dropdown } from 'react-bootstrap';
 import { GlobalContext } from '../Context/GlobalStorage';
 import ModalLogin from './ModalLogin';
+import { apiRoute, logoutRoute, optionsFetch } from '../DB/data';
+import useFetch from '../Hooks/useFetch';
 
 const Header = () => {
   const { session, setSession } = React.useContext(GlobalContext);
+  const navigate = useNavigate();
+  const { request } = useFetch();
+
+  async function handleLogout() {
+    const { json } = await request(
+      `${apiRoute}${logoutRoute}`,
+      optionsFetch({ method: 'POST', token: session.user.token }),
+    );
+
+    if (json.message !== 'Logout realizado com sucesso!')
+      alert('ocorreu um erro');
+
+    setSession({
+      logged: false,
+      user: '',
+    });
+    navigate('/');
+  }
 
   return (
     <header className={styles.divHeader}>
@@ -46,14 +66,7 @@ const Header = () => {
                   <Link to="perfil" className="dropdown-item text-start">
                     Meu perfil
                   </Link>
-                  <Dropdown.Item
-                    onClick={() => {
-                      setSession({
-                        logged: false,
-                        user: '',
-                      });
-                    }}
-                  >
+                  <Dropdown.Item onClick={handleLogout}>
                     Encerrar sessão
                   </Dropdown.Item>
                 </Dropdown.Menu>

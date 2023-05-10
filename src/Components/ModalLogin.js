@@ -9,6 +9,13 @@ import { noUserImageBase64 } from '../Helpers/NoUserBase64';
 import { noUserBannerBase64 } from '../Helpers/NoUserBanner64';
 import GetInputObj from '../Helpers/GetInputObj';
 import useForm from '../Hooks/userForm';
+import {
+  apiRoute,
+  loginRoute,
+  optionsFetch,
+  registerRoute,
+  showUserRoute,
+} from '../DB/data';
 
 const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
   const [show, setShow] = React.useState(false);
@@ -29,13 +36,37 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
 
     const emailData = email.refLogin.current.value;
     const passData = pass.refLogin.current.value;
-    const json = await request('http://localhost:8000/users', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email: emailData,
-        password: passData,
+
+    const loginResult = await request(
+      `${apiRoute}${loginRoute}`,
+      optionsFetch({
+        method: 'POST',
+        body: {
+          email: emailData,
+          password: passData,
+        },
       }),
+    );
+
+    if (!loginResult.json.status) {
+      email.validationLogin.setError('Email e/ou senha incorretos');
+      pass.validationLogin.setError('Email e/ou senha incorretos');
+    }
+    email.validationLogin.setError('');
+    pass.validationLogin.setError('');
+
+    const showUser = await request(
+      `${apiRoute}${showUserRoute}`,
+      optionsFetch({ method: 'GET', token: loginResult.json.token }),
+    );
+
+    setSession({
+      logged: true,
+      user: {
+        name: showUser.json.data.name,
+        email: showUser.json.data.email,
+        token: loginResult.json.token,
+      },
     });
   }
 
@@ -55,8 +86,8 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
     )
       return;
 
-    //Faz o fetch para realizar o cadastro de novo usuario
-    const { json } = await request('http://localhost:8000/users', {
+    // Faz o fetch para realizar o cadastro de novo usuario
+    const { json } = await request(`${apiRoute}${registerRoute}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -96,8 +127,9 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
     setSession({
       logged: true,
       user: {
-        name: json.data.name,
-        email: json.data.email,
+        name: json.user.name,
+        email: json.user.email,
+        token: json.token,
       },
     });
   }
@@ -132,7 +164,7 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
               label="Email"
               refComponent={email.refLogin}
               required={true}
-              errorBack={email.errorLogin}
+              errorBack={email.errorLogin[0]}
               {...email.validationLogin}
             />
             <InputCustom
@@ -141,12 +173,19 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
               label="Senha"
               refComponent={pass.refLogin}
               required={true}
-              errorBack={pass.errorLogin}
+              errorBack={pass.errorLogin[0]}
               {...pass.validationLogin}
             />
-            <ButtonCustom type="submit" bsClass={'mt-3 w-100'}>
-              Entrar
-            </ButtonCustom>
+            {loading && (
+              <ButtonCustom type="submit" bsClass={'mt-3 w-100'} loading={true}>
+                Carregando...
+              </ButtonCustom>
+            )}
+            {!loading && (
+              <ButtonCustom type="submit" bsClass={'mt-3 w-100'}>
+                Entrar na conta
+              </ButtonCustom>
+            )}
           </form>
         </Modal.Body>
         <Modal.Footer className="text-center d-flex flex-column">
@@ -184,7 +223,7 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
               label="Nome Completo"
               refComponent={name.refRegister}
               required={true}
-              errorBack={name.errorRegister}
+              errorBack={name.errorRegister[0]}
               minLength="4"
               maxLength="25"
               {...name.validationRegister}
@@ -195,7 +234,7 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
               label="Email"
               refComponent={email.refRegister}
               required={true}
-              errorBack={name.errorLogin}
+              errorBack={name.errorRegister[0]}
               {...email.validationRegister}
             />
             <InputCustom
@@ -204,7 +243,7 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
               label="Senha"
               refComponent={pass.refRegister}
               required={true}
-              errorBack={name.errorRegister}
+              errorBack={name.errorRegister[0]}
               minLength="6"
               {...pass.validationRegister}
             />

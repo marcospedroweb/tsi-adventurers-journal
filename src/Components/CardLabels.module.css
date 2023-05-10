@@ -1,0 +1,40 @@
+.divMain {
+  background-color: #80B9CA;
+  border-radius: 8px;
+}
+
+.divMain h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.label {
+  background-color: #1C2331;
+  padding: 8px 16px;
+  border-radius: 12px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.label img {
+  height: 20px;
+}
+
+.label a {
+  text-decoration: none;
+}
+
+.label p {
+  margin: 0;
+  color: #87FAD1;
+  white-space: nowrap;
+  transition: all .25s ease-out;
+}
+
+.label a:hover p {
+  color: #63d4ac;
+
+}

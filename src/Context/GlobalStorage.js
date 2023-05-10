@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 // Cria o contexto global das paginas
 
 // É necessario importar esta variavel para acessar o context
