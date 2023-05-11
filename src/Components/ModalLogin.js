@@ -2,13 +2,12 @@ import React from 'react';
 import styles from './ModalLogin.module.css';
 import ButtonCustom from './ButtonCustom';
 import { Modal } from 'react-bootstrap';
-import InputCustom from './InputCustom';
+import FloatingInputCustom from './FloatingInputCustom';
 import useFetch from '../Hooks/useFetch';
 import { GlobalContext } from '../Context/GlobalStorage';
 import { noUserImageBase64 } from '../Helpers/NoUserBase64';
 import { noUserBannerBase64 } from '../Helpers/NoUserBanner64';
 import GetInputObj from '../Helpers/GetInputObj';
-import useForm from '../Hooks/userForm';
 import {
   apiRoute,
   loginRoute,
@@ -20,7 +19,7 @@ import {
 const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
   const [show, setShow] = React.useState(false);
   const [showCadastro, setShowCadastro] = React.useState(false);
-  const { session, setSession } = React.useContext(GlobalContext);
+  const { setSession } = React.useContext(GlobalContext);
 
   // Variavel com informações de Ref,Validadtion de dados e erros
   const name = GetInputObj('name');
@@ -158,7 +157,7 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
           </span>
 
           <form action="#" method="POST" onSubmit={handleSubmitLogin}>
-            <InputCustom
+            <FloatingInputCustom
               id="emailLogin"
               type="email"
               label="Email"
@@ -167,7 +166,7 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
               errorBack={email.errorLogin[0]}
               {...email.validationLogin}
             />
-            <InputCustom
+            <FloatingInputCustom
               id="passLogin"
               type="password"
               label="Senha"
@@ -217,7 +216,7 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
           </span>
 
           <form action="#" method="POST" onSubmit={handleSubmitRegister}>
-            <InputCustom
+            <FloatingInputCustom
               id="nameRegister"
               type="text"
               label="Nome Completo"
@@ -228,7 +227,7 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
               maxLength="25"
               {...name.validationRegister}
             />
-            <InputCustom
+            <FloatingInputCustom
               id="emailRegister"
               type="email"
               label="Email"
@@ -237,7 +236,7 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
               errorBack={name.errorRegister[0]}
               {...email.validationRegister}
             />
-            <InputCustom
+            <FloatingInputCustom
               id="passRegister"
               type="password"
               label="Senha"

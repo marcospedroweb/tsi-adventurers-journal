@@ -18,6 +18,19 @@ const types = {
     regex: /.{6,}/,
     message: 'Senha inválido. Deve ter pelo menos 6 caracteres.',
   },
+  tel: {
+    regex: /^\([1-9]{2}\) 9?[6-9]{1}[0-9]{3}-[0-9]{4}$/,
+    message: 'Senha inválido. Deve ter pelo menos 6 caracteres.',
+  },
+  image: {
+    regex: /\.(png|jpeg|jpg)$/,
+    message: 'Tipo de arquivo invalido. Tipos aceitos: .png, .jpeg e .jpg',
+  },
+  bio: {
+    regex: /^[a-zA-Z0-9\s!]{0,250}$/,
+    message:
+      'Deve ter no máximo 250 caracteres, com apenas letras, números, e "!" permitidos.',
+  },
 };
 
 const useForm = (type) => {
@@ -26,7 +39,7 @@ const useForm = (type) => {
 
   function validate(value) {
     if (type === false) return true;
-    if (value.length === 0) {
+    if (value.length === 0 && type !== 'bio') {
       setError('Preencha um valor');
       return false;
     } else if (types[type] && !types[type].regex.test(value)) {

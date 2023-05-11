@@ -1,0 +1,79 @@
+.divMain:nth-child(n+3) {
+  margin-top: 16px;
+}
+
+@media screen and (max-width: 992px) {
+  .divMain+.divMain {
+    margin-top: 16px;
+  }
+}
+
+.divLabel {
+  background-color: #E8E8E8;
+  padding: 16px;
+  border-radius: 16px;
+  transition: all .25s ease-out;
+}
+
+.divLabel.editing {
+  background-color: #1C2331;
+}
+
+.divLabel h3 {
+  color: #181818;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.divLabel.editing h3 {
+  color: #87FAD1;
+}
+
+.divLabel p {
+  color: #585858;
+  white-space: nowrap;
+  margin-right: 12px;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+.divEdit {
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all .25s ease-out;
+}
+
+.divEdit:hover {
+  background-color: #d8d8d8;
+}
+
+@media screen and (max-width: 762px) {
+  .divEdit {
+    background-color: #d8d8d8;
+  }
+}
+
+.divLabel input.show,
+.divOk.show {
+  opacity: 1;
+}
+
+.error {
+  color: #ad1f1f;
+  font-weight: 500;
+  font-size: .9rem;
+}
+
+.divOk {
+  padding: 8px;
+  cursor: pointer;
+  opacity: 0;
+  background-color: #283040;
+  border-radius: 8px;
+  transition: all .25s ease-out;
+}

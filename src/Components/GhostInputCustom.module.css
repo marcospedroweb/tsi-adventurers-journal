@@ -1,0 +1,14 @@
+.input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 3px solid #87FAD1;
+  color: #fff;
+  opacity: 0;
+  margin-right: 8px;
+  width: 100%;
+  transition: all .25s ease-out;
+}
+
+.input.show {
+  opacity: 1;
+}

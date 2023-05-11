@@ -9,9 +9,9 @@ const CardLabels = ({ title, labels }) => {
       >
         <h3>{title}</h3>
         <div className="d-flex justify-content-between align-items-center w-100 flex-wrap gap-2">
-          {labels.map(({ icon, text, link }) => {
+          {labels.map(({ icon, text, link }, index) => {
             return (
-              <div className={`col align-self-stretch`}>
+              <div className={`col align-self-stretch`} key={text + index}>
                 <div className={styles.label}>
                   {link && (
                     <a href={link} target="_blanck">

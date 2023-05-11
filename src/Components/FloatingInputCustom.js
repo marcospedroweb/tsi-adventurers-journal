@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './InputCustom.module.css';
+import styles from './FloatingInputCustom.module.css';
 import { FloatingLabel, Form } from 'react-bootstrap';
 
-const InputCustom = ({
+const FloatingInputCustom = ({
   id,
   label,
   value,
@@ -38,4 +38,4 @@ const InputCustom = ({
   );
 };
 
-export default InputCustom;
+export default FloatingInputCustom;

@@ -3,21 +3,24 @@ import styles from './ProfileUserSide.module.css';
 import SealPlanCard from './SealPlanCard';
 import ModalEditUser from './ModalEditUser';
 
-const ProfileUserSide = ({ img, name, since, about }) => {
-  const date = new Date(since);
+const ProfileUserSide = ({ user }) => {
+  const date = new Date(user.created);
   const dateFormated = `Desde ${date.getFullYear()}`;
 
   return (
     <section className="col-12 col-lg-4 sticky-lg-top">
-      <div className={`${styles.divMain} `}>
+      <div className={`${styles.divMain}`}>
         <div
           className={`${styles.divImg} position-absolute top-0 start-50 translate-middle`}
         >
-          <ModalEditUser />
-          <img src={`data:image/png;base64, ${img}`} alt={name} />
+          <ModalEditUser user={user} />
+          <img
+            src={`data:image/png;base64, ${user.foto_URL}`}
+            alt={user.name}
+          />
         </div>
         <div className={styles.divName}>
-          <h2>{name}</h2>
+          <h2>{user.name}</h2>
           <SealPlanCard type={'plus'} />
           <p className="mt-2">{dateFormated}</p>
         </div>
@@ -30,7 +33,7 @@ const ProfileUserSide = ({ img, name, since, about }) => {
               alt=""
             />
             <p>
-              {about} E aí! Eu sou aquela pessoa que está sempre em busca de
+              {user.bio} E aí! Eu sou aquela pessoa que está sempre em busca de
               novas aventuras e experiências radicais. Amo viajar e explorar
               lugares diferentes, mas o que me motiva mesmo são os esportes
               radicais. Já pratiquei bungee jumping, rapel, paraquedismo, asa

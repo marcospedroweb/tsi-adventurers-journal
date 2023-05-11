@@ -1,0 +1,58 @@
+.divMain {
+  margin: 0 auto;
+  padding: 32px 0 92px 0;
+  background-color: #283040;
+}
+
+.divMain h2 {
+  font-weight: 700;
+  font-size: 3rem;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.divBtns ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: fit-content;
+  gap: 16px;
+  border-bottom: 1px solid #B1B1B1;
+  padding: 0;
+}
+
+.divBtns ul li {
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 8px;
+  cursor: pointer;
+  border-bottom: 4px solid transparent;
+  color: #B1B1B1;
+}
+
+
+.divBtns ul li.active,
+.divBtns ul li:hover {
+  border-bottom-color: #87FAD1;
+  color: #87FAD1;
+}
+
+.pDelete {
+  color: #FF7979;
+  margin-bottom: 0;
+}
+
+.pDelete span {
+  font-weight: 700;
+}
+
+.btnDelete {
+  background-color: #FF7979;
+  font-weight: 700;
+  transition: all .25s ease-out;
+}
+
+.btnDelete:hover {
+  background-color: #E45A5A;
+}

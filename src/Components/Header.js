@@ -60,13 +60,19 @@ const Header = () => {
                   className={styles.dropdown}
                   id="dropdown-basic"
                 >
+                  <span className="me-2" style={{ fontSize: '.9rem' }}>
+                    {session.user.name}
+                  </span>
                   <BsPersonCircle color="#fff" size={'24px'} />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Link to="perfil" className="dropdown-item text-start">
+                  <Link to="/perfil" className="dropdown-item text-start">
                     Meu perfil
                   </Link>
-                  <Dropdown.Item onClick={handleLogout}>
+                  <Link to="/config" className="dropdown-item text-start">
+                    Configurações
+                  </Link>
+                  <Dropdown.Item onClick={handleLogout} className="text-danger">
                     Encerrar sessão
                   </Dropdown.Item>
                 </Dropdown.Menu>
