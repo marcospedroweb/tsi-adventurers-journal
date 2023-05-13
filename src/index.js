@@ -10,6 +10,7 @@ import { GlobalStorage } from './Context/GlobalStorage';
 import Profile from './Pages/Profile';
 import Loading from './Components/Loading';
 import Config from './Pages/Config';
+import About from './Pages/About';	
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,6 +23,7 @@ root.render(
           <Route path="/perfil" element={<Profile />} />
           <Route path="/loading" element={<Loading />} />
           <Route path="/config" element={<Config />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </BrowserRouter>
     </GlobalStorage>
