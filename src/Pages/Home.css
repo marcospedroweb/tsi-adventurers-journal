@@ -1,0 +1,9 @@
+.btn .btn-primary {
+    background-color: #87FAD1 !important;
+
+}
+#teste{
+    border: 5px solid !important;
+    border-color: red !important;
+    border-radius: 10px !important;
+}
