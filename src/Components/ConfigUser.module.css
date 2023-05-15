@@ -37,22 +37,3 @@
   border-bottom-color: #87FAD1;
   color: #87FAD1;
 }
-
-.pDelete {
-  color: #FF7979;
-  margin-bottom: 0;
-}
-
-.pDelete span {
-  font-weight: 700;
-}
-
-.btnDelete {
-  background-color: #FF7979;
-  font-weight: 700;
-  transition: all .25s ease-out;
-}
-
-.btnDelete:hover {
-  background-color: #E45A5A;
-}

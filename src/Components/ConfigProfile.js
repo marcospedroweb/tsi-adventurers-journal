@@ -4,13 +4,13 @@ import { convertImageToBase64Promise } from '../Helpers/convertImageToBase64';
 import GetSimpleInputObj from '../Helpers/GetSimpleInputObj';
 import { GlobalContext } from '../Context/GlobalStorage';
 import { FloatingLabel, Form } from 'react-bootstrap';
-import useForm from '../Hooks/userForm';
-import FloatingInputCustom from './FloatingInputCustom';
 import ButtonCustom from './ButtonCustom';
 import useFetch from '../Hooks/useFetch';
+import UnsavedChanges from './UnsavedChanges';
 
-const ConfigProfile = ({ user, edit }) => {
-  const { session, setSession } = React.useContext(GlobalContext);
+const ConfigProfile = ({ user }) => {
+  const { session, setSession, alertEditing, editing, setEditing } =
+    React.useContext(GlobalContext);
   const [photo, setPhoto] = React.useState('');
   const [banner, setBanner] = React.useState('');
   const refPhoto = React.useRef();
@@ -25,7 +25,7 @@ const ConfigProfile = ({ user, edit }) => {
   }, []);
 
   async function handleChangeImage() {
-    edit.setEditing(true);
+    setEditing(true);
     if (refPhoto.current.value)
       setPhoto(await convertImageToBase64Promise(refPhoto.current.files[0]));
     if (refBanner.current.value)
@@ -85,11 +85,7 @@ const ConfigProfile = ({ user, edit }) => {
               <p className={`${styles.hiddenText} mb-0 mt-2`}>
                 A imagem deve estar no formato JPEG ou PNG.
               </p>
-              {photo && edit.alertEditing ? (
-                <p className={styles.error}>Alterações não salvas</p>
-              ) : (
-                ''
-              )}
+              {photo && <UnsavedChanges />}
             </div>
           </div>
         </div>
@@ -123,11 +119,7 @@ const ConfigProfile = ({ user, edit }) => {
               <p className={`${styles.hiddenText} mb-0 mt-2`}>
                 A imagem deve estar no formato JPEG ou PNG.
               </p>
-              {banner && edit.alertEditing ? (
-                <p className={styles.error}>Alterações não salvas</p>
-              ) : (
-                ''
-              )}
+              {banner && <UnsavedChanges />}
             </div>
           </div>
         </div>
@@ -151,7 +143,7 @@ const ConfigProfile = ({ user, edit }) => {
                   value={name.validation.value}
                   onChange={(event) => {
                     name.validation.onChange(event);
-                    if (edit.editing === false) edit.setEditing(true);
+                    if (editing === false) setEditing(true);
                   }}
                   onBlur={name.validation.onBlur}
                   minLength={4}
@@ -163,11 +155,7 @@ const ConfigProfile = ({ user, edit }) => {
               ) : (
                 ''
               )}
-              {name.validation.value !== user.name && edit.alertEditing ? (
-                <p className={styles.error}>{'Alterações não salvas'}</p>
-              ) : (
-                ''
-              )}
+              {name.validation.value !== user.name && <UnsavedChanges />}
             </div>
             <div className="mt-3">
               <h4>Sobre mim</h4>
@@ -184,7 +172,7 @@ const ConfigProfile = ({ user, edit }) => {
                   ref={bio.ref}
                   onChange={(event) => {
                     bio.validation.onChange(event);
-                    if (edit.editing === false) edit.setEditing(true);
+                    if (editing === false) setEditing(true);
                   }}
                   onBlur={bio.validation.onBlur}
                 />
@@ -196,28 +184,14 @@ const ConfigProfile = ({ user, edit }) => {
               ) : (
                 ''
               )}
-              {console.log(
-                user.bio === null
-                  ? bio.validation.value.length > 0 && edit.alertEditing
-                    ? true
-                    : false
-                  : bio.validation.value !== user.bio && edit.alertEditing
-                  ? true
-                  : false,
-              )}
-              {(
-                user.bio === null
-                  ? bio.validation.value.length > 0 && edit.alertEditing
-                    ? true
-                    : false
-                  : bio.validation.value !== user.bio && edit.alertEditing
+              {(user.bio === null
+                ? bio.validation.value.length > 0 && alertEditing
                   ? true
                   : false
-              ) ? (
-                <p className={`${styles.error} mb-1`}>Alterações não salvas</p>
-              ) : (
-                ''
-              )}
+                : bio.validation.value !== user.bio && alertEditing
+                ? true
+                : false) && <UnsavedChanges />}
+
               <p style={{ fontSize: '.9rem' }}>
                 <span className="me-2">{bio.validation.value.length}/250</span>
                 <span className="fw-semibold">

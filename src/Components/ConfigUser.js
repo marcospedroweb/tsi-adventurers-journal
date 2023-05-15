@@ -3,19 +3,20 @@ import styles from './ConfigUser.module.css';
 import ConfigProfile from './ConfigProfile';
 import { GlobalContext } from '../Context/GlobalStorage';
 import Loading from './Loading';
+import UndoChangeMsg from './UndoChangeMsg';
+import ConfigPreferences from './ConfigPreferences';
 
 const ConfigUser = ({ user }) => {
-  const { session, setSession } = React.useContext(GlobalContext);
+  const {
+    session,
+    setSession,
+    alertEditing,
+    setAlertEditing,
+    editing,
+    setEditing,
+  } = React.useContext(GlobalContext);
   const [component, setComponent] = React.useState('perfil');
-  const [nexComponent, setNextComponent] = React.useState('');
-  const [editing, setEditing] = React.useState(false);
-  const [alertEditing, setAlertEditing] = React.useState(false);
-
-  function handleAbort() {
-    setEditing(false);
-    setAlertEditing(false);
-    setComponent(nexComponent);
-  }
+  const [nextComponent, setNextComponent] = React.useState('');
 
   if (!user) return <Loading />;
   else
@@ -35,6 +36,19 @@ const ConfigUser = ({ user }) => {
                 }}
               >
                 Perfil
+              </li>
+              <li
+                className={`${
+                  component === 'preferencias' ? styles.active : ''
+                }`}
+                onClick={() => {
+                  if (editing) {
+                    setNextComponent('preferencias');
+                    setAlertEditing(true);
+                  } else setComponent('preferencias');
+                }}
+              >
+                Preferências
               </li>
               <li
                 className={`${component === 'segurança' ? styles.active : ''}`}
@@ -60,25 +74,9 @@ const ConfigUser = ({ user }) => {
               </li>
             </ul>
           </div>
-          {alertEditing && (
-            <div className="d-flex justify-content-start align-items-center my-4">
-              <p className={styles.pDelete}>
-                Há alterações não salvas! <span>Desfazer alterações?</span>
-              </p>
-              <button
-                className={`${styles.btnDelete} btn ms-2`}
-                onClick={handleAbort}
-              >
-                Desfazer
-              </button>
-            </div>
-          )}
-          {component === 'perfil' && (
-            <ConfigProfile
-              user={user}
-              edit={{ editing, setEditing, alertEditing }}
-            />
-          )}
+          <UndoChangeMsg component={{ nextComponent, setComponent }} />
+          {component === 'perfil' && <ConfigProfile user={user} />}
+          {component === 'preferencias' && <ConfigPreferences />}
           {component === 'segurança' && ''}
           {component === 'planos' && ''}
         </div>

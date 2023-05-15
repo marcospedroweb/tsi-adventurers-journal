@@ -1,0 +1,38 @@
+.label {
+  background-color: #1C2331;
+  padding: 8px 16px;
+  border-radius: 12px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.label img {
+  height: 20px;
+}
+
+.label a {
+  text-decoration: none;
+}
+
+.label p {
+  margin: 0;
+  color: #87FAD1;
+  white-space: nowrap;
+  transition: all .25s ease-out;
+}
+
+.label a:hover p {
+  color: #63d4ac;
+}
+
+.divCheckboxs input[type="checkbox"] {
+  display: none;
+}
+
+.divCheckboxs input[type="checkbox"]+label {
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+}
