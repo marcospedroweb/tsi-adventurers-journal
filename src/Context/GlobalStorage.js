@@ -11,9 +11,20 @@ export const GlobalStorage = ({ children }) => {
     logged: false,
     user: '',
   });
+  const [alertEditing, setAlertEditing] = React.useState(false);
+  const [editing, setEditing] = React.useState(false);
 
   return (
-    <GlobalContext.Provider value={{ session, setSession }}>
+    <GlobalContext.Provider
+      value={{
+        session,
+        setSession,
+        alertEditing,
+        setAlertEditing,
+        editing,
+        setEditing,
+      }}
+    >
       {/* {children} será to elemento/pagina dentro do contexto */}
       {children}
     </GlobalContext.Provider>

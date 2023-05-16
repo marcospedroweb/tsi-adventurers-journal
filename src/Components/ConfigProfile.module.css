@@ -2,6 +2,7 @@
   background-color: #283040;
 }
 
+
 .divSection {
   background-color: #1C2331;
   padding: 24px;
@@ -64,9 +65,4 @@
 
 .divInputs label {
   color: #000;
-}
-
-.error {
-  color: #FF7979;
-  font-size: .9rem;
 }

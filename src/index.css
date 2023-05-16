@@ -18,6 +18,13 @@ a {
   font-family: 'Open Sans', sans-serif;
 }
 
+/* ERROR */
+.error-mensage {
+  color: #ad1f1f;
+  font-weight: 600;
+  font-size: .9rem;
+}
+
 /* LINKS */
 .link-primary {
   color: #4E5E7C !important;

@@ -20,6 +20,7 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
   const [show, setShow] = React.useState(false);
   const [showCadastro, setShowCadastro] = React.useState(false);
   const { setSession } = React.useContext(GlobalContext);
+  const [backError, setBackError] = React.useState(false);
 
   // Variavel com informações de Ref,Validadtion de dados e erros
   const name = GetInputObj('name');
@@ -47,12 +48,16 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
       }),
     );
 
-    if (!loginResult.json.status) {
+    if (loginResult.response.status === 401) {
       email.validationLogin.setError('Email e/ou senha incorretos');
       pass.validationLogin.setError('Email e/ou senha incorretos');
+    } else if (loginResult.json === null) {
+      setBackError(true);
+      return;
+    } else {
+      email.validationLogin.setError('');
+      pass.validationLogin.setError('');
     }
-    email.validationLogin.setError('');
-    pass.validationLogin.setError('');
 
     const showUser = await request(
       `${apiRoute}${showUserRoute}`,
@@ -97,6 +102,11 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
         profile_banner_path: noUserBannerBase64,
       }),
     });
+
+    if (json === null) {
+      setBackError(true);
+      return;
+    }
 
     if (json.message === 'Erro de validação') {
       Object.keys(json.errors).forEach((errorName) => {
@@ -185,6 +195,12 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
                 Entrar na conta
               </ButtonCustom>
             )}
+            {backError && (
+              <span className="error-mensage">
+                Houve um erro inesperado. Tente novamente dentro de alguns
+                segundos.
+              </span>
+            )}
           </form>
         </Modal.Body>
         <Modal.Footer className="text-center d-flex flex-column">
@@ -255,6 +271,12 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
               <ButtonCustom type="submit" bsClass={'mt-3 w-100'}>
                 Criar conta
               </ButtonCustom>
+            )}
+            {backError && (
+              <span className="error-mensage">
+                Houve um erro inesperado. Tente novamente dentro de alguns
+                segundos.
+              </span>
             )}
           </form>
         </Modal.Body>
