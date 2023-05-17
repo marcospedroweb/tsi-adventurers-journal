@@ -20,11 +20,12 @@ const types = {
   },
   tel: {
     regex: /^\([1-9]{2}\) 9?[6-9]{1}[0-9]{3}-[0-9]{4}$/,
-    message: 'Senha inválido. Deve ter pelo menos 6 caracteres.',
+    message:
+      'Número de telefone inválido. Deve ter pelo menos 11 caracteres. Ex: 1191111-1111',
   },
   image: {
     regex: /\.(png|jpeg|jpg)$/,
-    message: 'Tipo de arquivo invalido. Tipos aceitos: .png, .jpeg e .jpg',
+    message: 'Tipo de arquivo inválido. Tipos aceitos: .png, .jpeg e .jpg',
   },
   bio: {
     regex: /^[a-zA-Z0-9\s!]{0,250}$/,

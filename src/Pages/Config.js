@@ -27,7 +27,7 @@ const Config = () => {
   }, [navigate, request, session]);
 
   if (loading) return <Loading />;
-  else return <ConfigUser user={user} />;
+  else return <ConfigUser user={{ user, setUser }} />;
 };
 
 export default Config;

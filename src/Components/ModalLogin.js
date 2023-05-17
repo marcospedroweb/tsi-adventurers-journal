@@ -64,13 +64,17 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
       optionsFetch({ method: 'GET', token: loginResult.json.token }),
     );
 
+    const user = {
+      name: showUser.json.data.name,
+      email: showUser.json.data.email,
+      token: loginResult.json.token,
+    };
+
+    window.sessionStorage.setItem('user', JSON.stringify(user));
+
     setSession({
       logged: true,
-      user: {
-        name: showUser.json.data.name,
-        email: showUser.json.data.email,
-        token: loginResult.json.token,
-      },
+      user: user,
     });
   }
 
@@ -133,13 +137,17 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
       return;
     }
 
+    const user = {
+      name: json.data.name,
+      email: json.data.email,
+      token: json.token,
+    };
+
+    window.sessionStorage.setItem('user', JSON.stringify(user));
+
     setSession({
       logged: true,
-      user: {
-        name: json.user.name,
-        email: json.user.email,
-        token: json.token,
-      },
+      user: user,
     });
   }
 

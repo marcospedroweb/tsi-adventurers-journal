@@ -11,6 +11,13 @@
   color: #fff;
 }
 
+@media screen and (max-width: 576px) {
+  .divMain h2 {
+    font-size: 2rem;
+    text-align: center;
+  }
+}
+
 .divBtns ul {
   list-style-type: none;
   display: flex;
@@ -20,6 +27,14 @@
   gap: 16px;
   border-bottom: 1px solid #B1B1B1;
   padding: 0;
+}
+
+@media screen and (max-width: 576px) {
+  .divBtns ul {
+    border-bottom: 1px solid transparent;
+    justify-content: center;
+    margin: 0 auto;
+  }
 }
 
 .divBtns ul li {

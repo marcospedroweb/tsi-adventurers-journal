@@ -20,8 +20,8 @@ const ConfigProfile = ({ user }) => {
   const { loading, request } = useFetch();
 
   React.useEffect(() => {
-    name.validation.setValue(name.validation.value || user.name);
-    bio.validation.setValue(bio.validation.value || user.bio || '');
+    name.validation.setValue(name.validation.value || user.user.name);
+    bio.validation.setValue(bio.validation.value || user.user.bio || '');
   }, []);
 
   async function handleChangeImage() {
@@ -42,7 +42,7 @@ const ConfigProfile = ({ user }) => {
       className={`${styles.divMain} row justify-content-between align-items-center`}
       onSubmit={handleSubmit}
     >
-      <div className="col-12 col-md-6 align-self-stretch">
+      <div className="col-12 col-md-6 align-self-stretch mb-5 mb-md-0">
         <div className={styles.divSection}>
           <h3>Imagem de perfil</h3>
           <p className={styles.hiddenText}>Altera a sua imagem de perfil</p>
@@ -53,7 +53,7 @@ const ConfigProfile = ({ user }) => {
               <div className="text-center">
                 {!photo && (
                   <img
-                    src={`data:image/png;base64, ${user.foto_URL}`}
+                    src={`data:image/png;base64, ${user.user.foto_URL}`}
                     className="rounded-circle"
                     style={{ maxHeight: '90px', maxWidth: '90px' }}
                     alt=""
@@ -70,7 +70,9 @@ const ConfigProfile = ({ user }) => {
               </div>
             </div>
             <div className="col-12 col-md-6">
-              <div className={styles.divInputFile}>
+              <div
+                className={`${styles.divInputFile} mx-auto mx-md-0 mt-3 mt-md-0`}
+              >
                 <div>
                   <input
                     type="file"
@@ -90,7 +92,7 @@ const ConfigProfile = ({ user }) => {
           </div>
         </div>
       </div>
-      <div className="col-12 col-md-6 align-self-stretch">
+      <div className="col-12 col-md-6 align-self-stretch mb-5 mb-md-0">
         <div className={styles.divSection}>
           <h3>Banner de perfil</h3>
           <p className={styles.hiddenText}>Altera seu banner de perfil</p>
@@ -99,22 +101,25 @@ const ConfigProfile = ({ user }) => {
           >
             <div className="col-12 col-md-6">
               {!banner && (
-                <img src={`data:image/png;base64, ${user.banner_URL}`} alt="" />
+                <img
+                  src={`data:image/png;base64, ${user.user.banner_URL}`}
+                  alt=""
+                />
               )}
               {banner && <img src={banner} alt="" />}
             </div>
             <div className="col-12 col-md-6">
-              <div className={styles.divInputFile}>
-                <div>
-                  <input
-                    type="file"
-                    id="inputBanner"
-                    accept="image/png, image/jpeg"
-                    onChange={handleChangeImage}
-                    ref={refBanner}
-                  />
-                  <label htmlFor="inputBanner">Atualizar</label>
-                </div>
+              <div
+                className={`${styles.divInputFile} mx-auto mx-md-0 mt-3 mt-md-0`}
+              >
+                <input
+                  type="file"
+                  id="inputBanner"
+                  accept="image/png, image/jpeg"
+                  onChange={handleChangeImage}
+                  ref={refBanner}
+                />
+                <label htmlFor="inputBanner">Atualizar</label>
               </div>
               <p className={`${styles.hiddenText} mb-0 mt-2`}>
                 A imagem deve estar no formato JPEG ou PNG.
@@ -155,7 +160,7 @@ const ConfigProfile = ({ user }) => {
               ) : (
                 ''
               )}
-              {name.validation.value !== user.name && <UnsavedChanges />}
+              {name.validation.value !== user.user.name && <UnsavedChanges />}
             </div>
             <div className="mt-3">
               <h4>Sobre mim</h4>
@@ -184,11 +189,11 @@ const ConfigProfile = ({ user }) => {
               ) : (
                 ''
               )}
-              {(user.bio === null
+              {(user.user.bio === null
                 ? bio.validation.value.length > 0 && alertEditing
                   ? true
                   : false
-                : bio.validation.value !== user.bio && alertEditing
+                : bio.validation.value !== user.user.bio && alertEditing
                 ? true
                 : false) && <UnsavedChanges />}
 
@@ -204,7 +209,7 @@ const ConfigProfile = ({ user }) => {
           </div>
         </div>
       </div>
-      <div className="text-center mt-3">
+      <div className="text-center mt-4">
         <ButtonCustom type="submit">Salvar Alterações</ButtonCustom>
       </div>
     </form>

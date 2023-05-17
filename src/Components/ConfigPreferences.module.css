@@ -81,3 +81,11 @@
 .divCheckboxs input[type="checkbox"]:checked+label:after {
   opacity: 1;
 }
+
+.divInputs h4 {
+  font-size: 1rem;
+}
+
+.divInputs label {
+  color: #000;
+}

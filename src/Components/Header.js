@@ -13,6 +13,16 @@ const Header = () => {
   const navigate = useNavigate();
   const { request } = useFetch();
 
+  React.useEffect(() => {
+    if (window.sessionStorage.getItem('user')) {
+      const user = JSON.parse(window.sessionStorage.getItem('user'));
+      setSession({
+        logged: true,
+        user: user,
+      });
+    }
+  }, []);
+
   async function handleLogout() {
     const { json } = await request(
       `${apiRoute}${logoutRoute}`,
