@@ -133,13 +133,15 @@ const ConfigPreferences = ({ user }) => {
   const [editLocations, setEditLocations] = React.useState(false);
 
   return (
-    <form
-      action="#"
-      method="POST"
+    <div
       className={`${styles.divMain} row justify-content-between align-items-center`}
       onSubmit={handleSubmit}
     >
-      <div className="col-12 col-md-12 align-self-stretch">
+      <form
+        method="POST"
+        action="#"
+        className="col-12 col-md-12 align-self-stretch"
+      >
         <div className={styles.divSection}>
           <h3>Minhas aventuras</h3>
           <p className={styles.hiddenText}>
@@ -162,9 +164,16 @@ const ConfigPreferences = ({ user }) => {
                 );
               })}
           </div>
+          <div className="text-center">
+            <ButtonCustom type="submit">Salvar alterações</ButtonCustom>
+          </div>
         </div>
-      </div>
-      <div className="col-12 col-md-12 align-self-stretch mt-5">
+      </form>
+      <form
+        action="#"
+        method="POST"
+        className="col-12 col-md-12 align-self-stretch mt-5"
+      >
         <div className={styles.divSection}>
           <h3>Minhas preferências</h3>
           <p className={styles.hiddenText}>
@@ -254,168 +263,12 @@ const ConfigPreferences = ({ user }) => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="col-12 mt-5">
-        <div className={styles.divSection}>
-          <h3>Contato</h3>
-          <p className={styles.hiddenText}>Altere seu meios de contato</p>
-          <div className={`${styles.divInputs} mt-4`}>
-            <div className="row justify-content-between align-items-start">
-              <div className="col-12 col-lg-6 mb-3 mb-lg-0">
-                <div>
-                  <h4>Número de telefone (Ex: (11) 91111-1111)</h4>
-                  <FloatingLabel
-                    controlId={'tel'}
-                    label={'Número de telefone'}
-                    className="mt-3"
-                  >
-                    <Form.Control
-                      type="tel"
-                      label="Número de telefone"
-                      ref={tel.ref}
-                      value={tel.validation.value}
-                      onChange={(event) => {
-                        tel.validation.onChange(event);
-                        if (editing === false) setEditing(true);
-                      }}
-                      onBlur={tel.validation.onBlur}
-                      minLength={11}
-                    />
-                  </FloatingLabel>
-                  {tel.validation.error &&
-                  tel.validation.error !== 'Preencha um valor' ? (
-                    <p style={{ color: '#FF7979', fontSize: '.9rem' }}>
-                      {tel.validation.error}
-                    </p>
-                  ) : (
-                    ''
-                  )}
-                  {tel.validation.value !== user.user.telefone &&
-                    user.user.telefone !== null &&
-                    !tel.validation.value && <UnsavedChanges />}
-                </div>
-              </div>
-              <div className="col-12 col-lg-6">
-                <div>
-                  <h4>Email (Ex: email@exemplo.com)</h4>
-                  <FloatingLabel
-                    controlId={'email'}
-                    label={'Email de contato'}
-                    className="mt-3"
-                  >
-                    <Form.Control
-                      type="tel"
-                      label="Email de contato"
-                      ref={email.ref}
-                      value={email.validation.value}
-                      onChange={(event) => {
-                        email.validation.onChange(event);
-                        if (editing === false) setEditing(true);
-                      }}
-                      onBlur={email.validation.onBlur}
-                      minLength={11}
-                    />
-                  </FloatingLabel>
-                  {email.validation.error &&
-                  email.validation.error !== 'Preencha um valor' ? (
-                    <p style={{ color: '#FF7979', fontSize: '.9rem' }}>
-                      {email.validation.error}
-                    </p>
-                  ) : (
-                    ''
-                  )}
-                  {email.validation.value !== user.user.email && (
-                    <UnsavedChanges />
-                  )}
-                </div>
-              </div>
-            </div>
+          <div className="text-center mt-4">
+            <ButtonCustom type="submit">Salvar preferências</ButtonCustom>
           </div>
         </div>
-      </div>
-      <div className="col-12 mt-5">
-        <div className={styles.divSection}>
-          <h3>Redes sociais</h3>
-          <p className={styles.hiddenText}>Altere seu nome das redes sociais</p>
-          <div className={`${styles.divInputs} mt-4`}>
-            <div className="row justify-content-between align-items-start">
-              <div className="col-12 col-lg-4 mb-3 mb-lg-0">
-                <div>
-                  <h4>Instagram</h4>
-                  <FloatingLabel
-                    controlId={'insta'}
-                    label={'Instagram'}
-                    className="mt-3"
-                  >
-                    <Form.Control
-                      type="text"
-                      label="Instagram"
-                      ref={insta}
-                      onChange={(event) => {
-                        if (editing === false) setEditing(true);
-                      }}
-                      maxLength={50}
-                    />
-                  </FloatingLabel>
-                  {insta.current.value !== user.user.insta &&
-                    user.user.insta !== null && <UnsavedChanges />}
-                </div>
-              </div>
-              <div className="col-12 col-lg-4 mb-3 mb-lg-0">
-                <div>
-                  <h4>Facebook</h4>
-                  <FloatingLabel
-                    controlId={'face'}
-                    label={'Facebook'}
-                    className="mt-3"
-                  >
-                    <Form.Control
-                      type="text"
-                      label="Facebook"
-                      ref={face}
-                      onChange={(event) => {
-                        if (editing === false) setEditing(true);
-                      }}
-                      maxLength={50}
-                    />
-                  </FloatingLabel>
-                  {face.current.value !== user.user.face &&
-                    user.user.facebook !== null && <UnsavedChanges />}
-                </div>
-              </div>
-              <div className="col-12 col-lg-4">
-                <div>
-                  <h4>Twitter</h4>
-                  <FloatingLabel
-                    controlId={'twitter'}
-                    label={'Twitter'}
-                    className="mt-3"
-                  >
-                    <Form.Control
-                      type="text"
-                      label="Twitter"
-                      ref={face}
-                      onChange={(event) => {
-                        if (editing === false) setEditing(true);
-                      }}
-                      maxLength={50}
-                    />
-                  </FloatingLabel>
-                  {twitter.current.value !== user.user.twitter &&
-                    user.user.twitter !== null && <UnsavedChanges />}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="col-12 col-md-12 align-self-stretch mt-5">
-        <div className="text-center">
-          <ButtonCustom type="submit">Salvar alterações</ButtonCustom>
-        </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 

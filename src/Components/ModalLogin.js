@@ -205,8 +205,7 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
             )}
             {backError && (
               <span className="error-mensage">
-                Houve um erro inesperado. Tente novamente dentro de alguns
-                segundos.
+                Houve algum erro. Tente novamente dentro de alguns minutos.
               </span>
             )}
           </form>
@@ -282,8 +281,7 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
             )}
             {backError && (
               <span className="error-mensage">
-                Houve um erro inesperado. Tente novamente dentro de alguns
-                segundos.
+                Houve algum erro. Tente novamente dentro de alguns minutos.
               </span>
             )}
           </form>

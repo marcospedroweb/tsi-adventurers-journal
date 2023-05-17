@@ -28,8 +28,8 @@ const Header = () => {
       `${apiRoute}${logoutRoute}`,
       optionsFetch({ method: 'POST', token: session.user.token }),
     );
-
-    if (json.message !== 'Logout realizado com sucesso!')
+    const removeItem = window.sessionStorage.removeItem('user');
+    if (json.message !== 'Logout realizado com sucesso!' && !removeItem)
       alert('ocorreu um erro');
 
     setSession({
