@@ -6,46 +6,7 @@ import styles from './Home.css';
 const Home = () => {
   return (
     <>
-    <div className="container-xl">
-      {/* <div className="row">
-        <ModalityCard
-          modalityName={'Paraquedismo'}
-          img={'/imgs/paraquedas.jpeg'}
-          desc={''}
-          col="4"
-          />
-          <ModalityCard
-          modalityName={'Paraquedismo'}
-          img={'/imgs/paraquedas.jpeg'}
-          desc={''}
-          col="4"
-          />
-          <ModalityCard
-          modalityName={'Paraquedismo'}
-          img={'/imgs/paraquedas.jpeg'}
-          desc={''}
-          col="4"
-          />
-          <ModalityCard
-          modalityName={'Paraquedismo'}
-          img={'/imgs/paraquedas.jpeg'}
-          desc={''}
-          col="4"
-          />
-          <ModalityCard
-          modalityName={'Paraquedismo'}
-          img={'/imgs/paraquedas.jpeg'}
-          desc={''}
-          col="4"
-        />
-        <ModalityCard
-          modalityName={'Paraquedismo'}
-          img={'/imgs/paraquedas.jpeg'}
-          desc={''}
-          col="4"
-          />
-        </div> */}
-    </div>
+    <div id='banner'></div>
     <div className='container-xl'>
       <div className='d-flex justify-content-center align-items-center'>
         <h1>A coragem é o combustível para novas experiências</h1>
@@ -88,7 +49,7 @@ const Home = () => {
       <div className='d-flex justify-content-center'>
         <h2>Seja o guia dos sonhos de nossos clientes Aventureiros</h2>
         <div>
-          <div id='teste' style={{ width: "250px", height: "200px", background: "red", margin: "10px" }}>
+          <div id='guia1' style={{ width: "600px", height: "450px", margin: "10px" }}>
           </div>
           <div> </div>
           <div>
@@ -127,7 +88,7 @@ const Home = () => {
             </div>
           </div>
         <div>
-          <div id='teste' style={{ width: "250px", height: "200px", background: "red", margin: "10px" }}>
+          <div id='guia2' style={{ width: "600px", height: "450px", margin: "10px" }}>
           </div>
         </div>
 
@@ -139,7 +100,8 @@ const Home = () => {
     </div>
     <div>
       <h2>Conheça mais sobre nos</h2>
-      <div id='teste' style={{ width: "250px", height: "200px", background: "red", margin: "10px" }}>imagem</div>
+      <div id='logo' style={{ width: "668px", height: "750px", margin: "10px" }}>
+      </div>
       <div>
         <p>sobre</p>
         <h1>Adventurer's Journey</h1>

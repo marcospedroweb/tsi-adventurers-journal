@@ -3,3 +3,36 @@
     border-color: red !important;
     border-radius: 10px !important;
 }
+
+#logoabout{
+    background-image: url("../../public/imgs/logoabout.png");
+    border-radius: 10px;
+}
+#aboutimg2{
+    background-image: url("../../public/imgs/aboutimg2.png");
+    border-radius: 10px;
+}
+#aboutimg1{
+    background-image: url("../../public/imgs/aboutimg2.png");
+    border-radius: 10px;
+}
+#aboutimg3{
+    background-image: url("../../public/imgs/aboutimg3.png");
+    border-radius: 10px;
+}
+#aboutimg4{
+    background-image: url("../../public/imgs/aboutimg4.png");
+    border-radius: 10px;
+}
+#aboutimg5{
+    background-image: url("../../public/imgs/aboutimg5.png");
+    border-radius: 10px;
+}
+#aboutimg6{
+    background-image: url("../../public/imgs/aboutimg6.png");
+    border-radius: 10px;
+}
+#aboutimg7{
+    background-image: url("../../public/imgs/aboutimg7.png");
+    border-radius: 10px;
+}

@@ -16,6 +16,8 @@ const About = () => {
 
                 </div>
                 <div id='teste' style={{ width: "250px", height: "200px", margin: "10px" }}></div>
+                <div id='logoabout' style={{ width: "404px", height: "454px", margin: "10px" }}></div>
+                <div id='aboutimg2' style={{ width: "243px", height: "200px", margin: "10px" }}></div>
             </div>
             <div id='teste'>
                 <h1> Desperte o Aventureiro(a) que há em voce</h1>
@@ -24,18 +26,16 @@ const About = () => {
                     Veja os mais famosos
                 </p>
                 <div>
-                    <div id='teste' style={{ width: "250px", height: "200px", margin: "10px" }}></div>
-                    <div id='teste' style={{ width: "250px", height: "200px", margin: "10px" }}></div>
-                    <div id='teste' style={{ width: "250px", height: "200px", margin: "10px" }}></div>
+                    componente modalidades
                 </div>
             </div>
             <div id='teste'>
                 <h1>Oferecemos suporte em toda sua viagem</h1>
-                <div id='teste' style={{ width: "850px", height: "200px", margin: "10px" }}></div>
-                <div id='teste' style={{ width: "850px", height: "200px", margin: "10px" }}></div>
-                <div id='teste' style={{ width: "850px", height: "200px", margin: "10px" }}></div>
-                <div id='teste' style={{ width: "850px", height: "200px", margin: "10px" }}></div>
-                <div id='teste' style={{ width: "850px", height: "200px", margin: "10px" }}></div>
+                <div id='aboutimg3' style={{ width: "438px", height: "166px", margin: "10px" }}></div>
+                <div id='aboutimg4' style={{ width: "438px", height: "166px", margin: "10px" }}></div>
+                <div id='aboutimg5' style={{ width: "438px", height: "166px", margin: "10px" }}></div>
+                <div id='aboutimg6' style={{ width: "438px", height: "166px", margin: "10px" }}></div>
+                <div id='aboutimg7' style={{ width: "438px", height: "166px", margin: "10px" }}></div>
             </div>
             <div>
                 Componente de avaliaçoes
