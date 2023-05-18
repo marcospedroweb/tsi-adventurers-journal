@@ -4,6 +4,8 @@ export const registerRoute = '/users';
 
 export const loginRoute = '/login';
 
+export const updateUserRoute = '/user/';
+
 export const showUserRoute = '/user';
 
 export const logoutRoute = '/logout';

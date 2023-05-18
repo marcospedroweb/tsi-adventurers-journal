@@ -138,8 +138,8 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
     }
 
     const user = {
-      name: json.data.name,
-      email: json.data.email,
+      name: json.user.name,
+      email: json.user.email,
       token: json.token,
     };
 

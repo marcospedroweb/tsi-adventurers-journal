@@ -7,12 +7,15 @@ import { FloatingLabel, Form } from 'react-bootstrap';
 import ButtonCustom from './ButtonCustom';
 import useFetch from '../Hooks/useFetch';
 import UnsavedChanges from './UnsavedChanges';
+import { apiRoute, optionsFetch, updateUserRoute } from '../DB/data';
 
 const ConfigProfile = ({ user }) => {
-  const { session, setSession, alertEditing, editing, setEditing } =
+  const { alertEditing, setAlertEditing, editing, setEditing } =
     React.useContext(GlobalContext);
   const [photo, setPhoto] = React.useState('');
+  const [photoMsg, setPhotoMsg] = React.useState('');
   const [banner, setBanner] = React.useState('');
+  const [bannerMsg, setBannerMsg] = React.useState('');
   const refPhoto = React.useRef();
   const refBanner = React.useRef();
   const name = GetSimpleInputObj('name');
@@ -25,22 +28,53 @@ const ConfigProfile = ({ user }) => {
   }, []);
 
   async function handleChangeImage() {
-    setEditing(true);
-    if (refPhoto.current.value)
+    if (refPhoto.current.value) {
       setPhoto(await convertImageToBase64Promise(refPhoto.current.files[0]));
-    if (refBanner.current.value)
+      setPhotoMsg(true);
+      setTimeout(() => {
+        setPhotoMsg(false);
+      }, 3000);
+      // const { json } = await request(
+      //   `${apiRoute}${updateUserRoute}`,
+      //   optionsFetch({
+      //     method: 'PACTH',
+      //     headers: { 'Content-Type': 'multipart/form-data' },
+      //     body: refPhoto.current.files[0],
+      //     token: session.user.token,
+      //   }),
+      // );
+    }
+    if (refBanner.current.value) {
       setBanner(await convertImageToBase64Promise(refBanner.current.files[0]));
+      setBannerMsg(true);
+      setTimeout(() => {
+        setBannerMsg(false);
+      }, 3000);
+    }
   }
 
-  async function handleSubmit(event) {
+  async function handleSubmitProfile(event) {
     event.preventDefault();
+    const newName = name.validation.value;
+    const newBio = bio.validation.value;
+
+    if (newName === user.user.name) return;
+    if (newBio === user.user.bio && user.user.bio !== null) return;
+    console.log(newName);
+    console.log(newBio);
+
+    /*
+    UPDATE USUARIO
+    */
+
+    setEditing(false);
+    setAlertEditing(false);
     alert('form enviado');
   }
 
   return (
-    <form
+    <div
       className={`${styles.divMain} row justify-content-between align-items-center`}
-      onSubmit={handleSubmit}
     >
       <div className="col-12 col-md-6 align-self-stretch mb-5 mb-md-0">
         <div className={styles.divSection}>
@@ -84,10 +118,17 @@ const ConfigProfile = ({ user }) => {
                   <label htmlFor="inputPhoto">Atualizar</label>
                 </div>
               </div>
+              {photoMsg && photo && (
+                <p
+                  className="fw-bold mt-2"
+                  style={{ color: '#87FAD1', fontSize: '.9rem' }}
+                >
+                  Imagem alterada com sucesso
+                </p>
+              )}
               <p className={`${styles.hiddenText} mb-0 mt-2`}>
                 A imagem deve estar no formato JPEG ou PNG.
               </p>
-              {photo && <UnsavedChanges />}
             </div>
           </div>
         </div>
@@ -121,15 +162,27 @@ const ConfigProfile = ({ user }) => {
                 />
                 <label htmlFor="inputBanner">Atualizar</label>
               </div>
+              {bannerMsg && banner && (
+                <p
+                  className="fw-bold mt-2"
+                  style={{ color: '#87FAD1', fontSize: '.9rem' }}
+                >
+                  Imagem alterada com sucesso
+                </p>
+              )}
               <p className={`${styles.hiddenText} mb-0 mt-2`}>
                 A imagem deve estar no formato JPEG ou PNG.
               </p>
-              {banner && <UnsavedChanges />}
             </div>
           </div>
         </div>
       </div>
-      <div className="col-12 mt-3">
+      <form
+        method="POST"
+        action="#"
+        onSubmit={handleSubmitProfile}
+        className="col-12 mt-3"
+      >
         <div className={styles.divSection}>
           <h3>Configurações de perfil</h3>
           <p className={styles.hiddenText}>Altere seu nome e sua biografia</p>
@@ -207,12 +260,12 @@ const ConfigProfile = ({ user }) => {
               </p>
             </div>
           </div>
+          <div className="text-center mt-4">
+            <ButtonCustom type="submit">Salvar Alterações</ButtonCustom>
+          </div>
         </div>
-      </div>
-      <div className="text-center mt-4">
-        <ButtonCustom type="submit">Salvar Alterações</ButtonCustom>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 

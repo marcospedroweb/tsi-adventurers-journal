@@ -3,14 +3,9 @@ import styles from './ModalityUser.module.css';
 import ButtonCustom from './ButtonCustom';
 import { FloatingLabel, Form } from 'react-bootstrap';
 import GetSimpleInputObj from '../Helpers/GetSimpleInputObj';
+import ModalTrip from './ModalTrip';
 
-const ModalityUser = ({ data, change, ref }) => {
-  const [showInput, setShowInput] = React.useState(false);
-  const bio = GetSimpleInputObj('bio');
-  React.useEffect(() => {
-    bio.validation.setValue(data.feedback);
-  }, []);
-
+const ModalityUser = ({ data, change }) => {
   return (
     <div className={styles.divMain} key={`${data.modality}`}>
       <div className="row flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center align-items-lg-start w-100 mt-4">
@@ -28,33 +23,25 @@ const ModalityUser = ({ data, change, ref }) => {
               <p>{data.location}</p>
             </div>
             <div>
-              <div className={showInput ? 'd-none' : ''}>
-                <h3 className="mt-4 mt-lg-0">Comentário</h3>
-                <p className={`position-relative px-4`}>
-                  <img
-                    src="/imgs/Mark_Left_White.svg"
-                    className="position-absolute top-0 start-0"
-                    alt="aspas"
-                  />
-                  {bio.validation.value}
-                  <img
-                    src="/imgs/Mark_Right_White.svg"
-                    className="position-absolute bottom-0 end-0"
-                    alt="aspas"
-                  />
-                </p>
-                <div className="mt-4 text-center text-lg-end">
-                  <ButtonCustom
-                    onClick={() => {
-                      setShowInput(true);
-                    }}
-                  >
-                    Editar comentário
-                  </ButtonCustom>
-                </div>
+              <h3 className="mt-4 mt-lg-0">Comentário</h3>
+              <p className={`position-relative px-4`}>
+                <img
+                  src="/imgs/Mark_Left_White.svg"
+                  className="position-absolute top-0 start-0"
+                  alt="aspas"
+                />
+                {data.feedback}
+                <img
+                  src="/imgs/Mark_Right_White.svg"
+                  className="position-absolute bottom-0 end-0"
+                  alt="aspas"
+                />
+              </p>
+              <div className="mt-4 text-center text-lg-end">
+                <ModalTrip data={data} />
               </div>
 
-              <div className={`${showInput ? '' : 'd-none'}`}>
+              {/* <div className={`${showInput ? '' : 'd-none'}`}>
                 <FloatingLabel
                   controlId="floatingTextarea"
                   label="Edite seu comentario"
@@ -71,7 +58,6 @@ const ModalityUser = ({ data, change, ref }) => {
                     onBlur={bio.validation.onBlur}
                     value={bio.validation.value}
                     style={{ height: '170px' }}
-                    ref={ref}
                   />
                 </FloatingLabel>
                 <div className="text-center text-lg-end">
@@ -83,7 +69,7 @@ const ModalityUser = ({ data, change, ref }) => {
                     Atualizar
                   </ButtonCustom>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

@@ -11,23 +11,22 @@ const Config = () => {
   const navigate = useNavigate();
   const { request, loading } = useFetch();
   const [user, setUser] = React.useState();
+  async function getUserData() {
+    const { json } = await request(
+      `${apiRoute}${showUserRoute}`,
+      optionsFetch({ method: 'GET', token: session.user.token }),
+    );
+
+    setUser(json.data);
+  }
 
   React.useEffect(() => {
-    async function getUserData() {
-      const { json } = await request(
-        `${apiRoute}${showUserRoute}`,
-        optionsFetch({ method: 'GET', token: session.user.token }),
-      );
-
-      setUser(json.data);
-    }
-
     if (!session.user) navigate('/');
     getUserData();
   }, [navigate, request, session]);
 
   if (loading) return <Loading />;
-  else return <ConfigUser user={{ user, setUser }} />;
+  else return <ConfigUser user={{ user, setUser, getUserData }} />;
 };
 
 export default Config;
