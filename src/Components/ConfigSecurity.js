@@ -13,27 +13,30 @@ const ConfigSecurity = ({ user }) => {
     React.useContext(GlobalContext);
   const email = GetSimpleInputObj('email');
   const password = GetSimpleInputObj('password');
+  const newPassword = GetSimpleInputObj('password');
   const { loading, request } = useFetch();
 
   async function handleSubmit(event) {
     event.preventDefault();
+    if (email === user.user.email) return;
     alert('form enviado');
   }
 
   React.useEffect(() => {
     email.validation.setValue(user.user.email);
-    password.validation.setValue('senha');
   }, []);
 
   return (
-    <form
-      action="#"
-      method="POST"
+    <div
       className={`${styles.divMain} row justify-content-between align-items-center`}
-      onSubmit={handleSubmit}
     >
       <div className="col-12 col-md-12 align-self-stretch">
-        <div className={styles.divSection}>
+        <form
+          action="#"
+          method="POST"
+          onSubmit={handleSubmit}
+          className={styles.divSection}
+        >
           <h3>Dados de login</h3>
           <p className={styles.hiddenText}>
             Altera o seu email e senha de login
@@ -68,15 +71,15 @@ const ConfigSecurity = ({ user }) => {
               {email.validation.value !== user.user.email && <UnsavedChanges />}
             </div>
             <div className="mb-3">
-              <h4>Senha</h4>
+              <h4>Senha atual</h4>
               <FloatingLabel
-                controlId={'password'}
-                label={'Senha'}
+                controlId={'passwordActual'}
+                label={'Senha atual'}
                 className="mt-3"
               >
                 <Form.Control
                   type="password"
-                  label="Senha"
+                  label="Senha atual"
                   ref={password.ref}
                   value={password.validation.value}
                   onChange={(event) => {
@@ -98,15 +101,44 @@ const ConfigSecurity = ({ user }) => {
                 <UnsavedChanges />
               )}
             </div>
+            <div className="mb-3">
+              <h4>Nova senha</h4>
+              <FloatingLabel
+                controlId={'newPassword'}
+                label={'Nova senha'}
+                className="mt-3"
+              >
+                <Form.Control
+                  type="password"
+                  label="Nova senha"
+                  ref={newPassword.ref}
+                  value={newPassword.validation.value}
+                  onChange={(event) => {
+                    newPassword.validation.onChange(event);
+                    if (editing === false) setEditing(true);
+                  }}
+                  onBlur={newPassword.validation.onBlur}
+                />
+              </FloatingLabel>
+              {newPassword.validation.error &&
+              newPassword.validation.error !== 'Preencha um valor' ? (
+                <p style={{ color: '#FF7979', fontSize: '.9rem' }}>
+                  {newPassword.validation.error}
+                </p>
+              ) : (
+                ''
+              )}
+              {newPassword.validation.value !== user.user.email && (
+                <UnsavedChanges />
+              )}
+            </div>
           </div>
-        </div>
+          <div className="text-center mt-4">
+            <ButtonCustom type="submit">Salvar alterações</ButtonCustom>
+          </div>
+        </form>
       </div>
-      <div className="col-12 col-md-12 align-self-stretch mt-5">
-        <div className="text-center">
-          <ButtonCustom type="submit">Salvar alterações</ButtonCustom>
-        </div>
-      </div>
-    </form>
+    </div>
   );
 };
 

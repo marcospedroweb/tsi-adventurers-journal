@@ -22,7 +22,7 @@ const ModalTrip = ({ data }) => {
   async function handleSubmit(event) {
     event.preventDefault();
     alert('Form enviado' + data.modality);
-    handleClose();
+    setShow(false);
   }
 
   return (

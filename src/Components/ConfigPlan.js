@@ -14,25 +14,28 @@ const ConfigPlan = ({ user }) => {
   }
 
   return (
-    <form
-      action="#"
-      method="POST"
+    <div
       className={`${styles.divMain} row justify-content-between align-items-center`}
-      onSubmit={handleSubmit}
     >
       <div className="col-12 col-md-12 align-self-stretch">
-        <div className={styles.divSection}>
+        <form
+          action="#"
+          method="POST"
+          onSubmit={handleSubmit}
+          className={styles.divSection}
+        >
           <h3>Meu Plano</h3>
           <p className={styles.hiddenText}>Altere seu plano</p>
           <div className={`${styles.divInputs} mt-4`}>
             <div className="mb-3">
-              <div className="d-flex justify-content-start align-items-center">
-                <p className="m-0 me-3">Seu plano atual é:</p>
-                <div>
-                  <SealPlanCard type={'gratis'} color={'light-blue'} />
-                </div>
+              <h4>Plano atual</h4>
+              <div>
+                <SealPlanCard type={'gratis'} color={'light-blue'} />
               </div>
-              <ModalPlan />
+
+              <div className="mt-3">
+                <ModalPlan />
+              </div>
               {/* {password.validation.error ? (
                 <p style={{ color: '#FF7979', fontSize: '.9rem' }}>
                   {password.validation.error}
@@ -45,14 +48,12 @@ const ConfigPlan = ({ user }) => {
               )} */}
             </div>
           </div>
-        </div>
+          {/* <div className="text-center mt-4">
+            <ButtonCustom type="submit">Salvar alterações</ButtonCustom>
+          </div> */}
+        </form>
       </div>
-      <div className="col-12 col-md-12 align-self-stretch mt-5">
-        <div className="text-center">
-          <ButtonCustom type="submit">Salvar alterações</ButtonCustom>
-        </div>
-      </div>
-    </form>
+    </div>
   );
 };
 
