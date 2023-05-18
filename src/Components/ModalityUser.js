@@ -14,7 +14,6 @@ const ModalityUser = ({ data, change }) => {
             className={styles.divImg}
             style={{ backgroundImage: `url(/imgs/${data.image})` }}
           ></div>
-          {/* <img src="/imgs/no_user_img.png" alt="" /> */}
         </div>
         <div className="col-12 col-lg-9 mt-4 mt-lg-0 text-center text-lg-start">
           <div className={styles.divText}>

@@ -3,6 +3,7 @@ import styles from './ModalTrip.module.css';
 import { FloatingLabel, Form, Modal } from 'react-bootstrap';
 import ButtonCustom from './ButtonCustom';
 import GetSimpleInputObj from '../Helpers/GetSimpleInputObj';
+import UnsavedChanges from './UnsavedChanges';
 
 const ModalTrip = ({ data }) => {
   //Modal
@@ -11,10 +12,18 @@ const ModalTrip = ({ data }) => {
   const handleShow = () => setShow(true);
 
   const bio = GetSimpleInputObj('bio');
+  const avaliation = GetSimpleInputObj('avaliation');
 
   React.useEffect(() => {
     bio.validation.setValue(data.feedback);
+    avaliation.validation.setValue(data.nota);
   }, []);
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    alert('Form enviado' + data.modality);
+    handleClose();
+  }
 
   return (
     <>
@@ -26,6 +35,8 @@ const ModalTrip = ({ data }) => {
         size="lg"
         show={show}
         onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
         className={styles.modal}
       >
         <Modal.Header closeButton>
@@ -34,7 +45,12 @@ const ModalTrip = ({ data }) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="d-flex flex-column justify-content-center align-items-center">
+          <form
+            method="POST"
+            action="#"
+            onSubmit={handleSubmit}
+            className="d-flex flex-column justify-content-center align-items-center"
+          >
             <div
               className={`${styles.divInfo} row justify-content-between align-items-start w-100`}
             >
@@ -60,44 +76,76 @@ const ModalTrip = ({ data }) => {
             <div
               className={`${styles.divChangeText} row justify-content-between align-items-start w-100`}
             >
-              <div className="col-12 col-lg-6">
+              <div className="col-12 col-lg-8">
                 <div className={`${styles.divInputs} mt-4`}>
-                  <div>
-                    <h3>Nome Completo</h3>
-                    <FloatingLabel
-                      controlId={'feedback'}
-                      label={'Nome Completo'}
-                      className="mt-3"
-                    >
-                      <Form.Control
-                        as="textarea"
-                        placeholder="Leave a comment here"
-                        maxLength={250}
-                        style={{ height: '100px' }}
-                        ref={bio.ref}
-                        value={bio.validation.value}
-                        onChange={(event) => {
-                          bio.validation.onChange(event);
-                        }}
-                        onBlur={bio.validation.onBlur}
-                        minLength={4}
-                        maxLength={25}
-                      />
-                    </FloatingLabel>
-                    {/* {bio.validation.error ? (
-                      <p className={styles.error}>{bio.validation.error}</p>
-                    ) : (
-                      ''
-                    )}
-                    {bio.validation.value !== user.user.name && (
-                      <UnsavedChanges />
-                    )} */}
-                  </div>
+                  <h3>Comentário</h3>
+                  <FloatingLabel
+                    controlId={'feedback'}
+                    label={'Seu comentário sobre a viagem'}
+                    className="mt-2"
+                  >
+                    <Form.Control
+                      as="textarea"
+                      placeholder="Seu comentário sobre a viagem"
+                      maxLength={250}
+                      style={{ height: '170px', resize: 'none' }}
+                      ref={bio.ref}
+                      value={bio.validation.value}
+                      onChange={(event) => {
+                        bio.validation.onChange(event);
+                      }}
+                      onBlur={bio.validation.onBlur}
+                    />
+                  </FloatingLabel>
+                  {bio.validation.error ? (
+                    <p style={{ color: '#FF7979', fontSize: '.9rem' }}>
+                      {bio.validation.error}
+                    </p>
+                  ) : (
+                    ''
+                  )}
+                  {bio.validation.value && <UnsavedChanges />}
                 </div>
               </div>
-              <div className="col-12 col-lg-6"></div>
+              <div className="col-12 col-lg-4">
+                <div className={`${styles.divInputs} mt-4`}>
+                  <h3>Nota</h3>
+                  <FloatingLabel
+                    controlId="inputNota"
+                    label="Nota da viagem"
+                    className="mb-1"
+                  >
+                    <Form.Control
+                      type="number"
+                      placeholder="name@example.com"
+                      ref={avaliation.ref}
+                      value={avaliation.validation.value}
+                      onChange={(event) => {
+                        avaliation.validation.onChange(event);
+                      }}
+                      onBlur={avaliation.validation.onBlur}
+                      min={0}
+                      max={10}
+                      step={0.1}
+                    />
+                  </FloatingLabel>
+                  {avaliation.validation.error ? (
+                    <p style={{ color: '#FF7979', fontSize: '.9rem' }}>
+                      {avaliation.validation.error}
+                    </p>
+                  ) : (
+                    ''
+                  )}
+                  {avaliation.validation.value && <UnsavedChanges />}
+                </div>
+              </div>
+              <div className="col-12">
+                <div className="text-center mt-4">
+                  <ButtonCustom type="submit">Salvar alterações</ButtonCustom>
+                </div>
+              </div>
             </div>
-          </div>
+          </form>
         </Modal.Body>
       </Modal>
     </>

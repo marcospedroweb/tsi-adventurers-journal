@@ -28,9 +28,13 @@ const types = {
     message: 'Tipo de arquivo inválido. Tipos aceitos: .png, .jpeg e .jpg',
   },
   bio: {
-    regex: /^[a-zA-Z0-9\s!]{0,250}$/,
+    regex: /^[a-zA-Z0-9\s!?\.,:]{0,250}$/,
     message:
-      'Deve ter no máximo 250 caracteres, com apenas letras, números, e "!" permitidos.',
+      'Deve ter no máximo 250 caracteres, com apenas letras, números, "?" e "!" permitidos.',
+  },
+  avaliation: {
+    regex: /^(10(\.0)?|[0-9](\.[0-9])?)$/,
+    message: 'A nota deve ser entre 0,0 a 10,0',
   },
 };
 

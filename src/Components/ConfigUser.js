@@ -6,6 +6,7 @@ import Loading from './Loading';
 import UndoChangeMsg from './UndoChangeMsg';
 import ConfigPreferences from './ConfigPreferences';
 import ConfigSecurity from './ConfigSecurity';
+import ConfigPlan from './ConfigPlan';
 
 const ConfigUser = ({ user }) => {
   const {
@@ -79,7 +80,7 @@ const ConfigUser = ({ user }) => {
           {component === 'perfil' && <ConfigProfile user={user} />}
           {component === 'preferencias' && <ConfigPreferences user={user} />}
           {component === 'segurança' && <ConfigSecurity user={user} />}
-          {component === 'planos' && ''}
+          {component === 'planos' && <ConfigPlan user={user} />}
         </div>
       </div>
     );
