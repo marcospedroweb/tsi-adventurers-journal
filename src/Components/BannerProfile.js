@@ -5,7 +5,9 @@ const BannerProfile = ({ img }) => {
   return (
     <div
       className={styles.banner}
-      style={{ backgroundImage: `url('data:image/png;base64,${img}')` }}
+      style={{
+        backgroundImage: `url(${img})`,
+      }}
     ></div>
   );
 };

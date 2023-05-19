@@ -5,6 +5,8 @@ import { GlobalContext } from '../Context/GlobalStorage';
 import Loading from './Loading';
 import UndoChangeMsg from './UndoChangeMsg';
 import ConfigPreferences from './ConfigPreferences';
+import ConfigSecurity from './ConfigSecurity';
+import ConfigPlan from './ConfigPlan';
 
 const ConfigUser = ({ user }) => {
   const {
@@ -18,14 +20,14 @@ const ConfigUser = ({ user }) => {
   const [component, setComponent] = React.useState('perfil');
   const [nextComponent, setNextComponent] = React.useState('');
 
-  if (!user) return <Loading />;
+  if (!user.user) return <Loading />;
   else
     return (
       <div className={styles.divMain}>
         <div className="container-xl">
           <h2>Configurações</h2>
           <div className={styles.divBtns}>
-            <ul>
+            <ul className="d-flex flex-column flex-sm-row mb-4 mb-sm-">
               <li
                 className={`${component === 'perfil' ? styles.active : ''}`}
                 onClick={() => {
@@ -76,9 +78,9 @@ const ConfigUser = ({ user }) => {
           </div>
           <UndoChangeMsg component={{ nextComponent, setComponent }} />
           {component === 'perfil' && <ConfigProfile user={user} />}
-          {component === 'preferencias' && <ConfigPreferences />}
-          {component === 'segurança' && ''}
-          {component === 'planos' && ''}
+          {component === 'preferencias' && <ConfigPreferences user={user} />}
+          {component === 'segurança' && <ConfigSecurity user={user} />}
+          {component === 'planos' && <ConfigPlan user={user} />}
         </div>
       </div>
     );

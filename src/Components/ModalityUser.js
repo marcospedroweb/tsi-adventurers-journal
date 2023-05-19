@@ -3,46 +3,44 @@ import styles from './ModalityUser.module.css';
 import ButtonCustom from './ButtonCustom';
 import { FloatingLabel, Form } from 'react-bootstrap';
 import GetSimpleInputObj from '../Helpers/GetSimpleInputObj';
+import ModalTrip from './ModalTrip';
 
-const ModalityUser = ({ img, modality, location, friends, change }) => {
-  const [showInput, setShowInput] = React.useState(false);
-  const bio = GetSimpleInputObj('bio');
-  React.useEffect(() => {
-    bio.validation
-      .setValue(`Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
-    labore officia reprehenderit aut magni at praesentium totam quas,
-    harum blanditiis velit? Corporis fuga earum obcaecati atque illo.
-    Mollitia distinctio enim, beatae error, neque, ad sit atque
-    dignissimos qui quibusdam impedit architecto perspiciatis id
-    repudiandae! Consequatur possimus maiores praesentium soluta nisi`);
-  }, []);
-
+const ModalityUser = ({ data, change }) => {
   return (
-    <div className={styles.divMain}>
-      <div className="row justify-content-between align-items-center w-100 mt-4">
-        <div className="col-3">
-          <img src="/imgs/no_user_img.png" alt="" />
+    <div className={styles.divMain} key={`${data.modality}`}>
+      <div className="row flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center align-items-lg-start w-100 mt-4">
+        <div className="col-12 col-lg-3">
+          <div
+            className={styles.divImg}
+            style={{ backgroundImage: `url(/imgs/${data.image})` }}
+          ></div>
         </div>
-        <div className="col-9">
+        <div className="col-12 col-lg-9 mt-4 mt-lg-0 text-center text-lg-start">
           <div className={styles.divText}>
             <div>
-              <h2>Surf</h2>
-              <p>Rio de Janeiro - 2 amigos</p>
+              <h2>{data.modality}</h2>
+              <p>{data.location}</p>
             </div>
             <div>
-              <p className={`${showInput ? 'd-none' : ''}`}>
-                {bio.validation.value}
-                <div className="mt-3">
-                  <ButtonCustom
-                    onClick={() => {
-                      setShowInput(true);
-                    }}
-                  >
-                    Editar
-                  </ButtonCustom>
-                </div>
+              <h3 className="mt-4 mt-lg-0">Comentário</h3>
+              <p className={`position-relative px-4`}>
+                <img
+                  src="/imgs/Mark_Left_White.svg"
+                  className="position-absolute top-0 start-0"
+                  alt="aspas"
+                />
+                {data.feedback}
+                <img
+                  src="/imgs/Mark_Right_White.svg"
+                  className="position-absolute bottom-0 end-0"
+                  alt="aspas"
+                />
               </p>
-              <div className={`${showInput ? '' : 'd-none'}`}>
+              <div className="mt-4 text-center text-lg-end">
+                <ModalTrip data={data} />
+              </div>
+
+              {/* <div className={`${showInput ? '' : 'd-none'}`}>
                 <FloatingLabel
                   controlId="floatingTextarea"
                   label="Edite seu comentario"
@@ -54,22 +52,23 @@ const ModalityUser = ({ img, modality, location, friends, change }) => {
                     maxLength={250}
                     onChange={(event) => {
                       bio.validation.onChange(event);
-                      change();
+                      change(event);
                     }}
                     onBlur={bio.validation.onBlur}
                     value={bio.validation.value}
                     style={{ height: '170px' }}
-                    ref={bio.ref}
                   />
                 </FloatingLabel>
-                <ButtonCustom
-                  onClick={() => {
-                    setShowInput(false);
-                  }}
-                >
-                  Atualizar
-                </ButtonCustom>
-              </div>
+                <div className="text-center text-lg-end">
+                  <ButtonCustom
+                    onClick={() => {
+                      setShowInput(false);
+                    }}
+                  >
+                    Atualizar
+                  </ButtonCustom>
+                </div>
+              </div> */}
             </div>
           </div>
         </div>

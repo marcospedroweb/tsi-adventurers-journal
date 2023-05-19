@@ -20,16 +20,26 @@ const types = {
   },
   tel: {
     regex: /^\([1-9]{2}\) 9?[6-9]{1}[0-9]{3}-[0-9]{4}$/,
-    message: 'Senha inválido. Deve ter pelo menos 6 caracteres.',
+    message:
+      'Número de telefone inválido. Deve ter pelo menos 11 caracteres. Ex: 1191111-1111',
   },
   image: {
     regex: /\.(png|jpeg|jpg)$/,
-    message: 'Tipo de arquivo invalido. Tipos aceitos: .png, .jpeg e .jpg',
+    message: 'Tipo de arquivo inválido. Tipos aceitos: .png, .jpeg e .jpg',
   },
   bio: {
-    regex: /^[a-zA-Z0-9\s!]{0,250}$/,
+    regex: /^[a-zA-Z0-9\s!?.,:áéíóúãõâêîôûàèìòùäëïöüçñ]{0,300}$/,
     message:
-      'Deve ter no máximo 250 caracteres, com apenas letras, números, e "!" permitidos.',
+      'Deve ter no máximo 300 caracteres, com apenas letras, números, "?" e "!" permitidos.',
+  },
+  feedback: {
+    regex: /^[a-zA-Z0-9\s!?.,:áéíóúãõâêîôûàèìòùäëïöüçñ]{0,250}$/,
+    message:
+      'Deve ter no máximo 250 caracteres, com apenas letras, números, "?" e "!" permitidos.',
+  },
+  avaliation: {
+    regex: /^(10(\.0)?|[0-9](\.[0-9])?)$/,
+    message: 'A nota deve ser entre 0,0 a 10,0',
   },
 };
 

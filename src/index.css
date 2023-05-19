@@ -25,6 +25,13 @@ a {
   font-size: .9rem;
 }
 
+/* LOADING */
+.btn-loading {
+  background-color: #aaa !important;
+  border: 1px solid #aaa !important;
+  cursor: wait !important;
+}
+
 /* LINKS */
 .link-primary {
   color: #4E5E7C !important;

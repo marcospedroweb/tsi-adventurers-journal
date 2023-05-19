@@ -13,13 +13,23 @@ const Header = () => {
   const navigate = useNavigate();
   const { request } = useFetch();
 
+  React.useEffect(() => {
+    if (window.sessionStorage.getItem('user')) {
+      const user = JSON.parse(window.sessionStorage.getItem('user'));
+      setSession({
+        logged: true,
+        user: user,
+      });
+    }
+  }, []);
+
   async function handleLogout() {
     const { json } = await request(
       `${apiRoute}${logoutRoute}`,
       optionsFetch({ method: 'POST', token: session.user.token }),
     );
-
-    if (json.message !== 'Logout realizado com sucesso!')
+    const removeItem = window.sessionStorage.removeItem('user');
+    if (json.message !== 'Logout realizado com sucesso!' && !removeItem)
       alert('ocorreu um erro');
 
     setSession({

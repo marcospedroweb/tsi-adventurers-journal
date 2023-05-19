@@ -27,6 +27,7 @@
   background-color: #283040;
   padding: 16px;
   border-radius: 16px;
+  height: 100%;
 }
 
 .insideDiv h4 {
@@ -80,4 +81,12 @@
 
 .divCheckboxs input[type="checkbox"]:checked+label:after {
   opacity: 1;
+}
+
+.divInputs h4 {
+  font-size: 1rem;
+}
+
+.divInputs label {
+  color: #000;
 }

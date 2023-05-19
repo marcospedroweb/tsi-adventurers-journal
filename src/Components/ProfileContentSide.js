@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './ProfileContentSide.module.css';
 import UserAdventurers from './UserAdventurers';
 import UserPreferences from './UserPreferences';
-import TravelWithMe from './TravelWithMe';
 
 const ProfileContentSide = () => {
   return (
@@ -11,7 +10,6 @@ const ProfileContentSide = () => {
         <UserAdventurers />
       </div>
       <UserPreferences />
-      <TravelWithMe />
     </section>
   );
 };

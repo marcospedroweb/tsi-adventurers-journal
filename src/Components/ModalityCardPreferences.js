@@ -5,7 +5,7 @@ const ModalityCardPreferences = ({ labels, edit }) => {
   return (
     <>
       <div className="row justify-content-between align-items-center">
-        {labels.map(({ text, icon, link, active }, index) => {
+        {labels.map(({ id, text, icon, link, active }, index) => {
           if (active[0])
             return (
               <LabelPreferences
@@ -13,6 +13,7 @@ const ModalityCardPreferences = ({ labels, edit }) => {
                 text={text}
                 icon={icon}
                 index={index}
+                key={id}
               />
             );
         })}

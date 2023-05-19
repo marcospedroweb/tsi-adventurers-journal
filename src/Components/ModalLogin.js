@@ -64,13 +64,17 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
       optionsFetch({ method: 'GET', token: loginResult.json.token }),
     );
 
+    const user = {
+      name: showUser.json.data.name,
+      email: showUser.json.data.email,
+      token: loginResult.json.token,
+    };
+
+    window.sessionStorage.setItem('user', JSON.stringify(user));
+
     setSession({
       logged: true,
-      user: {
-        name: showUser.json.data.name,
-        email: showUser.json.data.email,
-        token: loginResult.json.token,
-      },
+      user: user,
     });
   }
 
@@ -98,8 +102,6 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
         name: nameData,
         email: emailData,
         password: passData,
-        profile_photo_path: noUserImageBase64,
-        profile_banner_path: noUserBannerBase64,
       }),
     });
 
@@ -133,13 +135,17 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
       return;
     }
 
+    const user = {
+      name: json.user.name,
+      email: json.user.email,
+      token: json.token,
+    };
+
+    window.sessionStorage.setItem('user', JSON.stringify(user));
+
     setSession({
       logged: true,
-      user: {
-        name: json.user.name,
-        email: json.user.email,
-        token: json.token,
-      },
+      user: user,
     });
   }
 
@@ -197,8 +203,7 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
             )}
             {backError && (
               <span className="error-mensage">
-                Houve um erro inesperado. Tente novamente dentro de alguns
-                segundos.
+                Houve algum erro. Tente novamente dentro de alguns minutos.
               </span>
             )}
           </form>
@@ -274,8 +279,7 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
             )}
             {backError && (
               <span className="error-mensage">
-                Houve um erro inesperado. Tente novamente dentro de alguns
-                segundos.
+                Houve algum erro. Tente novamente dentro de alguns minutos.
               </span>
             )}
           </form>

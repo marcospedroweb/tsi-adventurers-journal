@@ -11,7 +11,10 @@
 .seal.adventurer,
 .seal.plus {
   background-color: #1C2331;
+}
 
+.seal.bgBlue:not(.gratis) {
+  background-color: #283040;
 }
 
 .seal.adventurer span {
