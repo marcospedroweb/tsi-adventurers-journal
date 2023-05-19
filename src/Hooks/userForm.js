@@ -28,7 +28,12 @@ const types = {
     message: 'Tipo de arquivo inválido. Tipos aceitos: .png, .jpeg e .jpg',
   },
   bio: {
-    regex: /^[a-zA-Z0-9\s!?\.,:]{0,250}$/,
+    regex: /^[a-zA-Z0-9\s!?.,:áéíóúãõâêîôûàèìòùäëïöüçñ]{0,300}$/,
+    message:
+      'Deve ter no máximo 300 caracteres, com apenas letras, números, "?" e "!" permitidos.',
+  },
+  feedback: {
+    regex: /^[a-zA-Z0-9\s!?.,:áéíóúãõâêîôûàèìòùäëïöüçñ]{0,250}$/,
     message:
       'Deve ter no máximo 250 caracteres, com apenas letras, números, "?" e "!" permitidos.',
   },

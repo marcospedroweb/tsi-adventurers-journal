@@ -102,8 +102,6 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
         name: nameData,
         email: emailData,
         password: passData,
-        profile_photo_path: noUserImageBase64,
-        profile_banner_path: noUserBannerBase64,
       }),
     });
 
