@@ -11,6 +11,7 @@ import Profile from './Pages/Profile';
 import Loading from './Components/Loading';
 import Config from './Pages/Config';
 import About from './Pages/About';	
+import Contactus from './Pages/Contactus';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -25,6 +26,7 @@ root.render(
           <Route path="/loading" element={<Loading />} />
           <Route path="/config" element={<Config />} />
           <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contactus />} />
         </Routes>
       </BrowserRouter>
     </GlobalStorage>
