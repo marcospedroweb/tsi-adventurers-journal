@@ -1,7 +1,7 @@
 import React from 'react';
 import ModalityCard from '../Components/ModalityCard';
 import ButtonCustom from '../Components/ButtonCustom';
-import styles from './Home.css';
+// import styles from './Home.css';
 import BannerHome from '../Components/BannerHome';
 import SectionModalityPlan from '../Components/SectionModalityPlan';
 import SectionTouristGuide from '../Components/SectionTouristGuide';

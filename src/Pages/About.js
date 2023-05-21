@@ -1,12 +1,20 @@
 import React from 'react';
 import ModalityCard from '../Components/ModalityCard';
 import ButtonCustom from '../Components/ButtonCustom';
-import styles from './About.css';
+import BannerAbout from '../Components/BannerAbout';
+import SectionAwakenTheAdventurer from '../Components/SectionAwakenTheAdventurer';
+import TravelSupport from '../Components/TravelSupport';
+import SectionBigReviews from '../Components/SectionBigReviews';
+// import styles from './About.css';
 
 const About = () => {
-    return (
-        <>
-            <div id='teste'>
+  return (
+    <>
+      <BannerAbout />
+      <SectionAwakenTheAdventurer />
+      <TravelSupport />
+      <SectionBigReviews />
+      {/* <div id='teste'>
                 <div id='teste'>
                     <h2>Adventurer's Journal</h2>
                     <p>
@@ -39,10 +47,9 @@ const About = () => {
             </div>
             <div>
                 Componente de avaliaçoes
-            </div>
-
-        </>
-    )
+            </div> */}
+    </>
+  );
 };
 
 export default About;
