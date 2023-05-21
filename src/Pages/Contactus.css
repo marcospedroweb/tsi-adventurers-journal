@@ -1,9 +1,10 @@
-#test{
+#test {
     border-radius: 10px;
     border-color: transparent !important;
     background-color: #FFFFFF;
 }
-input{
+
+#body input {
     border-radius: 10px;
     width: 98%;
     margin: 10px 10px 10px 10px;
@@ -11,42 +12,50 @@ input{
     border-color: transparent;
     transition: ease-in-out, width .35s ease-in-out;
 }
-input:focus{
+
+#body input:focus {
     outline: none !important;
     border-color: 1px solid #87FAD1;
     box-shadow: 0 0 5px #87FAD1;
 }
-#img{
+
+#img {
     background-image: url("../../public/imgs/contactimg.png");
     width: 622px;
     height: 266px;
 }
-#wpp{
+
+#wpp {
     width: 60px;
     height: 60px;
     background-image: url("../../public/imgs/wppicon.png");
 }
-#map{
+
+#map {
     width: 60px;
     height: 60px;
     background-image: url("../../public/imgs/mapicon.png");
 }
-#email{
+
+#email {
     width: 60px;
     height: 60px;
     background-image: url("../../public/imgs/emailicon.png");
 }
-#body{
+
+#body {
     background-color: #283040;
     color: #FFFFFF;
 }
-#sendButton{
+
+#sendButton {
     color: #87FAD1;
     background-color: #1C2331;
     border: transparent !important;
     border-radius: 0px;
 }
-textarea{
+
+#body textarea {
     border-radius: 10px;
     margin: 10px 10px 10px 10px;
     width: 98%;
@@ -54,7 +63,8 @@ textarea{
     border-color: transparent !important;
     transition: ease-in-out, width .35s ease-in-out;
 }
-textarea:focus{
+
+#body textarea:focus {
     outline: none !important;
     border-color: 1px #87FAD1;
     box-shadow: 0 0 5px #87FAD1;

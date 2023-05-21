@@ -10,8 +10,9 @@ import { GlobalStorage } from './Context/GlobalStorage';
 import Profile from './Pages/Profile';
 import Loading from './Components/Loading';
 import Config from './Pages/Config';
-import About from './Pages/About';	
+import About from './Pages/About';
 import Contactus from './Pages/Contactus';
+import AventurarSe from './Pages/Aventurar-se';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,6 +23,7 @@ root.render(
 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/aventurar-se" element={<AventurarSe />} />
           <Route path="/perfil" element={<Profile />} />
           <Route path="/loading" element={<Loading />} />
           <Route path="/config" element={<Config />} />
