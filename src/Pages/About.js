@@ -9,7 +9,7 @@ import SectionBigReviews from '../Components/SectionBigReviews';
 
 const About = () => {
   return (
-    <>
+    <main>
       <BannerAbout />
       <SectionAwakenTheAdventurer />
       <TravelSupport />
@@ -48,7 +48,7 @@ const About = () => {
             <div>
                 Componente de avaliaçoes
             </div> */}
-    </>
+    </main>
   );
 };
 

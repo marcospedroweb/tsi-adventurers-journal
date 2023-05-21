@@ -1,14 +1,17 @@
 export const apiRoute = 'http://localhost:8000';
 
+//USER / LOGIN / REGISTER
 export const registerRoute = '/users';
-
 export const loginRoute = '/login';
-
 export const updateUserRoute = '/user/';
-
 export const showUserRoute = '/user';
-
 export const logoutRoute = '/logout';
+
+//CITY
+export const getCitiesRoute = '/cidade';
+
+//MODALITYS
+export const getModalitysRoute = '/modalidades';
 
 export const optionsFetch = ({ method, body = '', token = '', file }) => {
   if (method === 'POST')

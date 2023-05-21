@@ -1,0 +1,21 @@
+.dropdown {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdown span {
+  display: inline-block;
+  padding: 4px 12px;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+}
+
+.dropdown span:hover:not(span.disabled) {
+  background-color: #87FAD1;
+  color: #000;
+}
+
+.dropdown span.disabled {
+  cursor: default;
+}

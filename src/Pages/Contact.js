@@ -5,7 +5,7 @@ import SectionFormContact from '../Components/SectionFormContact';
 const Contact = () => {
   // Coloca o de "entre em contato" aqui mesmo, ai depois usa o componentes abaixo
   return (
-    <>
+    <main>
       <SectionFormContact />
       {/* <div id="body">
         <div>
@@ -51,7 +51,7 @@ const Contact = () => {
           </div>
         </div>
       </div> */}
-    </>
+    </main>
   );
 };
 

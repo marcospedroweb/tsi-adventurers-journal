@@ -52,3 +52,15 @@ a {
   background-color: #87FAD1;
   color: #000;
 }
+
+#dropdownBannerAdventure {
+  border: 1px solid #ddd;
+}
+
+#dropdownBannerAdventure.show,
+#dropdownModalitys.show button,
+#dropdownBannerAdventure:active,
+#dropdownModalitys button:active {
+  background-color: #ddd !important;
+  color: #1C2331;
+}

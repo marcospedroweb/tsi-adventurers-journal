@@ -10,7 +10,7 @@ import SectionAbout from '../Components/SectionAbout';
 
 const Home = () => {
   return (
-    <>
+    <main>
       <BannerHome />
       <SectionModalityPlan />
       <SectionTouristGuide />
@@ -184,7 +184,7 @@ const Home = () => {
           <button className="btn btn-primary">Conhecer mais sobre</button>
         </div>
       </div> */}
-    </>
+    </main>
   );
 };
 

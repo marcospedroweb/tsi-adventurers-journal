@@ -1,0 +1,25 @@
+.shadow_input_loading {
+  position: relative;
+  width: fit-content;
+}
+
+.shadow_input_loading input {
+  background-color: #f8f8f8;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  width: 200px;
+}
+
+.shadow_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
