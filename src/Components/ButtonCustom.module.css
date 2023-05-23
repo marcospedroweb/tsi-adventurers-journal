@@ -3,6 +3,7 @@
   color: #323232 !important;
   font-weight: 600 !important;
   border: 1px solid #87FAD1 !important;
+  white-space: nowrap;
   transition: all .25s ease-out !important;
 }
 

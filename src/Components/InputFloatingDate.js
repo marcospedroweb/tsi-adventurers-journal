@@ -17,6 +17,7 @@ const InputFloatingDate = ({ refComponent }) => {
         onChange={handleDateChange}
         min={today}
         ref={refComponent}
+        required
       />
     </FloatingLabel>
   );

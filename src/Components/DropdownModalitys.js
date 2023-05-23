@@ -44,7 +44,7 @@ const DropdownModalitys = () => {
         <Dropdown.Toggle
           variant="secondary"
           id="multiSelectDropdown"
-          className={styles.btn}
+          className={`${styles.btn} w-100`}
         >
           {selectedOptions.length > 0
             ? `${
@@ -52,7 +52,7 @@ const DropdownModalitys = () => {
                   ? `${selectedOptions.length} selecionados`
                   : `${selectedOptions.length} selecionado`
               }`
-            : 'Selecione alguma modalidade'}
+            : '0 selecionado'}
         </Dropdown.Toggle>
         <Dropdown.Menu className="dropdown-menu-scrollable">
           <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
@@ -76,6 +76,7 @@ const DropdownModalitys = () => {
                     label={Nome}
                     checked={true}
                     onChange={() => handleOptionSelect(Nome)}
+                    required
                   />
                 )}
                 {selectedOptions && !selectedOptions.includes(Nome) && (
@@ -85,6 +86,7 @@ const DropdownModalitys = () => {
                     label={Nome}
                     checked={false}
                     onChange={() => handleOptionSelect(Nome)}
+                    required
                   />
                 )}
               </Dropdown.Item>

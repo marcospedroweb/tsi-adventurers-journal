@@ -27,35 +27,38 @@ const BannerAdventure = () => {
           <h2>Aventure-se</h2>
         </div>
         <form
-          className={`${styles.divForm} d-flex flex-column flex-sm-row justify-content-start align-items-center gap-4 flex-wrap`}
+          className={`${styles.divForm} d-flex flex-column flex-sm-row justify-content-center justify-content-lg-between align-items-center align-items-lg-end gap-4 flex-wrap flex-xxl-nowrap`}
         >
-          <div>
+          <div className="w-100">
             <h3>Para onde você vai?</h3>
             <InputWithSuggestions formObj={origin} type="cities" />
           </div>
-          <div className="d-flex flex-column flex-lg-row justify-content-between align-items-center">
-            <div className="mb-3 mb-lg-0">
-              <h3>Data de chegada</h3>
+          <div className="d-flex flex-column flex-lg-row justify-content-between align-items-center w-100">
+            <div className="mb-3 mb-lg-0 w-100">
+              <h3>Data de ida</h3>
               <InputFloatingDate refComponent={startDate} />
             </div>
             <div
               className={`${styles.dateSeparator} d-none d-lg-inline-block`}
             ></div>
-            <div>
-              <h3>Data de partida</h3>
+            <div className="w-100">
+              <h3>Data de volta</h3>
               <InputFloatingDate refComponent={endDate} />
             </div>
           </div>
-          <div>
-            <h3>Passageiros</h3>
-            <DropdownPassengers />
+          <div className="d-flex justify-content-between align-items-end w-100 gap-3">
+            <div>
+              <h3>Passageiros</h3>
+              <DropdownPassengers />
+            </div>
+            <div>
+              <h3>Modalidades</h3>
+              <DropdownModalitys />
+            </div>
           </div>
           <div>
-            <h3>Modalidades</h3>
-            <DropdownModalitys />
-          </div>
-          <div className="align-self-end">
             <ButtonCustom
+              type="submit"
               bsClass={
                 'fw-bold d-flex justify-content-between align-items-center'
               }

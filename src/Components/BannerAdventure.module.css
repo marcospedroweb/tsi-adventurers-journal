@@ -1,6 +1,6 @@
 .banner {
   background: #ccc url(../../public/imgs/banner_xl.png) center/cover no-repeat;
-  width: calc(100vw - 15px);
+  width: calc(100vw);
   height: 550px;
   margin: 0 auto;
 }
@@ -17,6 +17,7 @@
 @media screen and (min-width: 576px) and (max-width: 992px) {
   .banner {
     width: calc(100vw);
+    height: 700px;
   }
 }
 
@@ -28,6 +29,7 @@
 
 .banner h2,
 .banner h3 {
+  white-space: nowrap;
   color: #fff;
 }
 
@@ -38,7 +40,8 @@
 }
 
 .divMain {
-  width: 80vw;
+  width: fit-content;
+  max-width: 98vw;
 }
 
 .divForm {
@@ -48,9 +51,10 @@
 }
 
 .divForm h3 {
-  font-size: 1rem;
+  font-size: .9rem;
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
+  font-weight: 600;
 }
 
 .dateSeparator {

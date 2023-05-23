@@ -67,6 +67,7 @@ const InputWithSuggestions = ({ formObj, type }) => {
               filterValues(refInput.current.value);
             }}
             ref={refInput}
+            required
           />
         </FloatingLabel>
         <Dropdown>
