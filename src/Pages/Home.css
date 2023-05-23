@@ -1,28 +1,39 @@
-.btn .btn-primary {
-    background-color: #87FAD1 !important;
 
-}
-#teste{
+#teste {
     border: 5px solid !important;
     border-color: red !important;
     border-radius: 10px !important;
 }
-#banner{
-    background-image: url("../../public/imgs/HeroSection.png");
-    width: 100%;
+
+#banner {
+    background-image: url("../../public/imgs/HeroSectionSmall.png");
+    width: 100vw;
     height: 559px;
+    background-position: center;
+    background-attachment: cover;
+    background-repeat: no-repeat;
 }
-#guia1{
+
+@media screen and (min-width:1600px) {
+    #banner {
+        background-image: url("../../public/imgs/HeroSection.png");
+    }
+
+}
+
+#guia1 {
     border-radius: 10px !important;
     background-image: url("../../public/imgs/sejaguia1.png");
 
 }
-#guia2{
+
+#guia2 {
     border-radius: 10px !important;
     background-image: url("../../public/imgs/sejaguia2.png");
 
 }
-#logo{
+
+#logo {
     border-radius: 10px !important;
     background-image: url("../../public/imgs/logo.png");
 }

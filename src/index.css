@@ -52,3 +52,6 @@ a {
   background-color: #87FAD1;
   color: #000;
 }
+#body{
+  background: linear-gradient(180deg, #1C2331 53.22%, #2C4D8E 100%);
+}

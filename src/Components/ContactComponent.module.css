@@ -10,7 +10,6 @@ input{
     height: 40px;
     border-color: transparent;
     transition: ease-in-out, width .35s ease-in-out;
-    background-color: red;
 }
 input:focus{
     outline: none !important;
@@ -36,6 +35,10 @@ input:focus{
     width: 60px;
     height: 60px;
     background-image: url("../../public/imgs/emailicon.png");
+}
+#body{
+    background-color: #283040;
+    color: #FFFFFF;
 }
 #sendButton{
     color: #87FAD1;

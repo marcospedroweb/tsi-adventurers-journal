@@ -4,8 +4,8 @@
     border-radius: 10px !important;
 }
 
-#aboutimg{
-    background-image: url("../../public/imgs/3img.png");
+#logoabout{
+    background-image: url("../../public/imgs/logoabout.png");
     border-radius: 10px;
 }
 #aboutimg2{
