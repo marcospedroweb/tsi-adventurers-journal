@@ -83,7 +83,10 @@ const Header = () => {
                   <Link to="/perfil" className="dropdown-item text-start">
                     Meu perfil
                   </Link>
-                  <Link to="/config" className="dropdown-item text-start">
+                  <Link
+                    to="/configurações"
+                    className="dropdown-item text-start"
+                  >
                     Configurações
                   </Link>
                   <Dropdown.Item onClick={handleLogout} className="text-danger">

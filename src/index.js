@@ -26,7 +26,7 @@ root.render(
           <Route path="/aventurar-se" element={<AventurarSe />} />
           <Route path="/perfil" element={<Profile />} />
           {/* <Route path="/loading" element={<Loading />} /> */}
-          <Route path="/configuracoes" element={<Config />} />
+          <Route path="/configurações" element={<Config />} />
           <Route path="/sobre-nos" element={<About />} />
           <Route path="/contato" element={<Contact />} />
         </Routes>
