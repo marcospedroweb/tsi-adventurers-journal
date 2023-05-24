@@ -1,0 +1,11 @@
+.btn {
+  height: 58px;
+  background-color: #fff;
+  color: #1C2331;
+  transition: all .25s ease-out;
+}
+
+.btn:hover {
+  background-color: #ddd;
+  color: #1C2331;
+}

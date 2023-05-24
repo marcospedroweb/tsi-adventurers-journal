@@ -1,0 +1,17 @@
+#banner {
+
+    background-image: url("../../public/imgs/HeroSectionSmall.png");
+    width: 100vw;
+
+
+    height: 559px;
+    background-position: center;
+    background-attachment: cover;
+    background-repeat: no-repeat;
+}
+@media screen and (min-width:1600px) {
+    #banner {
+        background-image: url("../../public/imgs/HeroSection.png");
+    }
+
+}

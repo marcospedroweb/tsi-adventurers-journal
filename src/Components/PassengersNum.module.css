@@ -1,0 +1,12 @@
+.divMain h5 {
+  font-weight: 600;
+}
+
+.divMain span {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.divMain svg {
+  cursor: pointer;
+}

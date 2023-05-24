@@ -1,0 +1,9 @@
+#body{
+    background-color: #283040;
+}
+
+#img {
+    background-image: url("../../public/imgs/contactimg.png");
+    width: 622px;
+    height: 266px;
+}

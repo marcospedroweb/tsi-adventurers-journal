@@ -52,6 +52,20 @@ a {
   background-color: #87FAD1;
   color: #000;
 }
-#body{
+
+/* #body{
   background: linear-gradient(180deg, #1C2331 53.22%, #2C4D8E 100%);
+} */
+
+
+#dropdownBannerAdventure {
+  border: 1px solid #ddd;
+}
+
+#dropdownBannerAdventure.show,
+#dropdownModalitys.show button,
+#dropdownBannerAdventure:active,
+#dropdownModalitys button:active {
+  background-color: #ddd !important;
+  color: #1C2331;
 }

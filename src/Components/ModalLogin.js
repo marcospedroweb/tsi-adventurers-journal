@@ -214,6 +214,7 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
             <span
               className="link-primary fw-bold"
               onClick={() => {
+                setBackError(false);
                 handleCloseLogin();
                 handleShowCadastro();
               }}
@@ -290,6 +291,7 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
             <span
               className="link-primary fw-bold"
               onClick={() => {
+                setBackError(false);
                 handleCloseCadastro();
                 handleShowLogin();
               }}

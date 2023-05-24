@@ -1,12 +1,17 @@
 import React from 'react';
 import ModalityCard from '../Components/ModalityCard';
 import ButtonCustom from '../Components/ButtonCustom';
-import styles from './About.css';
+import BannerAbout from '../Components/BannerAbout';
+import SectionAwakenTheAdventurer from '../Components/SectionAwakenTheAdventurer';
+import TravelSupport from '../Components/TravelSupport';
+import SectionBigReviews from '../Components/SectionBigReviews';
+// import styles from './About.css';
 
 const About = () => {
+
     return (
         <>
-            <div id='body'>
+            {/* <div id='body'>
                 <div id='teste' className='row justify-content-between align-items-start'>
                     <div id='teste' className='col-12 col-lg-6'>
                         <div className='p-5' style={{ width: "550px" }}>
@@ -22,7 +27,16 @@ const About = () => {
 
                     <div id='aboutimg' className='col-12 col-lg-6' style={{ width: "668px", height: "650px", margin: "10px" }}></div>
 
-                </div>
+                </div> */}
+
+                return (
+                <main>
+                    <BannerAbout />
+                    <SectionAwakenTheAdventurer />
+                    <TravelSupport />
+                    <SectionBigReviews />
+                    {/* <div id='teste'>
+
                 <div id='teste'>
                     <h1 className='text-white'> Desperte o Aventureiro(a) que há em voce</h1>
                     <p className='text-white'>
@@ -87,8 +101,28 @@ const About = () => {
                     Componente de avaliaçoes
                 </div>
             </div>
+
         </>
     )
+
+            <div id='teste'>
+                <h1>Oferecemos suporte em toda sua viagem</h1>
+                <div id='aboutimg3' style={{ width: "438px", height: "166px", margin: "10px" }}></div>
+                <div id='aboutimg4' style={{ width: "438px", height: "166px", margin: "10px" }}></div>
+                <div id='aboutimg5' style={{ width: "438px", height: "166px", margin: "10px" }}></div>
+                <div id='aboutimg6' style={{ width: "438px", height: "166px", margin: "10px" }}></div>
+                <div id='aboutimg7' style={{ width: "438px", height: "166px", margin: "10px" }}></div>
+            </div>
+            <div>
+                Componente de avaliaçoes
+            </div> */}
+                </main>
+            </>
+            );
+            
+
 };
 
-export default About;
+
+            export default About;
+

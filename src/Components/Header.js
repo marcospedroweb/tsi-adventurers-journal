@@ -53,13 +53,16 @@ const Header = () => {
           <nav className="mb-3 mb-sm-0">
             <ul className="list-unstyled d-flex flex-column flex-sm-row justify-content-betwenn align-items-center">
               <li>
-                <Link to="/">Calculo</Link>
+                <Link to="/aventurar-se">Aventurar-se</Link>
               </li>
               <li>
                 <Link to="/">Planos</Link>
               </li>
               <li>
-                <Link to="/sobre">Sobre nós</Link>
+                <Link to="/sobre-nos">Sobre nós</Link>
+              </li>
+              <li>
+                <Link to="/contato">Contato</Link>
               </li>
             </ul>
           </nav>

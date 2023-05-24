@@ -1,0 +1,8 @@
+#logo {
+    border-radius: 10px !important;
+    background-image: url("../../public/imgs/logo.png");
+}
+
+#body{
+    background: linear-gradient(139.21deg, #1D2432 20.65%, #2C4C8A 113.71%);
+}

@@ -1,0 +1,17 @@
+#img1 {
+    background-image: url("../../public/imgs/sejaguia1.png");
+    width: 670px;
+    height: 450px;
+}
+#img2 {
+    background-image: url("../../public/imgs/sejaguia2.png");
+    width: 670px;
+    height: 450px;
+}
+#textwindow{
+    background-color: #FFFFFF;
+    border-radius: 10px;
+}
+#body{
+    background: linear-gradient(180deg, #1C2331 53.22%, #2C4D8E 100%);
+  }

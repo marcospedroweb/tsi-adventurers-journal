@@ -1,0 +1,66 @@
+.banner {
+  background: #ccc url(../../public/imgs/banner_xl.png) center/cover no-repeat;
+  width: calc(100vw);
+  height: 550px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 576px) {
+  .banner {
+    background: #ccc url(../../public/imgs/banner_mobile.png) center/cover no-repeat !important;
+    width: calc(100vw);
+    height: 800px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 992px) {
+  .banner {
+    width: calc(100vw);
+    height: 700px;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 1920px) {
+  .banner {
+    background: #ccc url(../../public/imgs/banner_lg.png) center/cover no-repeat !important;
+  }
+}
+
+.banner h2,
+.banner h3 {
+  white-space: nowrap;
+  color: #fff;
+}
+
+.banner h2 {
+  font-weight: 700;
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.divMain {
+  width: fit-content;
+  max-width: 98vw;
+}
+
+.divForm {
+  background-color: #1C2331;
+  padding: 32px;
+  border-radius: 16px;
+}
+
+.divForm h3 {
+  font-size: .9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.dateSeparator {
+  display: inline-block;
+  height: 4px;
+  width: 48px;
+  background-color: #fff;
+  margin: 25px 4px 0 4px;
+}

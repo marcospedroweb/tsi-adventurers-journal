@@ -31,7 +31,7 @@ const Profile = () => {
   if (loading) return <Loading />;
   else if (user)
     return (
-      <>
+      <main>
         {/* {console.log(user)} */}
         {user.banner_URL && <BannerProfile img={user.banner_URL} />}
         {!user.banner_URL && <BannerProfile img={noUserBannerBase64} />}
@@ -42,7 +42,7 @@ const Profile = () => {
             <ProfileContentSide />
           </div>
         </div>
-      </>
+      </main>
     );
   else return <Loading />;
 };
