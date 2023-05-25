@@ -1,0 +1,24 @@
+.section {
+  margin: 92px 0;
+}
+
+.section h2 {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.section h2+p {
+  font-size: 1.25rem;
+}
+
+.form {
+  background-color: #1C2331;
+  padding: 24px 16px;
+  border-radius: 16px;
+  height: 100%;
+}
+
+.form h3 {
+  color: #fff;
+  font-size: 1.25rem;
+}

@@ -1,6 +1,6 @@
 .banner {
   background: #ccc url(../../public/imgs/banner_xl.png) center/cover no-repeat;
-  width: calc(100vw);
+  width: calc(100vw - 15px);
   height: 550px;
   margin: 0 auto;
 }

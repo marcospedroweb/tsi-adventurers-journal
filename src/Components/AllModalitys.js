@@ -39,7 +39,7 @@ const AllModalitys = () => {
     };
   }, []);
 
-  const [showNum, setShowNum] = React.useState(windowSize.length < 768 ? 4 : 8);
+  const [showNum, setShowNum] = React.useState(windowSize.width < 768 ? 4 : 8);
 
   return (
     <section className={styles.section} id="modalitys">
@@ -49,7 +49,7 @@ const AllModalitys = () => {
         </h2>
         {modalitys && modalitys[0].loading && (
           <div className="row justify-content-between aling-items-center">
-            {windowSize.length > 768 ? (
+            {windowSize.width > 768 ? (
               <>
                 <ModalityCard
                   modalityName={'Paraquedismo'}
@@ -192,7 +192,7 @@ const AllModalitys = () => {
           <ButtonCustom
             bsClass="py-2 px-3 fw-bold fs-5"
             onClick={() => {
-              if (!showNum) setShowNum(windowSize.length < 768 ? 4 : 8);
+              if (!showNum) setShowNum(windowSize.width < 768 ? 4 : 8);
               else setShowNum(0);
             }}
           >

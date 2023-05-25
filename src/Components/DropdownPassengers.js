@@ -26,17 +26,18 @@ const DropdownPassengers = () => {
           <div className="d-flex justify-content-between align-items-center gap-4">
             <PassengersNum
               title={'Adultos'}
-              text={'Acima de 12 anos'}
+              text={'Acima de 13 anos'}
               value={numAdults}
               setValue={setNumAdults}
             />
-            <PassengersNum
+            {/* <PassengersNum
               title={'Crianças'}
-              text={'De 5 a 11'}
+              text={'De 5 a 12 anos'}
               value={numKids}
               setValue={setNumKids}
-            />
+            /> */}
           </div>
+          <small>Algumas atividades tem idade minima para participar</small>
         </div>
       </Dropdown.Menu>
     </Dropdown>

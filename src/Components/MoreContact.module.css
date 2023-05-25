@@ -1,0 +1,10 @@
+.logo {
+  background: #06090E;
+  width: 100%;
+  height: 200px;
+  border-radius: 16px;
+}
+
+.logo img {
+  height: 100px;
+}
