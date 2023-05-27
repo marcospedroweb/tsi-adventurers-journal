@@ -5,13 +5,21 @@ import BannerAbout from '../Components/BannerAbout';
 import SectionAwakenTheAdventurer from '../Components/SectionAwakenTheAdventurer';
 import TravelSupport from '../Components/TravelSupport';
 import SectionBigReviews from '../Components/SectionBigReviews';
+import Header from '../Components/Header';
+import Footer from '../Components/Footer';
 // import styles from './About.css';
 
 const About = () => {
+  return (
+    <>
+      <main>
+        <BannerAbout />
+        <SectionAwakenTheAdventurer />
+        <TravelSupport />
+        <SectionBigReviews />
+      </main>
 
-    return (
-        <>
-            {/* <div id='body'>
+      {/* <div id='body'>
                 <div id='teste' className='row justify-content-between align-items-start'>
                     <div id='teste' className='col-12 col-lg-6'>
                         <div className='p-5' style={{ width: "550px" }}>
@@ -29,13 +37,7 @@ const About = () => {
 
                 </div> */}
 
-                return (
-                <main>
-                    <BannerAbout />
-                    <SectionAwakenTheAdventurer />
-                    <TravelSupport />
-                    <SectionBigReviews />
-                    {/* <div id='teste'>
+      {/* <div id='teste'>
 
                 <div id='teste'>
                     <h1 className='text-white'> Desperte o Aventureiro(a) que há em voce</h1>
@@ -116,13 +118,8 @@ const About = () => {
             <div>
                 Componente de avaliaçoes
             </div> */}
-                </main>
-            </>
-            );
-            
-
+    </>
+  );
 };
 
-
-            export default About;
-
+export default About;

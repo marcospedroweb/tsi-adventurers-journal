@@ -14,7 +14,6 @@ const AventurarSe = () => {
         <TravelSupport />
         <FormAnyQuestions />
       </main>
-      <Footer />
     </>
   );
 };
