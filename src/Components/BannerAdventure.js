@@ -9,14 +9,43 @@ import ButtonCustom from './ButtonCustom';
 import useFetch from '../Hooks/useFetch';
 import { BsSearch } from 'react-icons/bs';
 import DropdownModalitys from './DropdownModalitys';
+import { GlobalContext } from '../Context/GlobalStorage';
+import { useNavigate } from 'react-router-dom';
 
 const BannerAdventure = () => {
+  const { setSearchAdventure } = React.useContext(GlobalContext);
+  const navigate = useNavigate();
+  const [formError, setFormError] = React.useState('');
+  //Destination
   const origin = GetSimpleInputObj('name');
+
+  //Date
+  const [startDateValue, setStartDateValue] = React.useState('');
   const startDate = React.useRef();
   const endDate = React.useRef();
+
+  //Passengers
+  const [passengers, setPassengers] = React.useState(1);
+
+  //Modalitys
+  const [selectedOptions, setSelectedOptions] = React.useState([]);
+  const [modalitysIds, setModalitysIds] = React.useState([]);
+
+  //Fetch
   const { loading, request } = useFetch();
 
-  async function handleSubmit() {}
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    setSearchAdventure({
+      origin: origin.ref.current.value,
+      startDate: startDate.current.value,
+      endDate: endDate.current.value,
+      passengers,
+      modalitysIds,
+    });
+    navigate('/procurar-aventuras');
+  }
 
   return (
     <section className={`${styles.banner} position-relative`}>
@@ -27,7 +56,10 @@ const BannerAdventure = () => {
           <h2>Aventure-se</h2>
         </div>
         <form
-          className={`${styles.divForm} d-flex flex-column flex-sm-row justify-content-center justify-content-lg-between align-items-center align-items-lg-end gap-4 flex-wrap flex-xxl-nowrap`}
+          method="POST"
+          action="#"
+          onSubmit={handleSubmit}
+          className={`${styles.divForm} d-flex flex-column flex-sm-row justify-content-center justify-content-lg-between align-items-center align-items-lg-start gap-4 flex-wrap flex-xxl-nowrap`}
         >
           <div className="w-100">
             <h3>Para onde você vai?</h3>
@@ -36,27 +68,45 @@ const BannerAdventure = () => {
           <div className="d-flex flex-column flex-lg-row justify-content-between align-items-center w-100">
             <div className="mb-3 mb-lg-0 w-100">
               <h3>Data de ida</h3>
-              <InputFloatingDate refComponent={startDate} />
+              <InputFloatingDate
+                refComponent={startDate}
+                name={'dateInit'}
+                startDateValue={startDateValue}
+                setStartDateValue={setStartDateValue}
+              />
             </div>
             <div
               className={`${styles.dateSeparator} d-none d-lg-inline-block`}
             ></div>
             <div className="w-100">
               <h3>Data de volta</h3>
-              <InputFloatingDate refComponent={endDate} />
+              <InputFloatingDate
+                refComponent={endDate}
+                name={'dateFinal'}
+                startDateValue={startDateValue}
+                setStartDateValue={setStartDateValue}
+              />
             </div>
           </div>
-          <div className="d-flex justify-content-between align-items-end w-100 gap-3">
+          <div className="d-flex justify-content-between align-items-start w-100 gap-3">
             <div>
               <h3>Passageiros</h3>
-              <DropdownPassengers />
+              <DropdownPassengers
+                passengers={passengers}
+                setPassengers={setPassengers}
+              />
             </div>
             <div>
               <h3>Modalidades</h3>
-              <DropdownModalitys />
+              <DropdownModalitys
+                selectedOptions={selectedOptions}
+                setSelectedOptions={setSelectedOptions}
+                modalitysIds={modalitysIds}
+                setModalitysIds={setModalitysIds}
+              />
             </div>
           </div>
-          <div>
+          <div className="align-self-end text-center">
             <ButtonCustom
               type="submit"
               bsClass={
@@ -70,6 +120,11 @@ const BannerAdventure = () => {
               <BsSearch className="fw-bold me-2" />
               Buscar aventuras
             </ButtonCustom>
+            {formError && (
+              <span className="error-mensage mt-1 d-inline-block">
+                {formError}
+              </span>
+            )}
           </div>
         </form>
       </div>

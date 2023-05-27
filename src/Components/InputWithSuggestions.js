@@ -8,7 +8,6 @@ import styles from './InputWithSuggestions.module.css';
 
 const InputWithSuggestions = ({ formObj, type }) => {
   const [isInputSelected, setIsInputSelected] = useState(false);
-  const refInput = React.useRef();
   const [inputValue, setInputValue] = useState('');
   const [filteredCities, setFilteredCities] = useState([]);
   const [cities, setCities] = useState([]);
@@ -64,9 +63,10 @@ const InputWithSuggestions = ({ formObj, type }) => {
             onChange={handleInputChange}
             onFocus={() => {
               setIsInputSelected(true);
-              filterValues(refInput.current.value);
+              filterValues(formObj.ref.current.value);
             }}
-            ref={refInput}
+            ref={formObj.ref}
+            name="destination"
             required
           />
         </FloatingLabel>

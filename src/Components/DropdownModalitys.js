@@ -5,18 +5,24 @@ import useFetch from '../Hooks/useFetch';
 import { apiRoute, getModalitysRoute, optionsFetch } from '../DB/data';
 import ShadowInput from './ShadowInput';
 
-const DropdownModalitys = () => {
+const DropdownModalitys = ({
+  selectedOptions,
+  setSelectedOptions,
+  modalitysIds,
+  setModalitysIds,
+}) => {
   const [options, setOptions] = React.useState([]);
   const { loading, request } = useFetch();
-  const [selectedOptions, setSelectedOptions] = React.useState([]);
 
-  const handleOptionSelect = (optionValue) => {
+  const handleOptionSelect = (optionValue, id) => {
     if (selectedOptions.includes(optionValue)) {
       setSelectedOptions(
         selectedOptions.filter((value) => value !== optionValue),
       );
+      setModalitysIds(modalitysIds.filter((value) => value !== id));
     } else {
       setSelectedOptions([...selectedOptions, optionValue]);
+      setModalitysIds([...modalitysIds, id]);
     }
   };
 
@@ -64,10 +70,10 @@ const DropdownModalitys = () => {
             >
               Limpar filtro
             </Dropdown.Item>
-            {options.map(({ id, Nome, Descrição }) => (
+            {options.map(({ identify, Nome, Descrição }) => (
               <Dropdown.Item
-                key={id + Nome}
-                onClick={() => handleOptionSelect(Nome)}
+                key={identify + Nome}
+                onClick={() => handleOptionSelect(Nome, identify)}
               >
                 {selectedOptions && selectedOptions.includes(Nome) && (
                   <Form.Check
@@ -75,8 +81,8 @@ const DropdownModalitys = () => {
                     id={Nome}
                     label={Nome}
                     checked={true}
-                    onChange={() => handleOptionSelect(Nome)}
-                    required
+                    onChange={() => handleOptionSelect(Nome, identify)}
+                    name={Nome}
                   />
                 )}
                 {selectedOptions && !selectedOptions.includes(Nome) && (
@@ -85,8 +91,8 @@ const DropdownModalitys = () => {
                     id={Nome}
                     label={Nome}
                     checked={false}
-                    onChange={() => handleOptionSelect(Nome)}
-                    required
+                    onChange={() => handleOptionSelect(Nome, identify)}
+                    name={Nome}
                   />
                 )}
               </Dropdown.Item>

@@ -3,19 +3,14 @@ import { Dropdown } from 'react-bootstrap';
 import styles from './DropdownPassengers.module.css';
 import PassengersNum from './PassengersNum';
 
-const DropdownPassengers = () => {
-  const [numAdults, setNumAdults] = React.useState(1);
-  const [numKids, setNumKids] = React.useState(0);
-
+const DropdownPassengers = ({ passengers, setPassengers }) => {
   return (
     <Dropdown>
       <Dropdown.Toggle
         id="dropdownBannerAdventure"
         className={`${styles.btnDropdown} w-100`}
       >
-        {numAdults + numKids > 1
-          ? `${numAdults + numKids} Passageiros`
-          : `${numAdults + numKids} Passageiro`}
+        {!passengers ? `Insira um valor` : `${passengers} passageiros`}
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
@@ -27,17 +22,10 @@ const DropdownPassengers = () => {
             <PassengersNum
               title={'Adultos'}
               text={'Acima de 13 anos'}
-              value={numAdults}
-              setValue={setNumAdults}
+              value={passengers}
+              setValue={setPassengers}
             />
-            {/* <PassengersNum
-              title={'Crianças'}
-              text={'De 5 a 12 anos'}
-              value={numKids}
-              setValue={setNumKids}
-            /> */}
           </div>
-          <small>Algumas atividades tem idade minima para participar</small>
         </div>
       </Dropdown.Menu>
     </Dropdown>

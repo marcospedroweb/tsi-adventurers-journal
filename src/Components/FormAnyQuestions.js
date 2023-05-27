@@ -44,7 +44,9 @@ const FormAnyQuestions = () => {
                   placeholder="Nome completo"
                   minLength={3}
                   required
-                  {...name.validation}
+                  value={name.validation.value}
+                  onChange={name.validation.onChange}
+                  onBlur={name.validation.onBlur}
                 />
               </FloatingLabel>
               {name.validation.error && (
@@ -59,7 +61,9 @@ const FormAnyQuestions = () => {
                   type="email"
                   placeholder="Email"
                   required
-                  {...email.validation}
+                  value={email.validation.value}
+                  onChange={email.validation.onChange}
+                  onBlur={email.validation.onBlur}
                 />
               </FloatingLabel>
               {email.validation.error && (
@@ -76,7 +80,9 @@ const FormAnyQuestions = () => {
                   required
                   minLength={4}
                   maxLength={300}
-                  {...bio.validation}
+                  value={bio.validation.value}
+                  onChange={bio.validation.onChange}
+                  onBlur={bio.validation.onBlur}
                 />
               </FloatingLabel>
               {bio.validation.error && (
