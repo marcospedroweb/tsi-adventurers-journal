@@ -1,0 +1,32 @@
+.divInfo {
+  background-color: #1C2331;
+  padding: 16px 12px;
+}
+
+.divImg {
+  width: 100%;
+  height: 200px;
+  background: #ccc url(../../public/imgs/aboutimg2.png) center/cover no-repeat;
+  border-radius: 16px;
+}
+
+.divPrice {
+  width: 100%;
+  background-color: #283040;
+  margin: 0 12px;
+  padding: 20px;
+  align-self: stretch;
+  text-align: center;
+  color: #fff;
+}
+
+.divPrice h3 {
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.divPrice h3+p {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}

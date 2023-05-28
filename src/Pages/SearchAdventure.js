@@ -21,7 +21,7 @@ const SearchAdventure = () => {
 
   if (loading) return <Loading />;
   return (
-    <main style={{ backgroundColor: '#283040' }}>
+    <main style={{ backgroundColor: '#283040', padding: '24px 0 92px 0' }}>
       <div className="container-xl">
         <h2
           style={{ fontSize: '3rem' }}

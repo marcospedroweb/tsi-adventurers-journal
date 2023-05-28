@@ -1,0 +1,15 @@
+.checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #1C2331;
+  background-color: transparent;
+  border-radius: 50%;
+  transition: all .25s ease-out;
+}
+
+.checkbox.active {
+  background-color: #87FAD1;
+}

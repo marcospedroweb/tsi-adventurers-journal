@@ -1,0 +1,64 @@
+.divBtn {
+  display: block;
+  text-align: center;
+  padding: 8px 0;
+  background-color: #283040;
+  border-radius: 8px;
+  color: #87FAD1;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .25s ease-out;
+}
+
+.divBtn:hover {
+  background-color: #3F495C;
+}
+
+.separator {
+  height: 4px;
+  width: 42px;
+  background-color: #1C2331;
+  margin: 0 10px;
+}
+
+.divMoreMain h3 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.moreSections li {
+  border-bottom: 2px solid transparent;
+  color: #1C2331;
+  cursor: pointer;
+  font-size: .9rem;
+  transition: all .25s;
+}
+
+.moreSections li.active,
+.moreSections li:hover {
+  border-bottom: 2px solid #1C2331;
+  font-weight: 700;
+}
+
+
+/* GUIA TURISTICO */
+.divGuideImg {
+  width: 125px;
+  height: 125px;
+  background: #ccc url(../../public/imgs/aboutimg2.png) center/cover no-repeat;
+  border-radius: 50%;
+}
+
+.divGuideImg+h4 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  margin-bottom: 4px;
+  margin-top: 8px;
+  font-size: .9rem;
+}
+
+.divGuideImg+h4+p {
+  margin-bottom: 24px;
+  font-size: 1.25rem;
+  font-weight: 600;
+}

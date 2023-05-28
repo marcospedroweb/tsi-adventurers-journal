@@ -1,0 +1,99 @@
+.divMain {
+  background-color: #fff;
+  border-radius: 16px;
+}
+
+.divMain+.divMain {
+  margin-bottom: 42px;
+}
+
+.divMain h3 {
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+  color: #1C2331;
+}
+
+.divMain p {
+  font-size: .9rem;
+  color: #1C2331;
+}
+
+.divImg {
+  width: 235px;
+  background: #ccc url(../../public/imgs/paraquedas.jpeg) center/cover no-repeat;
+  border-radius: 16px 0 0 16px;
+}
+
+@media screen and (max-width: 992px) {
+  .divImg {
+    width: 100%;
+    height: 200px;
+  }
+}
+
+.divImg.divImgWithRounded {
+  border-radius: 16px 0 16px 0;
+}
+
+.separator {
+  height: 4px;
+  width: 42px;
+  background-color: #1C2331;
+  margin: 0 10px;
+}
+
+.divMore {
+  background-color: transparent;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all .25s;
+}
+
+.divMore:hover {
+  background-color: #ddd;
+}
+
+
+/* MORE ABOUT */
+.divMain h4 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.moreSections li {
+  border-bottom: 2px solid transparent;
+  color: #1C2331;
+  cursor: pointer;
+  font-size: .9rem;
+  transition: all .25s;
+}
+
+.moreSections li.active,
+.moreSections li:hover {
+  border-bottom: 2px solid #1C2331;
+  font-weight: 700;
+}
+
+
+/* GUIA TURISTICO */
+.divGuideImg {
+  width: 125px;
+  height: 125px;
+  background: #ccc url(../../public/imgs/aboutimg2.png) center/cover no-repeat;
+  border-radius: 50%;
+}
+
+.divGuideImg+h4 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  margin-bottom: 4px;
+  margin-top: 8px;
+  font-size: .9rem;
+}
+
+.divGuideImg+h4+p {
+  margin-bottom: 24px;
+  font-size: 1.25rem;
+  font-weight: 600;
+}

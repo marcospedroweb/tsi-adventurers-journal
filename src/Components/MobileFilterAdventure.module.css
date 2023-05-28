@@ -1,0 +1,54 @@
+.offCanvas {
+  /* height: fit-content; */
+}
+
+.divMainOffCanvas h3,
+.divMainOffCanvas h4 {
+  color: #fff;
+}
+
+.divMainOffCanvas h3 {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.divMainOffCanvas h4 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.divBorder {
+  border-bottom: 1px solid #fff;
+  padding-bottom: 32px;
+}
+
+.divBorder+.divBorder {
+  margin-top: 32px;
+}
+
+.divInput {
+  width: fit-content;
+}
+
+.divInput span {
+  z-index: 100;
+  margin-left: 8px;
+}
+
+.divInput input {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  width: 92px;
+  padding-left: 32px;
+}
+
+.divInput input[type="number"]::-webkit-inner-spin-button,
+.divInput input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.divCheckboxs label {
+  color: #fff;
+}

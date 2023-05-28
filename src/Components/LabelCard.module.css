@@ -1,0 +1,35 @@
+.label {
+  background-color: #1C2331;
+  padding: 8px 12px;
+  font-size: .8rem;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+
+@media screen and (max-width: 576px) {
+  .label.aval {
+    margin-top: 8px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .label.aval:nth-child(n+4) {
+    margin-top: 8px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .label.aval:nth-child(n+5) {
+    margin-top: 8px;
+  }
+}
+
+.label.normal+.label.normal {
+  margin-left: 4px;
+}
+
+/* .label+.label {
+  margin-left: 4px;
+} */

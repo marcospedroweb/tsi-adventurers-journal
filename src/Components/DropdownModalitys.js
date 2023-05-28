@@ -70,29 +70,29 @@ const DropdownModalitys = ({
             >
               Limpar filtro
             </Dropdown.Item>
-            {options.map(({ identify, Nome, Descrição }) => (
+            {options.map(({ identify, nome, descricao }) => (
               <Dropdown.Item
-                key={identify + Nome}
-                onClick={() => handleOptionSelect(Nome, identify)}
+                key={identify + nome}
+                onClick={() => handleOptionSelect(nome, identify)}
               >
-                {selectedOptions && selectedOptions.includes(Nome) && (
+                {selectedOptions && selectedOptions.includes(nome) && (
                   <Form.Check
                     type="checkbox"
-                    id={Nome}
-                    label={Nome}
+                    id={nome}
+                    label={nome}
                     checked={true}
-                    onChange={() => handleOptionSelect(Nome, identify)}
-                    name={Nome}
+                    onChange={() => handleOptionSelect(nome, identify)}
+                    name={nome}
                   />
                 )}
-                {selectedOptions && !selectedOptions.includes(Nome) && (
+                {selectedOptions && !selectedOptions.includes(nome) && (
                   <Form.Check
                     type="checkbox"
-                    id={Nome}
-                    label={Nome}
+                    id={nome}
+                    label={nome}
                     checked={false}
-                    onChange={() => handleOptionSelect(Nome, identify)}
-                    name={Nome}
+                    onChange={() => handleOptionSelect(nome, identify)}
+                    name={nome}
                   />
                 )}
               </Dropdown.Item>

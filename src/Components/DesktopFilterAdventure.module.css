@@ -3,6 +3,12 @@
   color: #fff;
 }
 
+.divMain.divMainMobile h3,
+.divMain.divMainMobile h4 {
+  color: #1C2331;
+  font-size: 1.25rem;
+}
+
 .divMain h3 {
   text-transform: uppercase;
   font-size: 1.5rem;
@@ -17,6 +23,10 @@
 .divBorder {
   border-bottom: 1px solid #fff;
   padding-bottom: 32px;
+}
+
+.divMain.divMainMobile .divBorder {
+  border-color: #1C2331;
 }
 
 .divBorder+.divBorder {
@@ -39,8 +49,39 @@
   padding-left: 32px;
 }
 
+.divMain.divMainMobile input {
+  background-color: #283040;
+  color: #87FAD1;
+}
+
+.divMain.divMainMobile input[type="number"],
+.divMain.divMainMobile input[type="time"] {
+  background-color: #283040;
+  color: #87FAD1;
+  width: 150px !important;
+}
+
+.divMain.divMainMobile input[type="checbox"]:checked {
+  background-color: #1C2331;
+}
+
 .divInput input[type="number"]::-webkit-inner-spin-button,
 .divInput input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   appearance: none;
+}
+
+.divCheckboxs label {
+  color: #fff;
+}
+
+.divMain.divMainMobile .divCheckboxs input {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.divMain.divMainMobile .divCheckboxs label {
+  color: #1C2331;
+  font-size: 1.25rem;
 }

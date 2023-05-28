@@ -3,7 +3,7 @@ import styles from './PassengersNum.module.css';
 import { BsFillPlusCircleFill, BsFillDashCircleFill } from 'react-icons/bs';
 import { FloatingLabel, Form } from 'react-bootstrap';
 
-const PassengersNum = ({ value, setValue }) => {
+const PassengersNum = ({ value, setValue, bsClass }) => {
   const [input, setInput] = React.useState(false);
 
   return (
@@ -20,7 +20,7 @@ const PassengersNum = ({ value, setValue }) => {
           style={value > 1 ? { cursor: 'pointer' } : { cursor: 'not-allowed' }}
         />
         <div
-          className="px-3"
+          className={bsClass ? 'px-1' : 'px-3'}
           onClick={() => {
             setInput(!input);
           }}

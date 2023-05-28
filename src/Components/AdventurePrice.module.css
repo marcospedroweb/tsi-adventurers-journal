@@ -1,0 +1,16 @@
+.divMain {
+  background-color: #1C2331;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 12px;
+  padding: 12px 42px;
+  border-radius: 24px;
+}
+
+@media screen and (max-width: 768px) {
+  .divMain {
+    padding: 12px 24px;
+  }
+}

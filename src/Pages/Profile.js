@@ -26,7 +26,7 @@ const Profile = () => {
 
     if (!session.user) navigate('/');
     getUserData();
-  }, [navigate, request, session]);
+  }, []);
 
   if (loading) return <Loading />;
   else if (user)
