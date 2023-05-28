@@ -6,3 +6,30 @@
   font-size: 2rem;
   font-weight: 700;
 }
+
+.divReceipt h3 {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.divReceiptSection {
+  border-top: 2px solid #c6c6c6;
+  padding: 12px 0;
+}
+
+.divDescount {
+  cursor: pointer;
+}
+
+.discountSpan {
+  color: #4AAE51;
+}
+
+/*Mobile*/
+.divReceiptMobile {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  border-radius: 16px;
+  padding: 24px 12px;
+  background-color: #fff;
+  width: 100%;
+}

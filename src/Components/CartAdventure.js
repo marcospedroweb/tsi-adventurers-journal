@@ -14,17 +14,17 @@ const CartAdventure = () => {
       </div>
       <div className="col-12 col-lg-10">
         <div
-          className={`${styles.divInfo} d-flex flex-column flex-lg-row justify-content-between align-items-center rounded`}
+          className={`${styles.divInfo} d-flex flex-column flex-xl-row justify-content-between align-items-center rounded w-100`}
         >
-          <div>
-            <div className="d-flex justify-content-between align-items-center">
+          <div className="w-100">
+            <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center">
               <LabelCard
                 title={'Local'}
                 text={LimitText(
                   'Av. Francisco Bhering, Ipanema Rio de Janeiro ',
                 )}
                 stylesCss={{ backgroundColor: '#283040' }}
-                bsClass={'me-2 mb-2 w-100'}
+                bsClass={'me-0 me-sm-2 mb-2 w-100'}
               />
               <LabelCard
                 title={'Data'}
@@ -33,7 +33,7 @@ const CartAdventure = () => {
                 bsClass={'mb-2  w-100'}
               />
             </div>
-            <div className="d-flex justify-content-between align-items-center">
+            <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center">
               <LabelCard
                 title={'Modalidades'}
                 text={LimitText('Paraquedismo, Surf, Bangue Jump')}
@@ -47,7 +47,7 @@ const CartAdventure = () => {
                 bsClass={'mb-2  w-100'}
               />
             </div>
-            <div className="w-100">
+            <div className="w-100 mb-2 mb-xl-0">
               <ModalShowMore />
             </div>
           </div>

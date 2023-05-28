@@ -11,7 +11,7 @@
 }
 
 .divPrice {
-  width: 100%;
+  border-radius: 16px;
   background-color: #283040;
   margin: 0 12px;
   padding: 20px;
