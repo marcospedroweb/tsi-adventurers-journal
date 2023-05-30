@@ -1,7 +1,14 @@
 import React from 'react';
 import styles from './LabelCard.module.css';
 
-const LabelCard = ({ text, stylesCss = {}, bsClass, title, aval }) => {
+const LabelCard = ({
+  text,
+  stylesCss = {},
+
+  bsClass,
+  title,
+  aval,
+}) => {
   if (title)
     return (
       <div className={`${styles.label} ${bsClass}`} style={stylesCss}>

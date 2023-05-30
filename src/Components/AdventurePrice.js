@@ -4,18 +4,29 @@ import LabelCard from './LabelCard';
 import ButtonCustom from './ButtonCustom';
 import { useNavigate } from 'react-router-dom';
 
-const AdventurePrice = ({ best = false, price, per, idAdventure, data }) => {
+const AdventurePrice = ({
+  best = false,
+  price,
+  per,
+  idAdventure,
+  data,
+  isHotel,
+  link,
+}) => {
   const navigate = useNavigate();
   return (
     <div className={`${styles.divMain} align-self-stretch`}>
-      <LabelCard
-        text="Menor preço"
-        bsClass={'py-2 px-3 text-uppercase'}
-        stylesCss={{
-          color: '#87FAD1',
-          backgroundColor: '#283040',
-        }}
-      />
+      {best && (
+        <LabelCard
+          text="Menor preço"
+          bsClass={'py-2 px-3 text-uppercase'}
+          stylesCss={{
+            color: '#87FAD1',
+            backgroundColor: '#283040',
+          }}
+        />
+      )}
+
       <div className={`d-flex justify-content-center align-items-end`}>
         <span className="text-white fw-bold me-2" style={{ fontSize: '2rem' }}>
           R$
@@ -33,18 +44,28 @@ const AdventurePrice = ({ best = false, price, per, idAdventure, data }) => {
         </span>
       </div>
       <div>
-        <ButtonCustom
-          bsClass={'mt-3'}
-          onClick={() => {
-            const cart = JSON.parse(window.localStorage.getItem('cart'));
-            if (cart)
-              window.localStorage.setItem('cart', JSON.stringify([...cart, 2]));
-            else window.localStorage.setItem('cart', JSON.stringify([2]));
-            navigate('/carrinho');
-          }}
-        >
-          Escolher aventura
-        </ButtonCustom>
+        {!isHotel && (
+          <ButtonCustom
+            bsClass={'mt-3'}
+            onClick={() => {
+              const cart = JSON.parse(window.localStorage.getItem('cart'));
+              if (cart)
+                window.localStorage.setItem(
+                  'cart',
+                  JSON.stringify([...cart, 2]),
+                );
+              else window.localStorage.setItem('cart', JSON.stringify([2]));
+              navigate('/carrinho');
+            }}
+          >
+            Escolher aventura
+          </ButtonCustom>
+        )}
+        {isHotel && (
+          <ButtonCustom type="link" bsClass={'mt-3'} link={'#'}>
+            Saber mais
+          </ButtonCustom>
+        )}
       </div>
     </div>
   );

@@ -97,3 +97,28 @@
   font-size: 1.25rem;
   font-weight: 600;
 }
+
+
+/* HOTEL */
+.divMain.hotel {
+  padding: 24px;
+  background-color: #e6e6e6;
+
+}
+
+.divMain.hotel .divImg {
+  width: 400px;
+  background: #ccc url(../../public/imgs/hotel_1.png) center/cover no-repeat;
+  border-radius: 16px;
+}
+
+@media screen and (max-width: 992px) {
+  .divMain.hotel .divImg {
+    width: 100%;
+    height: 200px;
+  }
+}
+
+.divMain.hotel .divImg.divImgWithRounded {
+  border-radius: 16px;
+}

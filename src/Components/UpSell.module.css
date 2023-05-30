@@ -1,0 +1,13 @@
+.section {
+  margin-bottom: 64px;
+}
+
+.divUp h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.divUp p {
+  text-align: center;
+}

@@ -19,6 +19,7 @@ import PageNotFound from './Pages/PageNotFound';
 import AddedToCart from './Pages/AddedToCart';
 import Cart from './Pages/Cart';
 import Purchase from './Pages/Purchase';
+import OrderCompleted from './Pages/OrderCompleted';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -34,6 +35,7 @@ root.render(
           <Route path="/produto-adicionado" element={<AddedToCart />} />
           <Route path="/carrinho" element={<Cart />} />
           <Route path="/processo-de-compra" element={<Purchase />} />
+          <Route path="/pedido-finalizado" element={<OrderCompleted />} />
           <Route path="/configurações" element={<Config />} />
           <Route path="/sobre-nos" element={<About />} />
           <Route path="/contato" element={<Contact />} />

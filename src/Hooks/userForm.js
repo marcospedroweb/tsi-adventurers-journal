@@ -41,6 +41,14 @@ const types = {
     regex: /^(10(\.0)?|[0-9](\.[0-9])?)$/,
     message: 'A nota deve ser entre 0,0 a 10,0',
   },
+  creditCard: {
+    regex: /^(?:\d{16}|\d{4} ?\d{4} ?\d{4} ?\d{4})$/,
+    message: 'Cartão de credito inválido. Ex: 0000 0000 0000 0000',
+  },
+  cpf: {
+    regex: /^\d{3}\.?\d{3}\.?\d{3}-?\d{2}$/,
+    message: 'CPF inválido. Ex: 0000.000.0000-00',
+  },
 };
 
 const useForm = (type) => {

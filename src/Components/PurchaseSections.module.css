@@ -1,0 +1,238 @@
+.section {
+  margin: 72px 0 92px 0;
+}
+
+.sectionPurchase {
+  border-radius: 16px;
+  cursor: not-allowed;
+}
+
+.sectionPurchase.active {
+  cursor: inherit;
+}
+
+.sectionPurchase .header {
+  background-color: #3D4659;
+  padding: 12px 0;
+  border-radius: 16px 16px 0 0;
+  transition: all .25s ease-out;
+}
+
+@media screen and (max-width: 992px) {
+  .sectionPurchase .header {
+    margin-top: 32px;
+    border-radius: 16px;
+
+  }
+}
+
+.sectionPurchase.active .header {
+  background-color: #1C2331;
+}
+
+.sectionPurchase .header h2 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #fff;
+  transition: all .25s ease-out;
+}
+
+.sectionPurchase.active .header h2 {
+  font-size: 1.5rem;
+  color: #87FAD1;
+}
+
+.sectionPurchase .body {
+  background-color: #eee;
+  border-radius: 0 0 16px 16px;
+  width: 100%;
+  transition: all .25s ease-out;
+}
+
+@media screen and (max-width: 992px) {
+  .sectionPurchase .body {
+    background-color: #fff;
+    height: 0;
+    overflow: hidden;
+    padding: 0 !important;
+    transition: all .25s ease-out;
+  }
+}
+
+.sectionPurchase.active .body {
+  background-color: #fff;
+  height: 100%;
+  padding: 24px !important;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.sectionPurchase h3 {
+  font-size: 1.25rem;
+  color: #000;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.sectionPurchase h4 {
+  font-size: 0.8rem;
+  margin-bottom: 4px;
+}
+
+.sectionPurchase h4+p {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+
+.sectionPurchase label {
+  font-size: 1rem;
+}
+
+.sectionPurchase small {
+  font-size: .7rem;
+  margin-top: 12px;
+}
+
+
+/* PAYMENT */
+.sectionPurchase .body .formPayment {
+  background-color: #D9D9D9;
+  border-radius: 16px;
+  padding: 16px;
+  width: 100%;
+  transition: all .25s ease-out;
+}
+
+.sectionPurchase.active .body .formPayment {
+  background-color: #f1f1f1;
+  border: 1px solid #D9D9D9;
+  cursor: pointer;
+}
+
+.sectionPurchase.active .body .formPayment:hover {
+  background-color: #e0e0e0;
+  border: 1px solid #D9D9D9;
+}
+
+.sectionPurchase .body .formPayment+.formPayment {
+  margin-top: 24px;
+}
+
+.sectionPurchase .body .formPayment .divIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 16px;
+}
+
+.sectionPurchase .body .formPayment .divIcon img,
+.sectionPurchase .body .formPayment .divIcon svg {
+  width: 24px;
+  font-size: 1.5rem;
+  color: #575757;
+  filter: grayscale(100%);
+}
+
+.sectionPurchase.active .body .formPayment .divIcon img,
+.sectionPurchase.active .body .formPayment .divIcon svg {
+  filter: inherit;
+  color: #01bdae;
+}
+
+.sectionPurchase .body .formPayment h4 {
+  margin: 0;
+  font-size: .9rem;
+  color: #5E5E5E;
+  transition: all .25s ease-out;
+}
+
+.sectionPurchase.active .body .formPayment h4 {
+  margin: 0;
+  font-size: .9rem;
+  color: #000;
+}
+
+.divMainFormPayment span {
+  display: inline-block;
+  color: #35C6F3;
+  border-bottom: 1px solid #35C6F3;
+  cursor: pointer;
+}
+
+.divMainFormPayment span:hover {
+  color: #1AA2CD;
+  border-bottom: 1px solid #1AA2CD;
+}
+
+.divFormPayment {
+  background-color: #f2f2f2;
+  padding: 24px 16px;
+  border-radius: 16px;
+}
+
+/* RESUMO */
+.product {
+  background-color: #F2F2F2;
+  border-radius: 12px;
+  padding: 12px;
+
+}
+
+.product+.product {
+  margin-top: 16px;
+}
+
+.productImg {
+  width: 115px;
+  height: 100px;
+  background: #ccc url(../../public/imgs/aboutimg2.png) center/cover no-repeat;
+  border-radius: 16px;
+}
+
+.product h3 {
+  font-size: .9rem;
+  margin-bottom: 8px;
+}
+
+.product p {
+  font-size: .9rem;
+  margin-bottom: 8px;
+}
+
+
+.product span {
+  font-weight: 600;
+}
+
+.divReceipt {
+  background-color: transparent;
+}
+
+.sectionPurchase.active .divReceipt {
+  background-color: #F2F2F2;
+}
+
+.divReceipt h3 {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.divReceiptSection {
+
+  padding: 8px 0;
+}
+
+.divReceiptSection:nth-child(1) {
+  border-bottom: 1px solid #d6d6d6;
+
+}
+
+.divDescount {
+  cursor: pointer;
+}
+
+.discountSpan {
+  color: #4AAE51;
+}
