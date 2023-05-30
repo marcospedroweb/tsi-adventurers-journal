@@ -1,7 +1,9 @@
 import React from 'react';
 import styles from './ContactComponent.module.css';
+import ButtonCustom from '../Components/ButtonCustom';
 
 const Contactus = () => {
+
     return (
         <>
             <div id={styles.body}>
@@ -20,7 +22,7 @@ const Contactus = () => {
                         <input type='email' placeholder='Email'></input> <br></br>
                         <textarea placeholder='mensagem'></textarea><br></br>
                     </form>
-                    <input id='sendButton' type='submit'></input>
+                    <ButtonCustom>ENVIAR</ButtonCustom>
                 </div>
                 <div>
                     <div id='img'></div>

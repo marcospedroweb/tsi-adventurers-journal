@@ -2,6 +2,7 @@ import React from 'react';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import styles from './SectionFormContact.module.css';
+import ButtonCustom from './ButtonCustom';
 
 
 
@@ -40,7 +41,7 @@ const SectionFormContact = () => {
                   style={{ height: '100px' }}
               />
           </FloatingLabel>
-          <input id='sendButton' type='submit'></input>
+          <ButtonCustom bsClass={"mt-4"}>ENVIAR</ButtonCustom>
       </div>
       <div className='col-12 col-lg-6'>
           <div id={styles.img}></div>
