@@ -1,0 +1,8 @@
+#aboutimg{
+    background-image: url('../../public/imgs/3img.png');
+    height: 650px;
+    width: 668px;
+}
+#body{
+    background: linear-gradient(180deg, #1C2331 53.22%, #2C4D8E 100%);
+}
