@@ -6,3 +6,12 @@
 #body{
     background: linear-gradient(180deg, #1C2331 53.22%, #2C4D8E 100%);
 }
+
+#body h2{
+    color: #FFFFFF;
+    font-size: 3.5rem;
+}
+#body p{
+    color: #FFFFFF;
+    font-size: 1.5rem;
+}
