@@ -1,0 +1,82 @@
+.divMain {
+  bottom: -90%;
+}
+
+.card {
+  padding: 32px 24px;
+  background-color: #1C2331;
+  border-radius: 16px;
+  color: #fff;
+}
+
+.cardLight {
+  background: linear-gradient(159.07deg, #87FAD1 -25.91%, #287E5F 105.31%);
+  padding: 16px 24px 32px 24px;
+  color: #1C2331;
+  height: 600px;
+}
+
+@media screen and (max-width: 992px) {
+  .cardLight {
+    height: fit-content;
+  }
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.card h3.hPlus {
+  background: linear-gradient(to right, #73E0BA, #00A3FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card h3+p {
+  font-weight: 400;
+}
+
+.card h3+p span {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+.textHidden {
+  font-size: 0.875rem;
+  color: #A3A3A3;
+}
+
+.cardLight .textHidden {
+  color: #505050;
+}
+
+.card li {
+  font-weight: 600;
+}
+
+.card li+li {
+  margin-top: 8px;
+}
+
+.card li svg {
+  font-size: 1.25rem;
+  margin-right: 4px;
+}
+
+.card .disabled {
+  color: #A3A3A3;
+}
+
+.cardLight .disabled {
+  color: #505050;
+}
+
+.card .light {
+  color: #87FAD1;
+}
+
+.cardLight .light {
+  color: #1C2331 !important;
+}

@@ -9,6 +9,8 @@ const ButtonCustom = ({
   loading = false,
   children,
   link,
+  style,
+  dark,
   ...props
 }) => {
   if (type === 'link')
@@ -29,10 +31,11 @@ const ButtonCustom = ({
     return (
       <button
         type={type}
-        className={`${styles.btn} ${
-          loading ? styles.loading : ''
-        } ${bsClass} btn`}
+        className={`${styles.btn} ${loading ? styles.loading : ''} ${bsClass} ${
+          dark ? styles.dark : ''
+        } btn`}
         onClick={onClick}
+        style={style}
         {...props}
       >
         {children}

@@ -21,7 +21,10 @@
 
 @media screen and (min-width: 992px) {
 
-  .showHome:nth-child(n+4),
+  .showHome:nth-child(n+5) {
+    margin-top: 12px;
+  }
+
   .showProfile:nth-child(n+4) {
     margin-top: 8px;
   }
@@ -53,7 +56,7 @@
   border-radius: 16px;
   width: 100%;
   min-height: 200px;
-  height: 325px;
+  height: 327px;
   transition: all .25s ease-out;
 }
 
@@ -105,7 +108,7 @@
 }
 
 .showProfile .divImg .divData h2 {
-  transform: translateY(1050%);
+  transform: translateY(450%);
 }
 
 @media screen and (max-width: 576px) {

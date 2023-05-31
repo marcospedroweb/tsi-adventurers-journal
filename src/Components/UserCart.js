@@ -5,11 +5,13 @@ import { Accordion, Button, Modal } from 'react-bootstrap';
 import { BsChevronDown, BsFillTrash3Fill } from 'react-icons/bs';
 import CartAdventure from './CartAdventure';
 import ButtonCustom from './ButtonCustom';
+import { useNavigate } from 'react-router-dom';
 
 const UserCart = () => {
   const [show, setShow] = React.useState(false);
   const [modalInfo, setModalInfo] = React.useState('');
   const [showMore, setShowMore] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleClose = () => {
     setModalInfo({});
@@ -222,7 +224,13 @@ const UserCart = () => {
               </div>
             </div>
             <div>
-              <ButtonCustom>Fechar pedido</ButtonCustom>
+              <ButtonCustom
+                onClick={() => {
+                  navigate('/processo-de-compra');
+                }}
+              >
+                Fechar pedido
+              </ButtonCustom>
             </div>
           </div>
           <div
@@ -271,7 +279,13 @@ const UserCart = () => {
                   </span>
                 </div>
               </div>
-              <ButtonCustom>Fechar pedido</ButtonCustom>
+              <ButtonCustom
+                onClick={() => {
+                  navigate('/processo-de-compra');
+                }}
+              >
+                Fechar pedido
+              </ButtonCustom>
             </div>
           </div>
         </div>

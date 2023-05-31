@@ -1,13 +1,15 @@
-#body{
+#body {
     background: linear-gradient(180deg, #1C2331 53.22%, #2C4D8E 100%);
-  }
-  #body h2{
+    padding-bottom: 64px;
+}
+
+#body h2 {
     color: #FFFFFF;
     margin-top: 64px;
     margin-bottom: 48px;
     font-weight: 600;
     font-size: 2.62rem;
-  }
+}
 
 .img1 {
     background-image: url("../../public/imgs/sejaguia1.png");
@@ -18,7 +20,8 @@
     background-position: center;
     border-radius: 10px;
 }
-.img1 div{
+
+.img1 div {
     width: 100%;
     right: -90%;
     padding: 20px;
@@ -34,7 +37,7 @@
     border-radius: 10px;
 }
 
-.img2 div{
+.img2 div {
     width: 100%;
     left: -90%;
     padding: 20px;

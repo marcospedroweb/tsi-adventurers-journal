@@ -32,6 +32,13 @@ a {
   cursor: wait !important;
 }
 
+/* TEXTS */
+.text-green {
+  background: linear-gradient(to right, #73E1BA, #2E8667);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 /* LINKS */
 .link-primary {
   color: #4E5E7C !important;

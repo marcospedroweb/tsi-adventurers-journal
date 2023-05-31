@@ -158,13 +158,13 @@ const AllModalitys = () => {
           <div className="row justify-content-between aling-items-center">
             {modalitys
               .slice(0, showNum)
-              .map(({ identify, Descrição, Foto, Nome }, index) => {
+              .map(({ identify, descricao, foto, nome }, index) => {
                 return (
                   <ModalityCard
                     key={identify}
-                    modalityName={Nome}
-                    img={Foto}
-                    desc={Descrição}
+                    modalityName={nome}
+                    img={foto}
+                    desc={descricao}
                     col="3"
                     showIn="home"
                   />
@@ -174,13 +174,13 @@ const AllModalitys = () => {
         )}
         {modalitys && modalitys.length === 16 && ![4, 8].includes(showNum) && (
           <div className="row justify-content-between aling-items-center">
-            {modalitys.map(({ identify, Descrição, Foto, Nome }, index) => {
+            {modalitys.map(({ identify, descricao, foto, nome }, index) => {
               return (
                 <ModalityCard
                   key={identify}
-                  modalityName={Nome}
-                  img={Foto}
-                  desc={Descrição}
+                  modalityName={nome}
+                  img={foto}
+                  desc={descricao}
                   col="3"
                   showIn="home"
                 />

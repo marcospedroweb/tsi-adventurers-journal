@@ -1,6 +1,6 @@
-import React from "react";
-import styles from "./SectionAbout.module.css";
-import ButtonCustom from "../Components/ButtonCustom";
+import React from 'react';
+import styles from './SectionAbout.module.css';
+import ButtonCustom from '../Components/ButtonCustom';
 
 const SectionAbout = () => {
   //Aqui você faz aquela seção se sobre nós
@@ -13,7 +13,10 @@ const SectionAbout = () => {
           <div className="col-12 col-lg-6">
             <div id={styles.logo}></div>
           </div>
-          <div id={styles.texto} className="col-12 col-lg-6 pt-4 pt-lg-0 pb-5 pb-lg-0 text-center text-lg-start">
+          <div
+            id={styles.texto}
+            className="col-12 col-lg-6 pt-4 pt-lg-0 pb-5 pb-lg-0 text-center text-lg-start"
+          >
             <div className="d-flex justify-content-center align-items-center">
               <img src="/imgs/infoIcon.png" />
               <p className="mb-0 ms-2"> Sobre</p>
@@ -35,7 +38,9 @@ const SectionAbout = () => {
               máximo a sua aventura.
             </p>
             <p>Conheça mais sobre a nossa plataforma, serviços e equipe</p>
-            <ButtonCustom bsClass={"mt-4"}>Conhecer Mais Sobre</ButtonCustom>
+            <div className="text-center">
+              <ButtonCustom bsClass={'mt-4'}>Conhecer Mais Sobre</ButtonCustom>
+            </div>
           </div>
         </div>
       </div>

@@ -7,9 +7,21 @@
   transition: all .25s ease-out !important;
 }
 
+.btn.dark {
+  background-color: #1C2331 !important;
+  border: 1px solid #1C2331 !important;
+  color: #87FAD1 !important;
+}
+
 .btn:hover {
   background-color: #63d4ac !important;
   border: 1px solid #63d4ac !important;
+}
+
+.btn.dark:hover {
+  background-color: #283040 !important;
+  border: 1px solid #283040 !important;
+
 }
 
 .loading {

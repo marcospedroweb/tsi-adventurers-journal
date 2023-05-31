@@ -9,19 +9,13 @@ import SectionAbout from '../Components/SectionAbout';
 
 const Home = () => {
   return (
-
-    <>
-      <div id='body'>
-        <main>
-          <BannerHome />
-          <SectionModalityPlan />
-          <SectionTouristGuide />
-          <SectionReviews />
-          <SectionAbout />
-
-        </main>
-      </div>
-    </>
+    <main>
+      <BannerHome />
+      <SectionModalityPlan />
+      <SectionTouristGuide />
+      {/* <SectionReviews /> */}
+      <SectionAbout />
+    </main>
   );
 };
 

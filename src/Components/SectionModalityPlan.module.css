@@ -1,8 +1,35 @@
-#body{
-    background: linear-gradient(180deg, #1C2331 53.22%, #2C4D8E 100%);
+#body {
+  background: linear-gradient(180deg, #1C2331 53.22%, #2C4D8E 100%);
+  padding-bottom: 235px;
+  margin-bottom: 513px;
+}
+
+@media screen and (max-width: 992px) {
+  #body {
+    padding-bottom: 64px;
+    margin-bottom: 92px;
   }
-#body h2{
+}
+
+.divText h2 {
   color: #FFFFFF;
   margin-bottom: 32px;
   margin-top: 64px;
+  font-weight: 700;
+}
+
+.divTextPlans {
+  color: #fff;
+  text-align: center;
+}
+
+.divTextPlans h2 {
+  margin-top: 92px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  font-size: 2.625rem;
+}
+
+.divTextPlans p {
+  font-size: 1.5rem;
 }

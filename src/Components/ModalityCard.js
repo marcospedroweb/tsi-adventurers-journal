@@ -72,7 +72,7 @@ const ModalityCard = ({
         className={`${
           showData
             ? 'col-12 col-sm-8 col-lg-6 mt-3'
-            : 'col-12 col-sm-6 col-lg-4 mt-3'
+            : 'col-12 col-sm-6 col-lg-6 mt-3'
         } ${styles.showProfile}`}
         onClick={handleShowData}
       >
@@ -94,9 +94,9 @@ const ModalityCard = ({
                   Itacoatiara - Rio de Janeiro, Brasil
                 </span>
               </p>
-              <p>
+              {/* <p>
                 Pratiquei com <span className="fw-bold">2 Amigos</span>
-              </p>
+              </p> */}
             </div>
             <p style={{ fontSize: '.9rem' }}>
               {/* Maximo: 250 caracteres */}
