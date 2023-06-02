@@ -5,9 +5,12 @@ import ButtonCustom from '../Components/ButtonCustom';
 import CardsPlans from './CardsPlans';
 import { apiRoute, getModalitysRoute, optionsFetch } from '../DB/data';
 import useFetch from '../Hooks/useFetch';
+import { Link } from 'react-scroll';
+import { useNavigate } from 'react-router-dom';
 
 const SectionModalityPlan = () => {
   const [modalitys, setModalitys] = React.useState([{ loading: true }]);
+  const navigate = useNavigate();
   const { request } = useFetch();
 
   const [windowSize, setWindowSize] = React.useState({
@@ -194,7 +197,14 @@ const SectionModalityPlan = () => {
               </div>
             )}
           <div className="text-center">
-            <ButtonCustom bsClass="m-3">VER MAIS MODALIDADES</ButtonCustom>
+            <ButtonCustom
+              bsClass="m-3 text-uppercase fw-bold"
+              onClick={() => {
+                navigate('/aventurar-se?scrollTo=modalitys');
+              }}
+            >
+              Ver mais modalidades
+            </ButtonCustom>
           </div>
         </div>
         <div>

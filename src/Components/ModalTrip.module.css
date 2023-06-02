@@ -5,7 +5,7 @@
 }
 
 .divImg {
-  background: #ccc url('') center/cover no-repeat;
+  background: #ccc url(../../public/imgs/paraquedas.jpeg) center/cover no-repeat;
   width: 100%;
   height: 200px;
   border-radius: 16px;

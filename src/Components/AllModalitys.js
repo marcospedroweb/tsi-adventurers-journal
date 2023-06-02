@@ -4,8 +4,12 @@ import useFetch from '../Hooks/useFetch';
 import ModalityCard from './ModalityCard';
 import { apiRoute, getModalitysRoute, optionsFetch } from '../DB/data';
 import ButtonCustom from './ButtonCustom';
+import { useLocation, useParams } from 'react-router-dom';
+import { Link, scroller } from 'react-scroll';
 
 const AllModalitys = () => {
+  const params = useLocation();
+  const modalitysRef = React.useRef();
   const [modalitys, setModalitys] = React.useState([{ loading: true }]);
   const { request } = useFetch();
 
@@ -15,6 +19,14 @@ const AllModalitys = () => {
   });
 
   React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const scrollToValue = params.get('scrollTo'); // "modalitys"
+    if (scrollToValue)
+      scroller.scrollTo(scrollToValue, {
+        smooth: true,
+        duration: 500,
+      });
+
     async function getModalitys() {
       const { json } = await request(
         `${apiRoute}${getModalitysRoute}`,
@@ -42,7 +54,7 @@ const AllModalitys = () => {
   const [showNum, setShowNum] = React.useState(windowSize.width < 768 ? 4 : 8);
 
   return (
-    <section className={styles.section} id="modalitys">
+    <section className={styles.section} id="modalitys" ref={modalitysRef}>
       <div className="container-xl">
         <h2 className="text-center fw-bold mb-4">
           Conheça todas as modalidades

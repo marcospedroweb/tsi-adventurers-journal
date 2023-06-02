@@ -1,0 +1,59 @@
+.divMain {
+  background-color: #1C2331;
+  padding: 16px;
+  border-radius: 16px;
+  height: 100%;
+}
+
+.divMain img:not(.divText img) {
+  border-radius: 50%;
+  overflow: hidden;
+  max-width: 150px;
+}
+
+.divBorder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 134px;
+  height: 134px;
+
+  border-radius: 50%;
+}
+
+.divMain .divBorder.plus {
+  background-image: linear-gradient(to right, #73E0B9, #00A3FF);
+}
+
+.divMain .divBorder.adventurer {
+  background-image: linear-gradient(to right, #73E1BA, #2E8667);
+}
+
+.divMain .divBorder.free {
+  background-image: linear-gradient(to right, #73E1BA, #a3a3a3);
+}
+
+.divMain div+span {
+  font-size: .9rem;
+  margin-bottom: 32px;
+  margin-top: 8px;
+  font-weight: 700;
+}
+
+.divText p {
+  color: #fff;
+  font-weight: 400;
+}
+
+.divName div {
+  width: 16px;
+  height: 1px;
+  background-color: #5DC49F;
+}
+
+.divName h3 {
+  font-size: 1rem;
+  color: #5DC49F;
+  font-weight: 400;
+  margin-bottom: 0;
+}

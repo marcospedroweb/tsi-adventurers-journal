@@ -1,17 +1,33 @@
-#aboutimg{
-    background-image: url('../../public/imgs/3img.png');
-    height: 650px;
-    width: 668px;
-}
-#body{
+#body {
     background: linear-gradient(180deg, #1C2331 53.22%, #2C4D8E 100%);
+    padding: 48px 0;
 }
 
-#body h2{
-    color: #FFFFFF;
-    font-size: 3.5rem;
+@media screen and (max-width: 992px) {
+    #body {
+        background: linear-gradient(180deg, #1C2331 90%, #2C4D8E 100%);
+    }
 }
-#body p{
-    color: #FFFFFF;
+
+.divText img {
+    width: 32px;
+}
+
+.divText img+h2 {
     font-size: 1.5rem;
+    font-weight: 400;
+    color: #fff;
+}
+
+.divText h3 {
+    color: #FFFFFF;
+    font-size: 3rem;
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
+.divText p {
+    text-indent: 32px;
+    color: #FFFFFF;
+    font-size: 1.25rem;
 }

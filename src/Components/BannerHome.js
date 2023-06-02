@@ -23,7 +23,7 @@ const BannerHome = () => {
                 bsClass={'fw-bold'}
                 style={{ fontSize: '1.25rem', padding: '12px 16px' }}
                 onClick={() => {
-                  navigate('/procurar-aventuras');
+                  navigate('/aventurar-se');
                 }}
               >
                 ME AVENTURAR

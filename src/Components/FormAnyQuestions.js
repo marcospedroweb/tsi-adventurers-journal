@@ -25,7 +25,7 @@ const FormAnyQuestions = () => {
             garantir que sua aventura seja inesquecível.
           </p>
         </div>
-        <div className="row flex-column flex-lg-row justify-content-between align-items-center">
+        <div className="row flex-column flex-lg-row justify-content-between align-items-start">
           <div className="col-12 col-lg-6 align-self-stretch mb-4 mb-lg-0">
             <form
               action="#"
@@ -83,6 +83,7 @@ const FormAnyQuestions = () => {
                   value={bio.validation.value}
                   onChange={bio.validation.onChange}
                   onBlur={bio.validation.onBlur}
+                  style={{ height: '150px' }}
                 />
               </FloatingLabel>
               {bio.validation.error && (

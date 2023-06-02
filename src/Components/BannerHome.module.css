@@ -1,18 +1,31 @@
 #banner {
-    background-image: url("../../public/imgs/HeroSectionSmall.png");
-    width: calc(100vw - 17px);
+    background: #ccc url("../../public/imgs/banner_xl.png") center / cover no-repeat;
+    width: calc(100vw - 16.6px);
     height: 559px;
-    background-position: center;
-    background-attachment: cover;
-    background-repeat: no-repeat;
+    margin: 0 auto 0 0;
 }
 
-@media screen and (min-width:1600px) {
+@media screen and (max-width:576px) {
     #banner {
-        background-image: url("../../public/imgs/HeroSection.png");
-
+        background-image: url("../../public/imgs/banner_mobile.png");
+        margin: 0 auto;
+        width: 100vw;
     }
+}
 
+@media screen and (max-width:922px) {
+    #banner {
+        background-image: url("../../public/imgs/banner_lg.png");
+        margin: 0 auto;
+        width: 100vw !important;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    #banner {
+        background-image: url("../../public/imgs/banner_lg.png");
+        margin: 0 auto !important;
+    }
 }
 
 #banner h2 {

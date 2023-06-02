@@ -1,8 +1,5 @@
 import React from 'react';
 import styles from './ModalityUser.module.css';
-import ButtonCustom from './ButtonCustom';
-import { FloatingLabel, Form } from 'react-bootstrap';
-import GetSimpleInputObj from '../Helpers/GetSimpleInputObj';
 import ModalTrip from './ModalTrip';
 
 const ModalityUser = ({ data, change }) => {

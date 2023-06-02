@@ -11,8 +11,8 @@
 }
 
 #logo {
-    border-radius: 10px !important;
-    background: #ccc url("../../public/imgs/logo.png") center/cover no-repeat;
+    border-radius: 16px;
+    background: #ccc url("../../public/imgs/logo_about.png") center/cover no-repeat;
     width: 100%;
     height: 750px;
 }

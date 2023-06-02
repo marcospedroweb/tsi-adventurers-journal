@@ -6,6 +6,10 @@ import FormAnyQuestions from '../Components/FormAnyQuestions';
 import Footer from '../Components/Footer';
 
 const AventurarSe = () => {
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <main>

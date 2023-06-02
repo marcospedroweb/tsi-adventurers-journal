@@ -1,0 +1,11 @@
+.section {
+  margin: 92px auto;
+  text-align: center;
+
+}
+
+.section h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 42px;
+}

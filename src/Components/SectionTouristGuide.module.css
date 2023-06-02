@@ -1,13 +1,12 @@
 #body {
-    background: linear-gradient(180deg, #1C2331 53.22%, #2C4D8E 100%);
     padding-bottom: 64px;
 }
 
 #body h2 {
-    color: #FFFFFF;
+    color: #1C2331;
     margin-top: 64px;
     margin-bottom: 48px;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 2.62rem;
 }
 
@@ -41,4 +40,13 @@
     width: 100%;
     left: -90%;
     padding: 20px;
+}
+
+.divText {
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.divText h3 {
+    font-weight: 600;
 }

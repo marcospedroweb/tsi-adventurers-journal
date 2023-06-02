@@ -1,6 +1,4 @@
 import React from 'react';
-import ModalityCard from '../Components/ModalityCard';
-import ButtonCustom from '../Components/ButtonCustom';
 import BannerHome from '../Components/BannerHome';
 import SectionModalityPlan from '../Components/SectionModalityPlan';
 import SectionTouristGuide from '../Components/SectionTouristGuide';

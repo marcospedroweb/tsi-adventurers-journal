@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './ProfileUserSide.module.css';
 import SealPlanCard from './SealPlanCard';
-import ModalEditUser from './ModalEditUser';
 import { noUserImageBase64 } from '../Helpers/NoUserBase64';
 
 const ProfileUserSide = ({ user }) => {

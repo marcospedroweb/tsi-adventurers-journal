@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './SectionAbout.module.css';
 import ButtonCustom from '../Components/ButtonCustom';
+import { useNavigate } from 'react-router-dom';
 
 const SectionAbout = () => {
-  //Aqui você faz aquela seção se sobre nós
-  //Ai o botão leva para o about
+  const navigate = useNavigate();
+
   return (
     <section id={styles.body} className="pb-5">
       <div className="container-xl">
@@ -39,7 +40,14 @@ const SectionAbout = () => {
             </p>
             <p>Conheça mais sobre a nossa plataforma, serviços e equipe</p>
             <div className="text-center">
-              <ButtonCustom bsClass={'mt-4'}>Conhecer Mais Sobre</ButtonCustom>
+              <ButtonCustom
+                bsClass={'mt-4'}
+                onClick={() => {
+                  navigate('/sobre-nos');
+                }}
+              >
+                Conhecer Mais Sobre
+              </ButtonCustom>
             </div>
           </div>
         </div>

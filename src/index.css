@@ -33,8 +33,18 @@ a {
 }
 
 /* TEXTS */
+.text-gray {
+  color: #A3A3A3;
+}
+
 .text-green {
   background: linear-gradient(to right, #73E1BA, #2E8667);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-green-blue {
+  background: linear-gradient(to right, #73E0BA, #00A3FF);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
