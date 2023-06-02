@@ -18,13 +18,13 @@ const Footer = () => {
                   <Link to="/aventurar-se">Aventurar-se</Link>
                 </li>
                 <li>
-                  <Link to="/aventurar-se#modalitys">Modalidades</Link>
-                </li>
-                <li>
                   <Link to="/planos">Planos</Link>
                 </li>
                 <li>
                   <Link to="/sobre-nos">Sobre nós</Link>
+                </li>
+                <li>
+                  <Link to="/contato">Contato</Link>
                 </li>
               </ul>
             </div>
@@ -32,16 +32,7 @@ const Footer = () => {
               <h2>Sobre nós</h2>
               <ul className="list-unstyled">
                 <li>
-                  <Link to="/sobre-nos#">Nossa história</Link>
-                </li>
-                <li>
-                  <Link to="/sobre-nos#">Nossa serviços</Link>
-                </li>
-                <li>
-                  <Link to="/sobre-nos#">Nossa equipe</Link>
-                </li>
-                <li>
-                  <Link to="/sobre-nos#">Nossos objetivos</Link>
+                  <Link to="/sobre-nos">Nossa história</Link>
                 </li>
               </ul>
             </div>
