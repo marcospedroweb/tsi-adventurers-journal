@@ -9,7 +9,6 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import './index.css';
 import { GlobalStorage } from './Context/GlobalStorage';
 import Profile from './Pages/Profile';
-import Loading from './Components/Loading';
 import Config from './Pages/Config';
 import About from './Pages/About';
 import AventurarSe from './Pages/Aventurar-se';
@@ -20,6 +19,7 @@ import AddedToCart from './Pages/AddedToCart';
 import Cart from './Pages/Cart';
 import Purchase from './Pages/Purchase';
 import OrderCompleted from './Pages/OrderCompleted';
+import Plans from './Pages/Plans';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -37,6 +37,7 @@ root.render(
           <Route path="/processo-de-compra" element={<Purchase />} />
           <Route path="/pedido-finalizado" element={<OrderCompleted />} />
           <Route path="/configurações" element={<Config />} />
+          <Route path="/planos" element={<Plans />} />
           <Route path="/sobre-nos" element={<About />} />
           <Route path="/contato" element={<Contact />} />
           <Route path="*" element={<PageNotFound />} />

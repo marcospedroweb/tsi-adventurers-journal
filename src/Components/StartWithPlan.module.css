@@ -1,0 +1,17 @@
+.section {
+  padding: 64px 0;
+  background: linear-gradient(160deg, #1C2331 66.88%, #00A3FF 125.27%);
+}
+
+.section>div {}
+
+.section h2 {
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.section h2+p,
+.section p+p {
+  color: #fff;
+}

@@ -46,7 +46,7 @@ const UserRatingCard = ({ plan, text }) => {
             {plan}
           </span>
         </div>
-        <div className={`${styles.divText} position-relative px-4 px-lg-3`}>
+        <div className={`${styles.divText} position-relative px-4`}>
           <img
             src="/imgs/mark_left_green.svg"
             className="position-absolute top-0 start-0"
@@ -63,7 +63,7 @@ const UserRatingCard = ({ plan, text }) => {
           className={`${styles.divName} d-flex justify-content-end align-items-center gap-2`}
         >
           <div></div>
-          <h3>{`${user.name.first} ${user.name.last}`}</h3>
+          <h3>{user ? `${user.name.first} ${user.name.last}` : 'Usuario'}</h3>
         </div>
       </div>
     </div>
