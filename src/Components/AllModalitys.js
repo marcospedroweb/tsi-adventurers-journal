@@ -8,7 +8,6 @@ import { useLocation, useParams } from 'react-router-dom';
 import { Link, scroller } from 'react-scroll';
 
 const AllModalitys = () => {
-  const params = useLocation();
   const modalitysRef = React.useRef();
   const [modalitys, setModalitys] = React.useState([{ loading: true }]);
   const { request } = useFetch();
@@ -20,7 +19,7 @@ const AllModalitys = () => {
 
   React.useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const scrollToValue = params.get('scrollTo'); // "modalitys"
+    const scrollToValue = params.get('scrollTo');
     if (scrollToValue)
       scroller.scrollTo(scrollToValue, {
         smooth: true,

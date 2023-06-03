@@ -15,12 +15,14 @@ import {
   registerRoute,
   showUserRoute,
 } from '../DB/data';
+import { useNavigate } from 'react-router-dom';
 
 const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
   const [show, setShow] = React.useState(false);
   const [showCadastro, setShowCadastro] = React.useState(false);
   const { setSession } = React.useContext(GlobalContext);
   const [backError, setBackError] = React.useState(false);
+  const navigate = useNavigate();
 
   // Variavel com informações de Ref,Validadtion de dados e erros
   const name = GetInputObj('name');
@@ -286,7 +288,7 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
           </form>
         </Modal.Body>
         <Modal.Footer className="text-center d-flex flex-column">
-          <span>
+          <span className="">
             Já tem uma conta?{' '}
             <span
               className="link-primary fw-bold"
@@ -297,6 +299,20 @@ const ModalLogin = ({ typeBtn = 'btn', textBtn, children = '' }) => {
               }}
             >
               Entrar na conta
+            </span>
+          </span>
+          <span className="fw-bold">ou</span>
+          <span>
+            Você é guia turistico?{' '}
+            <span
+              className="link-primary fw-bold"
+              onClick={() => {
+                setBackError(false);
+                handleCloseCadastro();
+                navigate('/criar-conta?guia=true');
+              }}
+            >
+              Criar conta de guia turistico
             </span>
           </span>
         </Modal.Footer>

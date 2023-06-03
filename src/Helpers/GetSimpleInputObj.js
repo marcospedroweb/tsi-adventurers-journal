@@ -5,6 +5,7 @@ const GetSimpleInputObj = (type) => {
   return {
     validation: useForm(type),
     error: React.useState(''),
+    errorBack: React.useState(''),
     ref: React.useRef(),
   };
 };

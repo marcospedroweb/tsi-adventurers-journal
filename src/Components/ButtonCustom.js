@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './ButtonCustom.module.css';
+import { Spinner } from 'react-bootstrap';
 
 const ButtonCustom = ({
   type = 'button',
@@ -38,6 +39,16 @@ const ButtonCustom = ({
         style={style}
         {...props}
       >
+        {loading ? (
+          <Spinner
+            animation="border"
+            className="me-3"
+            style={{ width: '24px', height: '24px' }}
+          />
+        ) : (
+          ''
+        )}
+
         {children}
       </button>
     );

@@ -20,6 +20,8 @@ import Cart from './Pages/Cart';
 import Purchase from './Pages/Purchase';
 import OrderCompleted from './Pages/OrderCompleted';
 import Plans from './Pages/Plans';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -29,6 +31,8 @@ root.render(
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/criar-conta" element={<Register />} />
           <Route path="/aventurar-se" element={<AventurarSe />} />
           <Route path="/perfil" element={<Profile />} />
           <Route path="/procurar-aventuras" element={<SearchAdventure />} />

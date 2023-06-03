@@ -13,7 +13,7 @@
   color: #87FAD1 !important;
 }
 
-.btn:hover {
+.btn:hover:not(.btn.loading) {
   background-color: #63d4ac !important;
   border: 1px solid #63d4ac !important;
 }

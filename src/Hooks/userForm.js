@@ -16,7 +16,7 @@ const types = {
   },
   password: {
     regex: /.{6,}/,
-    message: 'Senha inválido. Deve ter pelo menos 6 caracteres.',
+    message: 'Senha inválida. Deve ter pelo menos 6 caracteres.',
   },
   tel: {
     regex: /^\([1-9]{2}\) 9?[6-9]{1}[0-9]{3}-[0-9]{4}$/,
