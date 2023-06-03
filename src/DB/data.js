@@ -5,6 +5,7 @@ export const registerRoute = '/users';
 export const loginRoute = '/login';
 export const updateUserRoute = '/user/';
 export const showUserRoute = '/user';
+export const showOtherUserRoute = '/users/';
 export const logoutRoute = '/logout';
 
 //CITY

@@ -6,7 +6,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { GlobalContext } from '../Context/GlobalStorage';
 import useFetch from '../Hooks/useFetch';
 import Loading from '../Components/Loading';
-import { apiRoute, optionsFetch, showUserRoute } from '../DB/data';
+import {
+  apiRoute,
+  optionsFetch,
+  showOtherUserRoute,
+  showUserRoute,
+} from '../DB/data';
 import { noUserBannerBase64 } from '../Helpers/NoUserBanner64';
 
 const Profile = () => {
@@ -27,11 +32,27 @@ const Profile = () => {
       navigate('/');
     }
     async function getUserData() {
-      const { json } = await request(
-        `${apiRoute}${showUserRoute}`,
-        optionsFetch({ method: 'GET', token: session.user.token }),
-      );
-      setUser(json.data);
+      if (id) {
+        const { json } = await request(
+          `${apiRoute}${showOtherUserRoute}${id}`,
+          optionsFetch({ method: 'GET' }),
+        );
+        if (json.error) {
+          navigate('/');
+        }
+
+        setUser(json.data);
+      } else {
+        const { json } = await request(
+          `${apiRoute}${showUserRoute}`,
+          optionsFetch({ method: 'GET', token: session.user.token }),
+        );
+        if (!json || json.api_status) {
+          navigate('/');
+        }
+
+        setUser(json.data);
+      }
     }
 
     getUserData();
@@ -41,7 +62,6 @@ const Profile = () => {
   else if (user)
     return (
       <main>
-        {/* {console.log(user)} */}
         {user.banner_URL && <BannerProfile img={user.banner_URL} />}
         {!user.banner_URL && <BannerProfile img={noUserBannerBase64} />}
 
