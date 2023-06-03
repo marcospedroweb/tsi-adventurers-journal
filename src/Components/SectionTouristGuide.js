@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './SectionTouristGuide.module.css';
 import ButtonCustom from '../Components/ButtonCustom';
+import { useNavigate } from 'react-router-dom';
 
 const SectionTouristGuide = () => {
-  //Aqui você faz aquela seção para os guias turisticos, usando position
+  const navigate = useNavigate();
   return (
     <section id={styles.body}>
       <div className="container-xl">
@@ -23,7 +24,12 @@ const SectionTouristGuide = () => {
                   Estamos em busca de profissionais que possam liderar nossos
                   clientes em aventuras emocionantes ao redor do mundo.
                 </p>
-                <ButtonCustom bsClass="text-uppercase">
+                <ButtonCustom
+                  bsClass="text-uppercase"
+                  onClick={() => {
+                    navigate('/criar-conta?guia=true');
+                  }}
+                >
                   Me inscrever
                 </ButtonCustom>
               </div>
@@ -44,7 +50,12 @@ const SectionTouristGuide = () => {
                   possam nos ajudar a oferecer pacotes personalizados de viagem
                   com atividades emocionantes para nossos clientes.
                 </p>
-                <ButtonCustom bsClass="text-uppercase">
+                <ButtonCustom
+                  bsClass="text-uppercase"
+                  onClick={() => {
+                    navigate('/criar-conta?guia=true');
+                  }}
+                >
                   Me inscrever
                 </ButtonCustom>
               </div>
@@ -64,7 +75,12 @@ const SectionTouristGuide = () => {
                   possam nos ajudar a oferecer pacotes personalizados de viagem
                   com atividades emocionantes para nossos clientes.
                 </p>
-                <ButtonCustom bsClass="text-uppercase">
+                <ButtonCustom
+                  bsClass="text-uppercase"
+                  onClick={() => {
+                    navigate('/criar-conta?guia=true');
+                  }}
+                >
                   Me inscrever
                 </ButtonCustom>
               </div>
@@ -85,7 +101,12 @@ const SectionTouristGuide = () => {
                   possam nos ajudar a oferecer pacotes personalizados de viagem
                   com atividades emocionantes para nossos clientes.
                 </p>
-                <ButtonCustom bsClass="text-uppercase">
+                <ButtonCustom
+                  bsClass="text-uppercase"
+                  onClick={() => {
+                    navigate('/criar-conta?guia=true');
+                  }}
+                >
                   Me inscrever
                 </ButtonCustom>
               </div>

@@ -53,6 +53,10 @@
 
 .divImg .filter {
   background: linear-gradient(0deg, #000000 5%, rgba(0, 0, 0, 0) 100%);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
   border-radius: 16px;
   width: 100%;
   min-height: 200px;
@@ -111,22 +115,9 @@
   transform: translateY(450%);
 }
 
-@media screen and (max-width: 576px) {
-  .showProfile .divImg .divData h2 {
-    transform: translateY(850%);
-    font-size: 1.40rem;
-  }
-}
-
-@media screen and (min-width: 576px) and (max-width:992px) {
-  .showProfile .divImg .divData h2 {
-    transform: translateY(900%);
-  }
-}
-
 @media screen and (min-width: 992px) and (max-width:1200px) {
   .showProfile .divImg .divData h2 {
-    transform: translateY(1150%);
+    transform: translateY(450%);
   }
 }
 

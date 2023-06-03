@@ -4,14 +4,9 @@ import { FloatingLabel, Form } from 'react-bootstrap';
 import GetSimpleInputObj from '../Helpers/GetSimpleInputObj';
 import ButtonCustom from './ButtonCustom';
 import useFetch from '../Hooks/useFetch';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../Context/GlobalStorage';
-import {
-  apiRoute,
-  optionsFetch,
-  registerRoute,
-  showUserRoute,
-} from '../DB/data';
+import { apiRoute, optionsFetch, registerRoute } from '../DB/data';
 
 const RegisterSection = () => {
   const { session, setSession } = React.useContext(GlobalContext);
@@ -213,7 +208,7 @@ const RegisterSection = () => {
             </div>
             <div className={styles.divRegister}>
               <p>
-                Ainda não tem uma conta?{' '}
+                Já tem uma conta?{' '}
                 <span
                   onClick={() => {
                     navigate('/login');

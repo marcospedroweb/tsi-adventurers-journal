@@ -37,7 +37,7 @@ const ModalityCard = ({
   else if (showIn === 'home')
     return (
       <div
-        className={`col-12 col-sm-6 col-lg-${col} ${styles.showHome} `}
+        className={`col-12 col-sm-6 col-lg-${col} ${styles.showHome} mt-3`}
         onClick={windowMobile ? handleShowData : () => {}}
         onMouseEnter={handleShowData}
         onMouseLeave={handleShowData}
@@ -46,9 +46,7 @@ const ModalityCard = ({
           className={`${styles.divImg} ${showData ? styles.show : ''}`}
           style={{ backgroundImage: `url(${img})` }}
         >
-          <div
-            className={`${styles.filter} position-absolute top-50 start-50 translate-middle`}
-          ></div>
+          <div className={`${styles.filter} position-absolute`}></div>
           <div
             className={`${styles.divData} position-absolute d-flex flex-column justify-content-center align-items-center`}
           >
@@ -69,11 +67,7 @@ const ModalityCard = ({
   else
     return (
       <div
-        className={`${
-          showData
-            ? 'col-12 col-sm-8 col-lg-6 mt-3'
-            : 'col-12 col-sm-6 col-lg-6 mt-3'
-        } ${styles.showProfile}`}
+        className={`col-12 col-md-6 mt-3 ${styles.showProfile}`}
         onClick={handleShowData}
       >
         <div

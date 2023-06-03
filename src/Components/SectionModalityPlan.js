@@ -54,7 +54,7 @@ const SectionModalityPlan = () => {
           </div>
 
           {modalitys && modalitys[0].loading && (
-            <div className="row justify-content-between aling-items-center">
+            <div className="row justify-content-between aling-items-center mx-auto mx-lg-0">
               {windowSize.width > 768 ? (
                 <>
                   <ModalityCard
@@ -161,7 +161,7 @@ const SectionModalityPlan = () => {
             </div>
           )}
           {modalitys && modalitys.length === 16 && [4, 8].includes(showNum) && (
-            <div className="row justify-content-between aling-items-center">
+            <div className="row justify-content-between aling-items-center mx-auto mx-lg-0">
               {modalitys
                 .slice(0, showNum)
                 .map(({ identify, descricao, foto, nome }, index) => {
@@ -181,7 +181,7 @@ const SectionModalityPlan = () => {
           {modalitys &&
             modalitys.length === 16 &&
             ![4, 8].includes(showNum) && (
-              <div className="row justify-content-between aling-items-center">
+              <div className="row justify-content-between aling-items-center mx-auto mx-lg-0">
                 {modalitys.map(({ identify, descricao, foto, nome }, index) => {
                   return (
                     <ModalityCard

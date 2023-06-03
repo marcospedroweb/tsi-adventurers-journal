@@ -35,6 +35,7 @@ root.render(
           <Route path="/criar-conta" element={<Register />} />
           <Route path="/aventurar-se" element={<AventurarSe />} />
           <Route path="/perfil" element={<Profile />} />
+          <Route path="/perfil/:id" element={<Profile />} />
           <Route path="/procurar-aventuras" element={<SearchAdventure />} />
           <Route path="/produto-adicionado" element={<AddedToCart />} />
           <Route path="/carrinho" element={<Cart />} />
