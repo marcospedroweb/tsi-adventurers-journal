@@ -34,12 +34,25 @@ export const optionsFetch = ({ method, body = '', token = '', file }) => {
         : { 'Content-Type': 'application/json' },
       body: file ? body : JSON.stringify(body),
     };
-  else if (method === 'GET')
+  else if (method === 'GET' && body)
     return {
       method: method,
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
+      headers: token
+        ? {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          }
+        : { 'Content-Type': 'application/json' },
+      body: body,
+    };
+  else
+    return {
+      method: method,
+      headers: token
+        ? {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          }
+        : { 'Content-Type': 'application/json' },
     };
 };

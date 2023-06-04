@@ -6,10 +6,17 @@ import ButtonCustom from './ButtonCustom';
 import useFetch from '../Hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../Context/GlobalStorage';
-import { apiRoute, loginRoute, optionsFetch, showUserRoute } from '../DB/data';
+import {
+  addInCartRoute,
+  apiRoute,
+  loginRoute,
+  optionsFetch,
+  showUserRoute,
+} from '../DB/data';
 
 const LoginSection = () => {
-  const { session, setSession } = React.useContext(GlobalContext);
+  const { session, setSession, searchAdventure } =
+    React.useContext(GlobalContext);
   const navigate = useNavigate();
   const email = GetSimpleInputObj('email');
   const password = GetSimpleInputObj('password');
@@ -63,10 +70,22 @@ const LoginSection = () => {
     });
 
     if (session.cartId) {
-      navigate('/carrinho');
+      console.log(session.cartId);
+      const { json } = await request(
+        `${apiRoute}${addInCartRoute}`,
+        optionsFetch({
+          method: 'POST',
+          token: loginResult.json.token,
+          body: {
+            idAtividade: session.cartId,
+            qtdPessoa: searchAdventure.passengers,
+          },
+        }),
+      );
+      if (json.carrinho) navigate('/carrinho');
+      else navigate('/aventurar-se');
+      return;
     }
-
-    navigate('/');
   }
 
   React.useEffect(() => {

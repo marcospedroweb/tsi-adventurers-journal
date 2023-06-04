@@ -6,8 +6,11 @@ import { BsChevronDown, BsFillTrash3Fill } from 'react-icons/bs';
 import CartAdventure from './CartAdventure';
 import ButtonCustom from './ButtonCustom';
 import { useNavigate } from 'react-router-dom';
+import useFetch from '../Hooks/useFetch';
 
 const UserCart = () => {
+  const { request, loading } = useFetch();
+  const [user, setUser] = React.useState();
   const [show, setShow] = React.useState(false);
   const [modalInfo, setModalInfo] = React.useState('');
   const [showMore, setShowMore] = React.useState(false);

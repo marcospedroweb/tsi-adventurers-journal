@@ -14,11 +14,7 @@ const AdventureCard = ({ data, best, hotel }) => {
   const { searchAdventure } = React.useContext(GlobalContext);
   const [showMore, setShowMore] = React.useState(false);
   const [section, setSection] = React.useState('informações');
-  const date = new Date(data.DataTime);
-
-  React.useEffect(() => {
-    console.log(data);
-  }, []);
+  const date = new Date(data.Data_e_Hora);
 
   if (hotel)
     return (
@@ -218,8 +214,7 @@ const AdventureCard = ({ data, best, hotel }) => {
             <div className="d-flex flex-column justify-content-center justify-content-lg-start align-items-center align-items-lg-start pt-3 px-3 w-100">
               <h3>{data.Titulo}</h3>
               <p>
-                {data.cidade.nome}, {data.cidade.estado.uf} -{' '}
-                {data.cidade.estado.pais.nome}
+                {data.cidade.nome}, {data.cidade.uf} - {data.cidade.pais}
               </p>
               <LabelCard
                 text={`Idade minima: ${data.IdadeMinima} anos`}
@@ -240,7 +235,7 @@ const AdventureCard = ({ data, best, hotel }) => {
                 />
               </div>
               <div className="d-none d-lg-flex justify-content-between align-items-center flex-wrap mt-3 mt-lg-2">
-                {data.modalidades.slice(0, 3).map(({ id, nome, descricao }) => {
+                {data.modalidade.slice(0, 3).map(({ id, nome, descricao }) => {
                   return (
                     <LabelCard
                       key={id}
@@ -250,9 +245,9 @@ const AdventureCard = ({ data, best, hotel }) => {
                     />
                   );
                 })}
-                {data.modalidades.length > 3 ? (
+                {data.modalidade.length > 3 ? (
                   <LabelCard
-                    text={`+${data.modalidades.length - 3}`}
+                    text={`+${data.modalidade.length - 3}`}
                     bsClass={'ms-1'}
                   />
                 ) : (
@@ -260,7 +255,7 @@ const AdventureCard = ({ data, best, hotel }) => {
                 )}
               </div>
               <div className="d-flex d-lg-none justify-content-between align-items-center flex-wrap mt-3 mt-lg-2">
-                {data.modalidades.slice(0, 2).map(({ id, nome, descricao }) => {
+                {data.modalidade.slice(0, 2).map(({ id, nome, descricao }) => {
                   return (
                     <LabelCard
                       key={id}
@@ -270,9 +265,9 @@ const AdventureCard = ({ data, best, hotel }) => {
                     />
                   );
                 })}
-                {data.modalidades.length > 3 ? (
+                {data.modalidade.length > 3 ? (
                   <LabelCard
-                    text={`+${data.modalidades.length - 3}`}
+                    text={`+${data.modalidade.length - 3}`}
                     bsClass={'ms-1'}
                   />
                 ) : (
@@ -363,7 +358,7 @@ const AdventureCard = ({ data, best, hotel }) => {
                 <div className="mb-4">
                   <h4>Modalidades da aventura</h4>
                   <div className="d-flex justify-content-center justify-content-sm-start align-items-center flex-wrap">
-                    {data.modalidades.map(({ id, nome, descricao }) => {
+                    {data.modalidade.map(({ id, nome, descricao }) => {
                       return (
                         <LabelCard
                           key={id}
@@ -524,15 +519,15 @@ const AdventureCard = ({ data, best, hotel }) => {
                     <div className="mb-3">
                       <h4>Localização</h4>
                       <p>
-                        {data.cidade.nome}, {data.cidade.estado.uf} -{' '}
-                        {data.cidade.estado.pais.nome}
+                        {data.cidade.nome}, {data.cidade.uf} -{' '}
+                        {data.cidade.pais}
                       </p>
                     </div>
                     <div className="mb-3">
                       <h4>Mapa</h4>
                       <p>
                         <a
-                          href={`https://www.google.com/maps/place/${`${data.cidade.nome}, ${data.cidade.estado.uf} - ${data.cidade.estado.pais.nome}`}`}
+                          href={`https://www.google.com/maps/place/${`${data.cidade.nome}, ${data.cidade.uf} - ${data.cidade.pais}`}`}
                           className="text-center mb-0 fw-semibold"
                           style={{
                             color: '#00A3FF',

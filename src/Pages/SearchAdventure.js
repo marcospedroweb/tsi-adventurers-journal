@@ -15,25 +15,30 @@ const SearchAdventure = () => {
   const { loading, request } = useFetch();
 
   async function getAdventurers() {
-    const body = {};
+    let query = '?';
 
     if (searchAdventure.modalitysIds.length)
-      body.modalidades = searchAdventure.modalitysIds;
-    if (searchAdventure.location) body.cidade = searchAdventure.location;
-    if (searchAdventure.location) body.horario = searchAdventure.date;
-    if (searchAdventure.minPrice) body.preco_minimo = searchAdventure.minPrice;
-    if (searchAdventure.maxPrice) body.preco_maximo = searchAdventure.maxPrice;
-    if (searchAdventure.minAge) body.idade_minima = searchAdventure.minAge;
+      query = `${query}&modalidades=${searchAdventure.modalitysIds.join(',')}`;
+    if (searchAdventure.location)
+      query = `${query}&cidade=${searchAdventure.location}`;
+    if (searchAdventure.location)
+      query = `${query}&horario=${searchAdventure.date}`;
+    if (searchAdventure.minPrice)
+      query = `${query}&preco_minimo=${searchAdventure.minPrice}`;
+    if (searchAdventure.maxPrice)
+      query = `${query}&preco_maximo=${searchAdventure.maxPrice}`;
+    if (searchAdventure.minAge)
+      query = `${query}&idade_minima=${searchAdventure.minAge}`;
 
     const { json } = await request(
-      `${apiRoute}${activitiesSearchRoute}`,
-      optionsFetch({ method: 'GET', body }),
+      `${apiRoute}${activitiesSearchRoute}${query}`,
+      optionsFetch({ method: 'GET' }),
     );
-    setAdventurers(json);
+
+    setAdventurers(json.data);
   }
 
   React.useEffect(() => {
-    // console.log(searchAdventure);
     if (!searchAdventure) navigate('/aventurar-se');
     getAdventurers();
   }, []);

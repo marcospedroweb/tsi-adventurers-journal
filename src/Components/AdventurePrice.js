@@ -31,13 +31,18 @@ const AdventurePrice = ({
     }
     const { json } = await request(
       `${apiRoute}${addInCartRoute}`,
-      optionsFetch({ method: 'POST', token: session.user.token }),
+      optionsFetch({
+        method: 'POST',
+        token: session.user.token,
+        body: {
+          idAtividade: data.id,
+          qtdPessoa: searchAdventure.passengers,
+        },
+      }),
     );
-    console.log();
-    // const cart = JSON.parse(window.localStorage.getItem('cart'));
-    // if (cart) window.localStorage.setItem('cart', JSON.stringify([...cart, 2]));
-    // else window.localStorage.setItem('cart', JSON.stringify([2]));
-    // navigate('/carrinho');
+    if (json.carrinho) navigate('/carrinho');
+    else navigate('/aventurar-se');
+    return;
   }
 
   return (

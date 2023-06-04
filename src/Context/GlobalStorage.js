@@ -14,6 +14,7 @@ export const GlobalStorage = ({ children }) => {
   const [alertEditing, setAlertEditing] = React.useState(false);
   const [editing, setEditing] = React.useState(false);
   const [searchAdventure, setSearchAdventure] = React.useState('');
+  const [floatAlert, setFloatAlert] = React.useState('');
 
   return (
     <GlobalContext.Provider
@@ -26,6 +27,8 @@ export const GlobalStorage = ({ children }) => {
         setEditing,
         searchAdventure,
         setSearchAdventure,
+        floatAlert,
+        setFloatAlert,
       }}
     >
       {/* {children} será to elemento/pagina dentro do contexto */}

@@ -83,6 +83,9 @@ const Header = () => {
                   <Link to="/perfil" className="dropdown-item text-start">
                     Meu perfil
                   </Link>
+                  <Link to="/carrinho" className="dropdown-item text-start">
+                    Meu carrinho
+                  </Link>
                   <Link
                     to="/configurações"
                     className="dropdown-item text-start"
