@@ -19,6 +19,7 @@ export const getModalitysRoute = '/modalidades';
 
 //CART
 export const addInCartRoute = '/carrinho';
+export const getCartRoute = '/carrinho';
 
 export const optionsFetch = ({ method, body = '', token = '', file }) => {
   if (method === 'POST')

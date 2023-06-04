@@ -6,13 +6,13 @@ import ModalShowMore from './ModalShowMore';
 import FormatPrice from '../Helpers/FormatPrice';
 import ModalEditAdventure from './ModalEditAdventure';
 
-const CartAdventure = () => {
+const CartAdventure = ({ data }) => {
   return (
     <div className="row justify-content-between align-items-center w-100">
-      <div className="col-12 col-lg-2">
+      {/* <div className="col-12 col-lg-2">
         <div className={styles.divImg}></div>
-      </div>
-      <div className="col-12 col-lg-10">
+      </div> */}
+      <div className="col-12">
         <div
           className={`${styles.divInfo} d-flex flex-column flex-xl-row justify-content-between align-items-center rounded w-100`}
         >
