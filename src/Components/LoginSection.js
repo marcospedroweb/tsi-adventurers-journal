@@ -62,6 +62,10 @@ const LoginSection = () => {
       user: user,
     });
 
+    if (session.cartId) {
+      navigate('/carrinho');
+    }
+
     navigate('/');
   }
 

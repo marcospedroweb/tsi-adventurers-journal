@@ -1,13 +1,13 @@
-const FormatPrice = (price) => {
-  const number = parseFloat(price.replace(',', '.'));
+const FormatPrice = (price, only = false) => {
+  const number = parseFloat(price.toString().replace(',', '.'));
   if (isNaN(number)) return '';
 
-  const formatedPrice = parseFloat(number).toLocaleString('pt-BR', {
+  const formatedPrice = number.toLocaleString('pt-BR', {
     style: 'currency',
     currency: 'BRL',
   });
 
-  return formatedPrice;
+  return only ? formatedPrice.replace('R$ ', '') : formatedPrice;
 };
 
 export default FormatPrice;

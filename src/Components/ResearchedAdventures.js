@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 const ResearchedAdventures = ({ adventurers, getAdventurers }) => {
   const navigate = useNavigate();
+
   return (
     <section className="row justify-content-between align-items-start">
       <div className="d-none d-lg-block col-12 col-lg-3">
@@ -18,7 +19,30 @@ const ResearchedAdventures = ({ adventurers, getAdventurers }) => {
         <MobileFilterAdventure getAdventurers={getAdventurers} />
       </div>
       <div className="col-12 col-lg-9 text-center">
-        {!adventurers.length && (
+        <div
+          className="d-flex justify-content-between align-items-center text-white mb-4 p-3 rounded"
+          style={{ backgroundColor: '#1C2331' }}
+        >
+          <p className="mb-3 mb-lg-0">
+            Foi encontrado{' '}
+            <span className="fw-bold">{adventurers.length} resultados</span>
+          </p>
+          <p
+            className="text-center mb-0 fw-semibold"
+            style={{ color: '#00A3FF', cursor: 'pointer' }}
+            onClick={() => {
+              navigate('/aventurar-se');
+            }}
+          >
+            Realizar nova busca
+          </p>
+        </div>
+
+        {adventurers.length ? (
+          adventurers.map((adventure) => {
+            return <AdventureCard data={adventure} />;
+          })
+        ) : (
           <>
             <h3 className="text-white fw-bold">
               Não foi encontrado aventuras com suas preferências.
@@ -36,10 +60,6 @@ const ResearchedAdventures = ({ adventurers, getAdventurers }) => {
             </ButtonCustom>
           </>
         )}
-        {adventurers.length &&
-          adventurers.map((adventure) => {
-            return <AdventureCard data={adventure} />;
-          })}
       </div>
     </section>
   );

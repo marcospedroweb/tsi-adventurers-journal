@@ -14,17 +14,24 @@ const DesktopFilterAdventure = ({ mobile, getAdventurers }) => {
     React.useContext(GlobalContext);
 
   //Price
-  const minPrice = React.useRef();
-  const maxPrice = React.useRef();
+  const minPriceRef = React.useRef();
+  const [minPrice, setMinPrice] = React.useState('');
+  const maxPriceRef = React.useRef();
+  const [maxPrice, setMaxPrice] = React.useState('');
 
-  //Time
-  const time = React.useRef();
+  //timeRef
+  const timeRef = React.useRef();
+  const [time, setTime] = React.useState('');
 
   //Modalitys
   const [modalitys, setModalitys] = React.useState([]);
   const [modalitysIds, setModalitysIds] = React.useState([]);
   const [selectedOptions, setSelectedOptions] = React.useState([]);
   const [showMore, setShowMore] = React.useState(false);
+
+  //Min Age
+  const minAgeRef = React.useRef();
+  const [minAge, setMinAge] = React.useState(0);
 
   //Fetch
   const { loading, request } = useFetch();
@@ -49,6 +56,12 @@ const DesktopFilterAdventure = ({ mobile, getAdventurers }) => {
     }
     setModalitysIds(searchAdventure.modalitysIds);
     getModalitys();
+    if (searchAdventure.minPrice) setMinPrice(searchAdventure.minPrice);
+    if (searchAdventure.maxPrice) setMaxPrice(searchAdventure.maxPrice);
+    if (searchAdventure.time) setTime(searchAdventure.time);
+    if (searchAdventure.modalitysIds)
+      setModalitysIds(searchAdventure.modalitysIds);
+    if (searchAdventure.minAge) setMinAge(searchAdventure.minAge);
   }, []);
 
   React.useEffect(() => {
@@ -61,10 +74,14 @@ const DesktopFilterAdventure = ({ mobile, getAdventurers }) => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    searchAdventure.minPrice = minPrice.current.value;
-    searchAdventure.maxPrice = maxPrice.current.value;
-    searchAdventure.time = time.current.value;
-    searchAdventure.modalitysIds = time.current.value;
+    if (minPriceRef.current.value)
+      searchAdventure.minPrice = minPriceRef.current.value;
+    if (maxPriceRef.current.value)
+      searchAdventure.maxPrice = maxPriceRef.current.value;
+    if (timeRef.current.value) searchAdventure.time = timeRef.current.value;
+    searchAdventure.modalitysIds = modalitysIds;
+    if (minAgeRef.current.value)
+      searchAdventure.minAge = minAgeRef.current.value;
     setSearchAdventure(searchAdventure);
 
     getAdventurers();
@@ -113,7 +130,9 @@ const DesktopFilterAdventure = ({ mobile, getAdventurers }) => {
                   type="number"
                   placeholder="Min."
                   className="position-relative"
-                  ref={minPrice}
+                  ref={minPriceRef}
+                  value={minPrice}
+                  onChange={({ target }) => setMinPrice(target.value)}
                 />
               </div>
             </Form.Group>
@@ -131,7 +150,9 @@ const DesktopFilterAdventure = ({ mobile, getAdventurers }) => {
                   type="number"
                   placeholder="Max."
                   className="position-relative"
-                  ref={maxPrice}
+                  ref={maxPriceRef}
+                  value={maxPrice}
+                  onChange={({ target }) => setMaxPrice(target.value)}
                 />
               </div>
             </Form.Group>
@@ -149,8 +170,10 @@ const DesktopFilterAdventure = ({ mobile, getAdventurers }) => {
               <Form.Control
                 type="time"
                 placeholder="Max."
-                style={{ width: '92px' }}
-                ref={time}
+                style={{ width: '120px' }}
+                ref={timeRef}
+                value={time}
+                onChange={({ target }) => setTime(target.value)}
               />
             </Form.Group>
           </div>
@@ -317,6 +340,26 @@ const DesktopFilterAdventure = ({ mobile, getAdventurers }) => {
                 Mostrar mais <BsChevronDown />
               </span>
             )}
+          </div>
+        </div>
+        <div
+          className={`${styles.divBorder} d-flex flex-column justify-content-center align-items-start w-100`}
+        >
+          <div className="text-start w-100 mb-3">
+            <h4>Idade mínima</h4>
+          </div>
+          <div className="d-flex justify-content-between align-items-center">
+            <Form.Group controlId="hourStart" className="me-2">
+              <Form.Label className="visually-hidden">Idade mínima</Form.Label>
+              <Form.Control
+                type="timeRef"
+                placeholder="Anos."
+                style={{ width: '92px' }}
+                ref={minAgeRef}
+                value={minAge}
+                onChange={({ target }) => setMinAge(target.value)}
+              />
+            </Form.Group>
           </div>
         </div>
       </form>

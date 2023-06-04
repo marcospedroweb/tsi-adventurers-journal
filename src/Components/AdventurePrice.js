@@ -3,6 +3,10 @@ import styles from './AdventurePrice.module.css';
 import LabelCard from './LabelCard';
 import ButtonCustom from './ButtonCustom';
 import { useNavigate } from 'react-router-dom';
+import FormatPrice from '../Helpers/FormatPrice';
+import useFetch from '../Hooks/useFetch';
+import { GlobalContext } from '../Context/GlobalStorage';
+import { addInCartRoute, apiRoute, optionsFetch } from '../DB/data';
 
 const AdventurePrice = ({
   best = false,
@@ -13,7 +17,29 @@ const AdventurePrice = ({
   isHotel,
   link,
 }) => {
+  const { session, searchAdventure, setSession } =
+    React.useContext(GlobalContext);
   const navigate = useNavigate();
+  const { loading, request } = useFetch();
+
+  async function addInCart() {
+    if (!session.logged) {
+      session.cartId = data.id;
+      setSession(session);
+      if (!window.sessionStorage.getItem('user')) navigate('/login');
+      return;
+    }
+    const { json } = await request(
+      `${apiRoute}${addInCartRoute}`,
+      optionsFetch({ method: 'POST', token: session.user.token }),
+    );
+    console.log();
+    // const cart = JSON.parse(window.localStorage.getItem('cart'));
+    // if (cart) window.localStorage.setItem('cart', JSON.stringify([...cart, 2]));
+    // else window.localStorage.setItem('cart', JSON.stringify([2]));
+    // navigate('/carrinho');
+  }
+
   return (
     <div className={`${styles.divMain} align-self-stretch`}>
       {best && (
@@ -35,7 +61,7 @@ const AdventurePrice = ({
           className="text-white fw-bold"
           style={{ fontSize: '2.625rem', lineHeight: '60px' }}
         >
-          2.500
+          {FormatPrice(data.preco, true)}
         </span>
       </div>
       <div>
@@ -44,20 +70,13 @@ const AdventurePrice = ({
         </span>
       </div>
       <div>
-        {!isHotel && (
-          <ButtonCustom
-            bsClass={'mt-3'}
-            onClick={() => {
-              const cart = JSON.parse(window.localStorage.getItem('cart'));
-              if (cart)
-                window.localStorage.setItem(
-                  'cart',
-                  JSON.stringify([...cart, 2]),
-                );
-              else window.localStorage.setItem('cart', JSON.stringify([2]));
-              navigate('/carrinho');
-            }}
-          >
+        {!isHotel && loading && (
+          <ButtonCustom bsClass={'mt-3'} onClick={addInCart} loading={true}>
+            Carregando...
+          </ButtonCustom>
+        )}
+        {!isHotel && !loading && (
+          <ButtonCustom bsClass={'mt-3'} onClick={addInCart}>
             Escolher aventura
           </ButtonCustom>
         )}

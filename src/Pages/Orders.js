@@ -28,7 +28,8 @@ const Orders = () => {
         logged: true,
         user: user,
       });
-      if (!user) navigate('/');
+    } else {
+      navigate('/');
     }
   }, []);
 

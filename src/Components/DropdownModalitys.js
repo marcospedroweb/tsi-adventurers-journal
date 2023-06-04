@@ -10,6 +10,8 @@ const DropdownModalitys = ({
   setSelectedOptions,
   modalitysIds,
   setModalitysIds,
+  loadingState,
+  setLoadingState,
 }) => {
   const [options, setOptions] = React.useState([]);
   const { loading, request } = useFetch();
@@ -33,6 +35,7 @@ const DropdownModalitys = ({
   };
 
   React.useEffect(() => {
+    setLoadingState(true);
     async function getModalitys() {
       const { json } = await request(
         `${apiRoute}${getModalitysRoute}`,
@@ -42,6 +45,12 @@ const DropdownModalitys = ({
     }
     getModalitys();
   }, []);
+
+  React.useEffect(() => {
+    if (options.length) {
+      setLoadingState(false);
+    }
+  }, [options]);
 
   if (!options.length) return <ShadowInput label="Modalidades" />;
   else

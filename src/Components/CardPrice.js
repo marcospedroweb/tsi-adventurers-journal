@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './CardPrice.module.css';
-import FormatPrice from '../Helpers/FormatPrice';
 import SealPlanCard from './SealPlanCard';
 
 const CardPrice = ({
@@ -29,7 +28,7 @@ const CardPrice = ({
                   className={`${styles.divReceipt} d-flex  justify-content-between align-items-center w-100 mb-2`}
                 >
                   <span>{text}</span>
-                  <span>{FormatPrice(price)}</span>
+                  <span>{price}</span>
                 </div>
               );
             })}
@@ -46,11 +45,9 @@ const CardPrice = ({
                     textDecoration: 'line-through',
                   }}
                 >
-                  R$ {total}
+                  {total}
                 </span>
-                <span className="text-uppercase fw-bold">
-                  R$ {totalDescount}
-                </span>
+                <span className="text-uppercase fw-bold">{totalDescount}</span>
               </div>
             </div>
           </div>
@@ -78,7 +75,7 @@ const CardPrice = ({
         className={`${styles.divMain} ${bsClass} py-3 d-flex flex-column justify-content-start align-items-center align-self-stretch`}
       >
         <div className={styles.divPrice}>
-          <span className="d-block">R$ {price}</span>
+          <span className="d-block">{price}</span>
           <span className="d-block">{per}</span>
         </div>
         <div className="d-flex flex-column justify-content-center align-items-center w-100 px-4 mt-3">
@@ -89,7 +86,7 @@ const CardPrice = ({
                 className={`${styles.divReceipt} d-flex  justify-content-between align-items-center w-100 mb-2`}
               >
                 <span>{text}</span>
-                <span>{FormatPrice(price)}</span>
+                <span>{price}</span>
               </div>
             );
           })}
@@ -105,10 +102,10 @@ const CardPrice = ({
                     textDecoration: 'line-through',
                   }}
                 >
-                  R$ {total}
+                  {total}
                 </span>
               )}
-              <span className="text-uppercase fw-bold">R$ {totalDescount}</span>
+              <span className="text-uppercase fw-bold">{totalDescount}</span>
             </div>
           </div>
         </div>

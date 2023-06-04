@@ -18,6 +18,7 @@ const BannerAdventure = () => {
   const [formError, setFormError] = React.useState('');
   //Destination
   const origin = GetSimpleInputObj('name');
+  const [loadingLocation, setLoadingLocation] = React.useState(false);
 
   //Date
   const startDate = React.useRef();
@@ -28,6 +29,7 @@ const BannerAdventure = () => {
   //Modalitys
   const [selectedOptions, setSelectedOptions] = React.useState([]);
   const [modalitysIds, setModalitysIds] = React.useState([]);
+  const [loadingModalitys, setLoadingModalitys] = React.useState(false);
 
   //Fetch
   const { loading, request } = useFetch();
@@ -60,7 +62,12 @@ const BannerAdventure = () => {
         >
           <div className="w-100">
             <h3>Para onde você vai?</h3>
-            <InputWithSuggestions formObj={origin} type="cities" />
+            <InputWithSuggestions
+              formObj={origin}
+              type="cities"
+              loadingState={loadingLocation}
+              setLoadingState={setLoadingLocation}
+            />
           </div>
           <div className="d-flex flex-column flex-lg-row justify-content-between align-items-center w-100">
             <div className="mb-3 mb-lg-0 w-100">
@@ -83,23 +90,43 @@ const BannerAdventure = () => {
                 setSelectedOptions={setSelectedOptions}
                 modalitysIds={modalitysIds}
                 setModalitysIds={setModalitysIds}
+                loadingState={loadingModalitys}
+                setLoadingState={setLoadingModalitys}
               />
             </div>
           </div>
           <div className="align-self-end text-center">
-            <ButtonCustom
-              type="submit"
-              bsClass={
-                'fw-bold d-flex justify-content-between align-items-center'
-              }
-              style={{
-                height: '58px',
-                fontSize: '1.25rem',
-              }}
-            >
-              <BsSearch className="fw-bold me-2" />
-              Buscar aventuras
-            </ButtonCustom>
+            {loadingLocation || loadingModalitys ? (
+              <ButtonCustom
+                type="button"
+                bsClass={
+                  'fw-bold d-flex justify-content-between align-items-center'
+                }
+                style={{
+                  height: '58px',
+                  fontSize: '1.25rem',
+                }}
+                loading={true}
+              >
+                <BsSearch className="fw-bold me-2" />
+                Carregando...
+              </ButtonCustom>
+            ) : (
+              <ButtonCustom
+                type="submit"
+                bsClass={
+                  'fw-bold d-flex justify-content-between align-items-center'
+                }
+                style={{
+                  height: '58px',
+                  fontSize: '1.25rem',
+                }}
+              >
+                <BsSearch className="fw-bold me-2" />
+                Buscar aventuras
+              </ButtonCustom>
+            )}
+
             {formError && (
               <span className="error-mensage mt-1 d-inline-block">
                 {formError}

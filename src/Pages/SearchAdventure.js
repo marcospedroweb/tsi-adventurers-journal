@@ -3,13 +3,9 @@ import { GlobalContext } from '../Context/GlobalStorage';
 import useFetch from '../Hooks/useFetch';
 import Loading from '../Components/Loading';
 import { useNavigate } from 'react-router-dom';
-import {
-  activitiesSearchRoute,
-  apiRoute,
-  optionsFetch,
-  showUserRoute,
-} from '../DB/data';
+import { activitiesSearchRoute, apiRoute, optionsFetch } from '../DB/data';
 import ResearchedAdventures from '../Components/ResearchedAdventures';
+import BannerAdventure from '../Components/BannerAdventure';
 
 const SearchAdventure = () => {
   const { searchAdventure, setSearchAdventure } =
@@ -27,6 +23,7 @@ const SearchAdventure = () => {
     if (searchAdventure.location) body.horario = searchAdventure.date;
     if (searchAdventure.minPrice) body.preco_minimo = searchAdventure.minPrice;
     if (searchAdventure.maxPrice) body.preco_maximo = searchAdventure.maxPrice;
+    if (searchAdventure.minAge) body.idade_minima = searchAdventure.minAge;
 
     const { json } = await request(
       `${apiRoute}${activitiesSearchRoute}`,
@@ -36,6 +33,7 @@ const SearchAdventure = () => {
   }
 
   React.useEffect(() => {
+    // console.log(searchAdventure);
     if (!searchAdventure) navigate('/aventurar-se');
     getAdventurers();
   }, []);

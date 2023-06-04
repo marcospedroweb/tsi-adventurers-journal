@@ -6,7 +6,12 @@ import { apiRoute, getCitiesRoute, optionsFetch } from '../DB/data';
 import diacriticless from 'diacriticless';
 import styles from './InputWithSuggestions.module.css';
 
-const InputWithSuggestions = ({ formObj, type }) => {
+const InputWithSuggestions = ({
+  formObj,
+  type,
+  loadingState,
+  setLoadingState,
+}) => {
   const [isInputSelected, setIsInputSelected] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [filteredCities, setFilteredCities] = useState([]);
@@ -14,6 +19,7 @@ const InputWithSuggestions = ({ formObj, type }) => {
   const { loading, request } = useFetch();
 
   useEffect(() => {
+    setLoadingState(true);
     async function getData(type) {
       if (type === 'cities') {
         const { json } = await request(
@@ -50,6 +56,10 @@ const InputWithSuggestions = ({ formObj, type }) => {
     // setFilteredCities([]);
     setIsInputSelected(false);
   };
+
+  React.useEffect(() => {
+    if (cities.length) setLoadingState(false);
+  }, [cities]);
 
   if (!cities.length) return <ShadowInput />;
   else
