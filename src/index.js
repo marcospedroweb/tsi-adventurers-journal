@@ -22,6 +22,7 @@ import OrderCompleted from './Pages/OrderCompleted';
 import Plans from './Pages/Plans';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
+import Orders from './Pages/Orders';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -36,6 +37,7 @@ root.render(
           <Route path="/aventurar-se" element={<AventurarSe />} />
           <Route path="/perfil" element={<Profile />} />
           <Route path="/perfil/:id" element={<Profile />} />
+          <Route path="/meus-pedidos" element={<Orders />} />
           <Route path="/procurar-aventuras" element={<SearchAdventure />} />
           <Route path="/produto-adicionado" element={<AddedToCart />} />
           <Route path="/carrinho" element={<Cart />} />

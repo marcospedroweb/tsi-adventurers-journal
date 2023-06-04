@@ -12,81 +12,14 @@
   font-weight: 600;
 }
 
-.hiddenText {
-  font-size: .8rem;
-  color: #B1B1B1;
-}
-
 .divSection img {
   max-height: 90px;
   object-fit: cover;
   object-position: center;
 }
 
-.insideDiv {
-  background-color: #283040;
-  padding: 16px;
-  border-radius: 16px;
-  height: 100%;
-}
-
-.insideDiv h4 {
-  font-size: 1rem;
-  margin-top: 16px;
-}
-
-.divCheckboxs {
-  max-height: 150px;
+.divTrip {
+  height: fit-content;
   overflow: auto;
-}
-
-.divCheckboxs input[type="checkbox"] {
-  display: none;
-}
-
-.divCheckboxs input[type="checkbox"]+label {
-  position: relative;
-  padding-left: 25px;
-  cursor: pointer;
-}
-
-
-.divCheckboxs input[type="checkbox"]+label:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 18px;
-  height: 18px;
-  border: 2px solid #87FAD1;
-  background-color: #1C2331;
-  border-radius: 3px;
-}
-
-.divCheckboxs input[type="checkbox"]:checked+label:before {
-  background-color: #87FAD1;
-}
-
-.divCheckboxs input[type="checkbox"]+label:after {
-  content: "";
-  position: absolute;
-  left: 6px;
-  top: 4px;
-  width: 5px;
-  height: 9px;
-  border: solid #1C2331;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-  opacity: 0;
-}
-
-.divCheckboxs input[type="checkbox"]:checked+label:after {
-  opacity: 1;
-}
-
-.divInputs h4 {
-  font-size: 1rem;
-}
-
-.divInputs label {
-  color: #000;
+  max-height: 800px;
 }

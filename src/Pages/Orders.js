@@ -1,16 +1,16 @@
 import React from 'react';
-import Loading from '../Components/Loading';
+import UserOrders from '../Components/UserOrders';
 import { GlobalContext } from '../Context/GlobalStorage';
 import { useNavigate } from 'react-router-dom';
-import useFetch from '../Hooks/useFetch';
 import { apiRoute, optionsFetch, showUserRoute } from '../DB/data';
-import ConfigUser from '../Components/ConfigUser';
+import useFetch from '../Hooks/useFetch';
+import Loading from '../Components/Loading';
 
-const Config = () => {
+const Orders = () => {
   const { session, setSession } = React.useContext(GlobalContext);
   const navigate = useNavigate();
-  const { request, loading } = useFetch();
   const [user, setUser] = React.useState();
+  const { loading, request } = useFetch();
 
   async function getUserData() {
     const { json } = await request(
@@ -40,9 +40,9 @@ const Config = () => {
   else
     return (
       <main>
-        <ConfigUser user={{ user, setUser, getUserData }} />
+        <UserOrders />
       </main>
     );
 };
 
-export default Config;
+export default Orders;

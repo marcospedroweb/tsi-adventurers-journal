@@ -5,7 +5,7 @@ import ModalTrip from './ModalTrip';
 const ModalityUser = ({ data, change }) => {
   return (
     <div className={styles.divMain} key={`${data.modality}`}>
-      <div className="row flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center align-items-lg-start w-100 mt-4">
+      <div className="row flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center align-items-lg-start w-100 mt-4 mx-auto mx-lg-0">
         <div className="col-12 col-lg-3">
           <div
             className={styles.divImg}
@@ -17,6 +17,10 @@ const ModalityUser = ({ data, change }) => {
             <div>
               <h2>{data.modality}</h2>
               <p>{data.location}</p>
+            </div>
+            <div>
+              <h3 className="mt-4 mt-lg-0">Nota</h3>
+              <p style={{ fontStyle: 'normal' }}>9,6</p>
             </div>
             <div>
               <h3 className="mt-4 mt-lg-0">Comentário</h3>
@@ -36,36 +40,6 @@ const ModalityUser = ({ data, change }) => {
               <div className="mt-4 text-center text-lg-end">
                 <ModalTrip data={data} />
               </div>
-
-              {/* <div className={`${showInput ? '' : 'd-none'}`}>
-                <FloatingLabel
-                  controlId="floatingTextarea"
-                  label="Edite seu comentario"
-                  className={`${styles.divInput} mb-3`}
-                >
-                  <Form.Control
-                    as="textarea"
-                    placeholder="Deixe o comentario aqui"
-                    maxLength={250}
-                    onChange={(event) => {
-                      bio.validation.onChange(event);
-                      change(event);
-                    }}
-                    onBlur={bio.validation.onBlur}
-                    value={bio.validation.value}
-                    style={{ height: '170px' }}
-                  />
-                </FloatingLabel>
-                <div className="text-center text-lg-end">
-                  <ButtonCustom
-                    onClick={() => {
-                      setShowInput(false);
-                    }}
-                  >
-                    Atualizar
-                  </ButtonCustom>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>

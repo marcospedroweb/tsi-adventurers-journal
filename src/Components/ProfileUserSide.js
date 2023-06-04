@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './ProfileUserSide.module.css';
 import SealPlanCard from './SealPlanCard';
+import LabelCard from './LabelCard';
 import { noUserImageBase64 } from '../Helpers/NoUserBase64';
 
 const ProfileUserSide = ({ user }) => {
@@ -23,8 +24,15 @@ const ProfileUserSide = ({ user }) => {
         <div className={styles.divName}>
           <h2>{user.name}</h2>
 
-          <SealPlanCard type={'plus'} classN={'mx-auto'} />
-
+          {user.Guia ? (
+            <LabelCard
+              text={'Guia turistico'}
+              bsClass={'mx-auto text-uppercase fw-normal'}
+              stylesCss={{ width: 'fit-content', fontSize: '1rem' }}
+            />
+          ) : (
+            <SealPlanCard type={'plus'} classN={'mx-auto'} />
+          )}
           <p className="mt-2">{dateFormated}</p>
         </div>
         <div className={styles.divAbout}>

@@ -9,14 +9,7 @@ import ConfigSecurity from './ConfigSecurity';
 import ConfigPlan from './ConfigPlan';
 
 const ConfigUser = ({ user }) => {
-  const {
-    session,
-    setSession,
-    alertEditing,
-    setAlertEditing,
-    editing,
-    setEditing,
-  } = React.useContext(GlobalContext);
+  const { setAlertEditing, editing } = React.useContext(GlobalContext);
   const [component, setComponent] = React.useState('perfil');
   const [nextComponent, setNextComponent] = React.useState('');
 

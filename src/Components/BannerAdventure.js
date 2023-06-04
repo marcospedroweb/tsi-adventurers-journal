@@ -20,9 +20,7 @@ const BannerAdventure = () => {
   const origin = GetSimpleInputObj('name');
 
   //Date
-  const [startDateValue, setStartDateValue] = React.useState('');
   const startDate = React.useRef();
-  const endDate = React.useRef();
 
   //Passengers
   const [passengers, setPassengers] = React.useState(1);
@@ -38,9 +36,8 @@ const BannerAdventure = () => {
     event.preventDefault();
 
     setSearchAdventure({
-      origin: origin.ref.current.value,
-      startDate: startDate.current.value,
-      endDate: endDate.current.value,
+      location: origin.ref.current.value,
+      date: startDate.current.value,
       passengers,
       modalitysIds,
     });
@@ -67,25 +64,8 @@ const BannerAdventure = () => {
           </div>
           <div className="d-flex flex-column flex-lg-row justify-content-between align-items-center w-100">
             <div className="mb-3 mb-lg-0 w-100">
-              <h3>Data de ida</h3>
-              <InputFloatingDate
-                refComponent={startDate}
-                name={'dateInit'}
-                startDateValue={startDateValue}
-                setStartDateValue={setStartDateValue}
-              />
-            </div>
-            <div
-              className={`${styles.dateSeparator} d-none d-lg-inline-block`}
-            ></div>
-            <div className="w-100">
-              <h3>Data de volta</h3>
-              <InputFloatingDate
-                refComponent={endDate}
-                name={'dateFinal'}
-                startDateValue={startDateValue}
-                setStartDateValue={setStartDateValue}
-              />
+              <h3>Data</h3>
+              <InputFloatingDate refComponent={startDate} name={'dateInit'} />
             </div>
           </div>
           <div className="d-flex justify-content-between align-items-start w-100 gap-3">

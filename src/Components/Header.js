@@ -89,6 +89,9 @@ const Header = () => {
                   >
                     Configurações
                   </Link>
+                  <Link to="/meus-pedidos" className="dropdown-item text-start">
+                    Meus pedidos
+                  </Link>
                   <Dropdown.Item onClick={handleLogout} className="text-danger">
                     Encerrar sessão
                   </Dropdown.Item>

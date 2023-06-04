@@ -9,15 +9,16 @@ import Loading from './Loading';
 import { GlobalContext } from '../Context/GlobalStorage';
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
 
-const DesktopFilterAdventure = ({ mobile }) => {
+const DesktopFilterAdventure = ({ mobile, getAdventurers }) => {
   const { searchAdventure, setSearchAdventure } =
     React.useContext(GlobalContext);
 
   //Price
-  const [price, setPrice] = React.useState('');
+  const minPrice = React.useRef();
+  const maxPrice = React.useRef();
 
   //Time
-  const [returnTime, setReturnTime] = React.useState('');
+  const time = React.useRef();
 
   //Modalitys
   const [modalitys, setModalitys] = React.useState([]);
@@ -46,36 +47,34 @@ const DesktopFilterAdventure = ({ mobile }) => {
       );
       setModalitys(json.data);
     }
+    setModalitysIds(searchAdventure.modalitysIds);
     getModalitys();
-
-    // console.log(
-    //   modalitys
-    //     .filter((modality) => [5, 10, 2].includes(modality.identify))
-    //     .map((modality) => modality.nome),
-    // );
   }, []);
 
   React.useEffect(() => {
-    setSearchAdventure({
-      origin: 'São Paulo',
-      startDate: 'a',
-      endDate: 'b',
-      passengers: 3,
-      modalitysIds: [5, 10, 2],
-    });
-    setModalitysIds([5, 10, 2]);
-    // setModalitysIds(searchAdventure.modalitysIds);
     setSelectedOptions(
       modalitys
-        .filter((modality) => [5, 10, 2].includes(modality.identify))
+        .filter((modality) => modalitysIds.includes(modality.identify))
         .map((modality) => modality.nome),
     );
-  }, [modalitys]);
+  }, [modalitys, modalitysIds]);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    searchAdventure.minPrice = minPrice.current.value;
+    searchAdventure.maxPrice = maxPrice.current.value;
+    searchAdventure.time = time.current.value;
+    searchAdventure.modalitysIds = time.current.value;
+    setSearchAdventure(searchAdventure);
+
+    getAdventurers();
+  }
 
   if (loading) return <Loading />;
   else
     return (
-      <div
+      <form
+        onSubmit={handleSubmit}
         className={`${styles.divMain} ${
           mobile ? styles.divMainMobile : ''
         } d-flex flex-column justify-content-center align-items-start`}
@@ -86,7 +85,9 @@ const DesktopFilterAdventure = ({ mobile }) => {
           >
             <h3>Filtro</h3>
             <div>
-              <ButtonCustom bsClass={'ms-2'}>Filtrar</ButtonCustom>
+              <ButtonCustom type="submit" bsClass={'ms-2'}>
+                Filtrar
+              </ButtonCustom>
             </div>
           </div>
         )}
@@ -112,6 +113,7 @@ const DesktopFilterAdventure = ({ mobile }) => {
                   type="number"
                   placeholder="Min."
                   className="position-relative"
+                  ref={minPrice}
                 />
               </div>
             </Form.Group>
@@ -129,6 +131,7 @@ const DesktopFilterAdventure = ({ mobile }) => {
                   type="number"
                   placeholder="Max."
                   className="position-relative"
+                  ref={maxPrice}
                 />
               </div>
             </Form.Group>
@@ -142,19 +145,12 @@ const DesktopFilterAdventure = ({ mobile }) => {
           </div>
           <div className="d-flex justify-content-between align-items-center">
             <Form.Group controlId="hourStart" className="me-2">
-              <Form.Label className="visually-hidden">Preço minimo</Form.Label>
+              <Form.Label className="visually-hidden">Horario</Form.Label>
               <Form.Control
                 type="time"
                 placeholder="Max."
                 style={{ width: '92px' }}
-              />
-            </Form.Group>
-            <Form.Group controlId="hourEnd">
-              <Form.Label className="visually-hidden">Preço minimo</Form.Label>
-              <Form.Control
-                type="time"
-                placeholder="Max."
-                style={{ width: '92px' }}
+                ref={time}
               />
             </Form.Group>
           </div>
@@ -323,7 +319,7 @@ const DesktopFilterAdventure = ({ mobile }) => {
             )}
           </div>
         </div>
-      </div>
+      </form>
     );
 };
 

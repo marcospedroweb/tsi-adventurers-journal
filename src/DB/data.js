@@ -8,6 +8,9 @@ export const showUserRoute = '/user';
 export const showOtherUserRoute = '/users/';
 export const logoutRoute = '/logout';
 
+//ACTIVITIES
+export const activitiesSearchRoute = '/atividades/search';
+
 //CITY
 export const getCitiesRoute = '/cidade';
 

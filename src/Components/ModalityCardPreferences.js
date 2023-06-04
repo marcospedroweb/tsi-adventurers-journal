@@ -1,19 +1,23 @@
 import React from 'react';
 import LabelPreferences from './LabelPreferences';
 
-const ModalityCardPreferences = ({ labels, edit }) => {
+const ModalityCardPreferences = ({ labels, edit, ids, setIds }) => {
   return (
     <>
       <div className="row justify-content-between align-items-center">
-        {labels.map(({ id, text, icon, link, active }, index) => {
-          if (active[0])
+        {labels.map((element, index) => {
+          if (
+            ids.includes(element.identify ? element.identify : element.id)
+              ? true
+              : false
+          )
             return (
               <LabelPreferences
-                link={link}
-                text={text}
-                icon={icon}
+                text={element.nome}
                 index={index}
-                key={id}
+                key={`${element.identify ? element.identify : element.id}${
+                  element.nome
+                }`}
               />
             );
         })}

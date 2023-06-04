@@ -3,21 +3,42 @@ import { GlobalContext } from '../Context/GlobalStorage';
 import useFetch from '../Hooks/useFetch';
 import Loading from '../Components/Loading';
 import { useNavigate } from 'react-router-dom';
-import { apiRoute, showUserRoute } from '../DB/data';
+import {
+  activitiesSearchRoute,
+  apiRoute,
+  optionsFetch,
+  showUserRoute,
+} from '../DB/data';
 import ResearchedAdventures from '../Components/ResearchedAdventures';
 
 const SearchAdventure = () => {
   const { searchAdventure, setSearchAdventure } =
     React.useContext(GlobalContext);
+  const [adventurers, setAdventurers] = React.useState('');
   const navigate = useNavigate();
   const { loading, request } = useFetch();
 
-  React.useEffect(() => {
-    async function getAdventurers() {}
+  async function getAdventurers() {
+    const body = {};
 
-    // if (!searchAdventure) navigate('/aventurar-se');
+    if (searchAdventure.modalitysIds.length)
+      body.modalidades = searchAdventure.modalitysIds;
+    if (searchAdventure.location) body.cidade = searchAdventure.location;
+    if (searchAdventure.location) body.horario = searchAdventure.date;
+    if (searchAdventure.minPrice) body.preco_minimo = searchAdventure.minPrice;
+    if (searchAdventure.maxPrice) body.preco_maximo = searchAdventure.maxPrice;
+
+    const { json } = await request(
+      `${apiRoute}${activitiesSearchRoute}`,
+      optionsFetch({ method: 'GET', body }),
+    );
+    setAdventurers(json);
+  }
+
+  React.useEffect(() => {
+    if (!searchAdventure) navigate('/aventurar-se');
     getAdventurers();
-  }, [navigate, request, searchAdventure]);
+  }, []);
 
   if (loading) return <Loading />;
   return (
@@ -29,7 +50,10 @@ const SearchAdventure = () => {
         >
           Aventurar-se
         </h2>
-        <ResearchedAdventures />
+        <ResearchedAdventures
+          adventurers={adventurers}
+          getAdventurers={getAdventurers}
+        />
       </div>
     </main>
   );

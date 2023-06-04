@@ -67,7 +67,6 @@ const InputWithSuggestions = ({ formObj, type }) => {
             }}
             ref={formObj.ref}
             name="destination"
-            required
           />
         </FloatingLabel>
         <Dropdown>
