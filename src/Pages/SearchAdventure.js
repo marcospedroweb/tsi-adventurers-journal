@@ -18,24 +18,32 @@ const SearchAdventure = () => {
     let query = '?';
 
     if (searchAdventure.modalitysIds.length)
-      query = `${query}&modalidades=${searchAdventure.modalitysIds.join(',')}`;
-    if (searchAdventure.location)
+      query = `${query}&modalidade=${searchAdventure.modalitysIds.join(',')}`;
+    if (searchAdventure.location.length)
       query = `${query}&cidade=${searchAdventure.location}`;
-    if (searchAdventure.location)
-      query = `${query}&horario=${searchAdventure.date}`;
+    if (searchAdventure.hour)
+      query = `${query}&horario=${searchAdventure.hour}`;
+    if (searchAdventure.day) query = `${query}&dia=${searchAdventure.day}`;
     if (searchAdventure.minPrice)
-      query = `${query}&preco_minimo=${searchAdventure.minPrice}`;
+      query = `${query}&preco_min=${searchAdventure.minPrice}`;
     if (searchAdventure.maxPrice)
-      query = `${query}&preco_maximo=${searchAdventure.maxPrice}`;
+      query = `${query}&preco_max=${searchAdventure.maxPrice}`;
     if (searchAdventure.minAge)
-      query = `${query}&idade_minima=${searchAdventure.minAge}`;
+      query = `${query}&idade_min=${searchAdventure.minAge}`;
+    if (searchAdventure.orderPrice)
+      query = `${query}&ordenar_preco=${searchAdventure.orderPrice}`;
+    if (searchAdventure.orderAge)
+      query = `${query}&ordenar_idade=${searchAdventure.orderAge}`;
+    if (searchAdventure.orderTitle)
+      query = `${query}&ordenar_titulo=${searchAdventure.orderTitle}`;
 
+    console.log(query);
     const { json } = await request(
       `${apiRoute}${activitiesSearchRoute}${query}`,
       optionsFetch({ method: 'GET' }),
     );
-
-    setAdventurers(json.data);
+    if (json && json.data) setAdventurers(json.data);
+    else setAdventurers([]);
   }
 
   React.useEffect(() => {

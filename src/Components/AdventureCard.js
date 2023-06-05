@@ -9,12 +9,17 @@ import { GlobalContext } from '../Context/GlobalStorage';
 import FormatPrice from '../Helpers/FormatPrice';
 import { noUserImageBase64 } from '../Helpers/NoUserBase64';
 import { Link } from 'react-router-dom';
+import { apiRoute } from '../DB/data';
 
 const AdventureCard = ({ data, best, hotel }) => {
   const { searchAdventure } = React.useContext(GlobalContext);
   const [showMore, setShowMore] = React.useState(false);
   const [section, setSection] = React.useState('informações');
   const date = new Date(data.Data_e_Hora);
+
+  React.useEffect(() => {
+    // console.log(data);
+  }, []);
 
   if (hotel)
     return (
@@ -209,6 +214,13 @@ const AdventureCard = ({ data, best, hotel }) => {
             className={`${styles.divImg} align-self-stretch ${
               showMore ? styles.divImgWithRounded : ''
             }`}
+            style={{
+              backgroundImage: `url(${
+                data.foto_url
+                  ? data.foto_url
+                  : `${apiRoute}/storage/${data.modalidade[0].foto}`
+              })`,
+            }}
           ></div>
           <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start align-items-center align-items-lg-start pt-3 px-3 w-100">
             <div className="d-flex flex-column justify-content-center justify-content-lg-start align-items-center align-items-lg-start pt-3 px-3 w-100">
@@ -217,7 +229,7 @@ const AdventureCard = ({ data, best, hotel }) => {
                 {data.cidade.nome}, {data.cidade.uf} - {data.cidade.pais}
               </p>
               <LabelCard
-                text={`Idade minima: ${data.IdadeMinima} anos`}
+                text={`Idade minima: ${data['Idade minima']} anos`}
                 bsClass="mb-2"
                 stylesCss={{ color: '#87FAD1', fontSize: '.85rem' }}
               />
@@ -336,7 +348,7 @@ const AdventureCard = ({ data, best, hotel }) => {
               >
                 <div className="mb-4">
                   <h4>Sobre a aventura</h4>
-                  <p className="mb-0">{data.Descricao}</p>
+                  <p className="mb-0">{data['Descrição']}</p>
                 </div>
                 <div className="mb-4 mx-auto mx-sm-0">
                   <h4>Periodo</h4>

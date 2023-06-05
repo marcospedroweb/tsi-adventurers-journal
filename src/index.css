@@ -87,6 +87,17 @@ a {
   color: #1C2331;
 }
 
+#dropdown-orderby {
+  border: 1px solid rgb(40, 48, 64);
+  background-color: rgb(40, 48, 64);
+  transition: all .25s ease-out;
+}
+
+#dropdown-orderby:hover {
+  background-color: #374052;
+  border: 1px solid #374052;
+}
+
 /* Tooltips */
 .tooltip {
   position: relative;

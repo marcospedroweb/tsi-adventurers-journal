@@ -39,7 +39,7 @@ const BannerAdventure = () => {
 
     setSearchAdventure({
       location: origin.ref.current.value,
-      date: startDate.current.value,
+      day: startDate.current.value,
       passengers,
       modalitysIds,
     });

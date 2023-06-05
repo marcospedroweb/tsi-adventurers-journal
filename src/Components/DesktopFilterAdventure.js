@@ -19,9 +19,13 @@ const DesktopFilterAdventure = ({ mobile, getAdventurers }) => {
   const maxPriceRef = React.useRef();
   const [maxPrice, setMaxPrice] = React.useState('');
 
-  //timeRef
+  //time
   const timeRef = React.useRef();
   const [time, setTime] = React.useState('');
+
+  //day
+  const dayRef = React.useRef();
+  const [day, setDay] = React.useState('');
 
   //Modalitys
   const [modalitys, setModalitys] = React.useState([]);
@@ -82,6 +86,7 @@ const DesktopFilterAdventure = ({ mobile, getAdventurers }) => {
     searchAdventure.modalitysIds = modalitysIds;
     if (minAgeRef.current.value)
       searchAdventure.minAge = minAgeRef.current.value;
+    console.log(searchAdventure);
     setSearchAdventure(searchAdventure);
 
     getAdventurers();
@@ -174,6 +179,27 @@ const DesktopFilterAdventure = ({ mobile, getAdventurers }) => {
                 ref={timeRef}
                 value={time}
                 onChange={({ target }) => setTime(target.value)}
+              />
+            </Form.Group>
+          </div>
+        </div>
+        <div
+          className={`${styles.divBorder} d-flex flex-column justify-content-center align-items-start w-100`}
+        >
+          <div className="text-start w-100 mb-3">
+            <h4>Data</h4>
+          </div>
+          <div className="d-flex justify-content-between align-items-center">
+            <Form.Group controlId="hourStart" className="me-2">
+              <Form.Label className="visually-hidden">Horario</Form.Label>
+              <Form.Control
+                type="date"
+                placeholder="Max."
+                style={{ width: '150px' }}
+                ref={dayRef}
+                value={day}
+                min={new Date().toISOString().split('T')[0]}
+                onChange={({ target }) => setDay(target.value)}
               />
             </Form.Group>
           </div>

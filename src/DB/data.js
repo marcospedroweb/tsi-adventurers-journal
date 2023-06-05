@@ -9,7 +9,7 @@ export const showOtherUserRoute = '/users/';
 export const logoutRoute = '/logout';
 
 //ACTIVITIES
-export const activitiesSearchRoute = '/atividades/search';
+export const activitiesSearchRoute = '/atividades';
 
 //CITY
 export const getCitiesRoute = '/cidade';

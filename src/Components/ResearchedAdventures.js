@@ -6,9 +6,17 @@ import MobileFilterAdventure from './MobileFilterAdventure';
 import { GlobalContext } from '../Context/GlobalStorage';
 import ButtonCustom from './ButtonCustom';
 import { useNavigate } from 'react-router-dom';
-import { Pagination } from 'react-bootstrap';
+import { Dropdown, DropdownButton, Pagination } from 'react-bootstrap';
+import {
+  BsSortAlphaDown,
+  BsSortAlphaDownAlt,
+  BsSortDown,
+  BsSortDownAlt,
+} from 'react-icons/bs';
 
 const ResearchedAdventures = ({ adventurers, getAdventurers }) => {
+  const { searchAdventure, setSearchAdventure } =
+    React.useContext(GlobalContext);
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = React.useState(1);
   const itemsPerPage = 6;
@@ -24,7 +32,21 @@ const ResearchedAdventures = ({ adventurers, getAdventurers }) => {
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
+
+  function handleOrder(type, value) {
+    searchAdventure.orderType = type;
+    searchAdventure[type] = value;
+    if (type !== 'orderPrice') searchAdventure.orderPrice = '';
+    if (type !== 'orderTitle') searchAdventure.orderTitle = '';
+    if (type !== 'orderAge') searchAdventure.orderAge = '';
+    setSearchAdventure(searchAdventure);
+    getAdventurers();
+  }
 
   return (
     <section className="row justify-content-between align-items-start">
@@ -36,28 +58,115 @@ const ResearchedAdventures = ({ adventurers, getAdventurers }) => {
       </div>
       <div className="col-12 col-lg-9 text-center">
         <div
-          className="d-flex justify-content-between align-items-center text-white mb-4 p-3 rounded"
+          className="d-flex justify-content-between align-items-center mb-4 p-3 rounded"
           style={{ backgroundColor: '#1C2331' }}
         >
-          <p className="mb-3 mb-lg-0">
-            Foi encontrado{' '}
-            <span className="fw-bold">{adventurers.length} resultados</span>
-          </p>
-          <p
-            className="text-center mb-0 fw-semibold"
-            style={{ color: '#00A3FF', cursor: 'pointer' }}
-            onClick={() => {
-              navigate('/aventurar-se');
-            }}
+          <div className="d-flex justify-content-between align-items-center text-white">
+            <p className="mb-3 mb-lg-0 me-3">
+              Foi encontrado{' '}
+              <span className="fw-bold">{adventurers.length} resultados.</span>
+            </p>
+            <p
+              className="text-center mb-0 fw-semibold"
+              style={{ color: '#00A3FF', cursor: 'pointer' }}
+              onClick={() => {
+                navigate('/aventurar-se');
+              }}
+            >
+              Realizar nova busca
+            </p>
+          </div>
+          <DropdownButton
+            id="dropdown-orderby"
+            title={
+              <span style={{ fontSize: '.9rem' }}>
+                Ordenar por:{' '}
+                <span className="fw-bold">
+                  {searchAdventure.orderPrice
+                    ? 'Preço  '
+                    : searchAdventure.orderTitle
+                    ? 'Titulo  '
+                    : searchAdventure.orderAge
+                    ? 'Idade min. '
+                    : 'Nenhum'}
+                  {searchAdventure.orderType === 'orderPrice' ? (
+                    searchAdventure.orderPrice === 'asc' ? (
+                      <BsSortDownAlt style={{ fontSize: '1.5rem' }} />
+                    ) : (
+                      <BsSortDown style={{ fontSize: '1.5rem' }} />
+                    )
+                  ) : searchAdventure.orderType === 'orderTitle' ? (
+                    searchAdventure.orderTitle === 'asc' ? (
+                      <BsSortAlphaDown style={{ fontSize: '1.5rem' }} />
+                    ) : (
+                      <BsSortAlphaDownAlt style={{ fontSize: '1.5rem' }} />
+                    )
+                  ) : searchAdventure.orderType === 'orderAge' ? (
+                    searchAdventure.orderAge === 'asc' ? (
+                      <BsSortDownAlt style={{ fontSize: '1.5rem' }} />
+                    ) : (
+                      <BsSortDown style={{ fontSize: '1.5rem' }} />
+                    )
+                  ) : (
+                    ''
+                  )}
+                </span>
+              </span>
+            }
           >
-            Realizar nova busca
-          </p>
+            <Dropdown.Item
+              onClick={() => {
+                handleOrder('orderPrice', 'asc');
+              }}
+            >
+              Preço: Do menor para maior
+            </Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                handleOrder('orderPrice', 'desc');
+              }}
+            >
+              Preço: Do maior para menor
+            </Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                handleOrder('orderTitle', 'asc');
+              }}
+            >
+              Titulo: A a Z
+            </Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                handleOrder('orderTitle', 'desc');
+              }}
+            >
+              Titulo: Z a A
+            </Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                handleOrder('orderAge', 'asc');
+              }}
+            >
+              Idade min.: Do menor para maior
+            </Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                handleOrder('orderAge', 'desc');
+              }}
+            >
+              Idade min.: Do maior para menor
+            </Dropdown.Item>
+          </DropdownButton>
         </div>
 
         {adventurers.length ? (
           <>
             {adventurers.slice(firstIndex, lastIndex).map((adventure) => {
-              return <AdventureCard data={adventure} key={adventure.id} />;
+              return (
+                <div key={adventure.id}>
+                  <AdventureCard data={adventure} />
+                </div>
+              );
             })}
             {totalPages > 1 ? (
               <div className="d-flex justify-content-center align-items-center">
@@ -66,6 +175,10 @@ const ResearchedAdventures = ({ adventurers, getAdventurers }) => {
                     disabled={currentPage === 1}
                     onClick={() => {
                       setCurrentPage(1);
+                      window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth',
+                      });
                     }}
                   />
 
@@ -97,6 +210,10 @@ const ResearchedAdventures = ({ adventurers, getAdventurers }) => {
                     disabled={currentPage === totalPages}
                     onClick={() => {
                       setCurrentPage(totalPages);
+                      window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth',
+                      });
                     }}
                   />
                 </Pagination>
