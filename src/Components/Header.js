@@ -41,6 +41,11 @@ const Header = () => {
 
   return (
     <header className={styles.divHeader}>
+      {/* <Alert  variant={'success'}>
+          This is a {variant} alert with{' '}
+          <Alert.Link href="#">an example link</Alert.Link>. Give it a click if
+          you like.
+        </Alert> */}
       <div className="container-xl">
         <div
           className={`${styles.divInside} d-flex flex-column flex-sm-row justify-content-between align-items-center`}

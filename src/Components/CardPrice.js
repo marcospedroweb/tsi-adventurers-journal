@@ -24,7 +24,7 @@ const CardPrice = ({
             {texts.map(({ text, price }) => {
               return (
                 <div
-                  key={text + price}
+                  key={text}
                   className={`${styles.divReceipt} d-flex  justify-content-between align-items-center w-100 mb-2`}
                 >
                   <span>{text}</span>
@@ -82,7 +82,7 @@ const CardPrice = ({
           {texts.map(({ text, price }) => {
             return (
               <div
-                key={text + price}
+                key={text}
                 className={`${styles.divReceipt} d-flex  justify-content-between align-items-center w-100 mb-2`}
               >
                 <span>{text}</span>

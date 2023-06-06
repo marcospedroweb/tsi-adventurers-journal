@@ -70,7 +70,6 @@ const LoginSection = () => {
     });
 
     if (session.cartId) {
-      console.log(session.cartId);
       const { json } = await request(
         `${apiRoute}${addInCartRoute}`,
         optionsFetch({
@@ -84,7 +83,8 @@ const LoginSection = () => {
       );
       if (json.carrinho) navigate('/carrinho');
       else navigate('/aventurar-se');
-      return;
+    } else {
+      navigate('/aventurar-se');
     }
   }
 

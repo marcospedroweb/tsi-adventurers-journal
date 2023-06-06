@@ -37,7 +37,6 @@ const SearchAdventure = () => {
     if (searchAdventure.orderTitle)
       query = `${query}&ordenar_titulo=${searchAdventure.orderTitle}`;
 
-    console.log(query);
     const { json } = await request(
       `${apiRoute}${activitiesSearchRoute}${query}`,
       optionsFetch({ method: 'GET' }),

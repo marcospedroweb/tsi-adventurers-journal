@@ -6,10 +6,16 @@ import ButtonCustom from './ButtonCustom';
 import useFetch from '../Hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../Context/GlobalStorage';
-import { apiRoute, optionsFetch, registerRoute } from '../DB/data';
+import {
+  addInCartRoute,
+  apiRoute,
+  optionsFetch,
+  registerRoute,
+} from '../DB/data';
 
 const RegisterSection = () => {
-  const { session, setSession } = React.useContext(GlobalContext);
+  const { session, setSession, searchAdventure } =
+    React.useContext(GlobalContext);
   const navigate = useNavigate();
   const [isGuia, setIsGuia] = React.useState(false);
   const name = GetSimpleInputObj('name');
@@ -90,7 +96,23 @@ const RegisterSection = () => {
       user: user,
     });
 
-    navigate('/');
+    if (session.cartId) {
+      const { json } = await request(
+        `${apiRoute}${addInCartRoute}`,
+        optionsFetch({
+          method: 'POST',
+          token: user.token,
+          body: {
+            idAtividade: session.cartId,
+            qtdPessoa: searchAdventure.passengers,
+          },
+        }),
+      );
+      if (json.carrinho) navigate('/carrinho');
+      else navigate('/aventurar-se');
+    } else {
+      navigate('/aventurar-se');
+    }
   }
 
   React.useEffect(() => {

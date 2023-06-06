@@ -99,15 +99,16 @@ a {
 }
 
 /* Tooltips */
-.tooltip {
+.tooltipCustom {
   position: relative;
   display: inline-block;
   border-bottom: 1px dotted black;
+  cursor: help;
   /* If you want dots under the hoverable text */
 }
 
 /* Tooltip text */
-.tooltip .tooltiptext {
+.tooltipCustom .tooltiptext {
   visibility: hidden;
   width: 120px;
   background-color: #555;
@@ -129,7 +130,7 @@ a {
 }
 
 /* Tooltip arrow */
-.tooltip .tooltiptext::after {
+.tooltipCustom .tooltiptext::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -141,7 +142,7 @@ a {
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
+.tooltipCustom:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
 }

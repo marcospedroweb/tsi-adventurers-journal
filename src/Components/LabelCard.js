@@ -4,10 +4,11 @@ import styles from './LabelCard.module.css';
 const LabelCard = ({
   text,
   stylesCss = {},
-
   bsClass,
   title,
   aval,
+  tip,
+  tipText,
 }) => {
   if (title)
     return (
@@ -45,10 +46,13 @@ const LabelCard = ({
   } else
     return (
       <div
-        className={`${styles.label} ${styles.normal} ${bsClass}`}
+        className={`${styles.label} ${styles.normal} ${bsClass} ${
+          tip ? 'tooltipCustom' : ''
+        }`}
         style={stylesCss}
       >
         <span className="mb-0">{text}</span>
+        {tip ? <span className="tooltiptext">{tipText}</span> : ''}
       </div>
     );
 };

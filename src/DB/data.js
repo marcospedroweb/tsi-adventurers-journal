@@ -20,6 +20,9 @@ export const getModalitysRoute = '/modalidades';
 //CART
 export const addInCartRoute = '/carrinho';
 export const getCartRoute = '/carrinho';
+export const updateCartRoute = '/carrinho/';
+export const deleteItemCartRoute = '/carrinho/';
+export const deleteAllCartRoute = '/carrinho/all';
 
 export const optionsFetch = ({ method, body = '', token = '', file }) => {
   if (method === 'POST')
@@ -45,6 +48,17 @@ export const optionsFetch = ({ method, body = '', token = '', file }) => {
           }
         : { 'Content-Type': 'application/json' },
       body: body,
+    };
+  else if (method === 'PUT' && body)
+    return {
+      method: method,
+      headers: token
+        ? {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          }
+        : { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
     };
   else
     return {

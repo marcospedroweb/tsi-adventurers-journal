@@ -8,16 +8,28 @@ import ButtonCustom from './ButtonCustom';
 import Loading from './Loading';
 import { useNavigate } from 'react-router-dom';
 import useFetch from '../Hooks/useFetch';
-import { apiRoute, getCartRoute, optionsFetch } from '../DB/data';
+import {
+  apiRoute,
+  deleteAllCartRoute,
+  deleteItemCartRoute,
+  getCartRoute,
+  optionsFetch,
+} from '../DB/data';
 import { GlobalContext } from '../Context/GlobalStorage';
+import FormatPrice from '../Helpers/FormatPrice';
 
 const UserCart = () => {
-  const { session } = React.useContext(GlobalContext);
+  const { session, itensCart, setItensCart } = React.useContext(GlobalContext);
   const { request, loading } = useFetch();
+  const [selectAll, setSelectAll] = React.useState(false);
   const [cart, setCart] = React.useState('');
   const [show, setShow] = React.useState(false);
+  const [total, setTotal] = React.useState(0);
+  const [discount, setDiscount] = React.useState([]);
+  const [summary, setSummary] = React.useState(0);
   const [modalInfo, setModalInfo] = React.useState('');
   const [showMore, setShowMore] = React.useState(false);
+  const [cartError, setCartError] = React.useState('');
   const navigate = useNavigate();
 
   async function getCart() {
@@ -26,7 +38,7 @@ const UserCart = () => {
       optionsFetch({ method: 'GET', token: session.user.token }),
     );
     setCart(json.carrinho);
-    console.log(json.carrinho);
+    // console.log(json.carrinho);
   }
 
   const handleClose = () => {
@@ -42,6 +54,58 @@ const UserCart = () => {
     getCart();
   }, []);
 
+  React.useEffect(() => {
+    let totalPrice = 0;
+    if (cart.length)
+      cart.forEach(({ qtdPessoa, idAtividade }) => {
+        totalPrice += Number.parseFloat(idAtividade.preco) * qtdPessoa;
+      });
+
+    setTotal(FormatPrice(totalPrice));
+  }, [cart]);
+
+  React.useEffect(() => {
+    let totalPrice = 0;
+
+    if (itensCart.length && cart.length)
+      itensCart.forEach((idItem) => {
+        const item = cart.filter(({ id }) => idItem === id)[0];
+        totalPrice +=
+          Number.parseFloat(item.idAtividade.preco) * item.qtdPessoa;
+      });
+
+    setSummary(FormatPrice(totalPrice));
+  }, [cart, itensCart, total]);
+
+  async function removeItemCart(id) {
+    const removeItem = await request(
+      `${apiRoute}${deleteItemCartRoute}${id}`,
+      optionsFetch({ method: 'DELETE', token: session.user.token }),
+    );
+
+    if (removeItem) getCart();
+  }
+
+  async function removeAllCart() {
+    const removeItem = await request(
+      `${apiRoute}${deleteAllCartRoute}`,
+      optionsFetch({ method: 'DELETE', token: session.user.token }),
+    );
+
+    if (removeItem) getCart();
+  }
+
+  function selectAllItems(select) {
+    if (cart.length) {
+      cart.forEach(({ id }) => {
+        if (select) {
+          if (!itensCart.includes(id)) setItensCart([...itensCart, id]);
+        } else setItensCart([]);
+      });
+      setSelectAll(!selectAll);
+    }
+  }
+
   if (loading) return <Loading />;
   else
     return (
@@ -51,7 +115,12 @@ const UserCart = () => {
             <div className="bg-white p-3 d-flex flex-column justify-content-start align-items-start text-start rounded">
               <h2>Carrinho de compras</h2>
               <div className="d-flex justify-content-between align-items-center w-100 mt-3">
-                <CheckboxCustom text={'Selecionar todos os itens'} />
+                <CheckboxCustom
+                  text={'Selecionar todos os itens'}
+                  onClick={() => {
+                    selectAllItems(!selectAll);
+                  }}
+                />
                 <div>
                   <span
                     onClick={() => {
@@ -60,10 +129,7 @@ const UserCart = () => {
                         'Deseja remover todos os itens do carrinho?',
                         'Remover itens',
                         () => {
-                          window.localStorage.setItem(
-                            'cart',
-                            JSON.stringify([]),
-                          );
+                          removeAllCart();
                         },
                       );
                     }}
@@ -109,43 +175,47 @@ const UserCart = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-white p-3 d-flex flex-column justify-content-start align-items-start text-start rounded mt-4">
+            <div className="d-flex flex-column justify-content-start align-items-start text-start mt-4 w-100">
               {cart &&
                 cart.map((element) => {
                   return (
-                    <div className="d-flex flex-column justify-content-center align-items-center w-100 border-bottom">
-                      <div className="d-flex justify-content-between align-items-center py-3 w-100 border-bottom mb-2">
-                        <CheckboxCustom
-                          text={'Aventura nas alturas'}
-                          bsClass={'fw-bold'}
-                        />
-                        <div style={{ cursor: 'pointer' }}>
-                          <span
-                            className="fw-bold"
-                            onClick={() => {
-                              handleShow(
-                                'Remove item do carrinho',
-                                'Deseja remover esse item do carrinho?',
-                                'Remover item',
-                                () => {
-                                  const newArray = JSON.parse(
-                                    window.localStorage.getItem('cart'),
-                                  ).filter((id) => id !== 3);
-                                  window.localStorage.setItem(
-                                    'cart',
-                                    JSON.stringify(newArray),
-                                  );
-                                },
-                              );
-                            }}
-                          >
-                            <BsFillTrash3Fill
-                              style={{ fontSize: '1.25rem', color: '#B72424' }}
-                            />
-                          </span>
+                    <div
+                      className="bg-white p-3 w-100 mt-4 rounded"
+                      key={element.id}
+                    >
+                      <div className="d-flex flex-column justify-content-center align-items-center w-100 border-bottom">
+                        <div className="d-flex justify-content-between align-items-center py-3 w-100 border-bottom mb-2">
+                          <CheckboxCustom
+                            text={'Aventura nas alturas'}
+                            bsClass={'fw-bold'}
+                            id={element.id}
+                            selectAll={selectAll}
+                          />
+                          <div style={{ cursor: 'pointer' }}>
+                            <span
+                              className="fw-bold"
+                              onClick={() => {
+                                handleShow(
+                                  'Remove item do carrinho',
+                                  'Deseja remover esse item do carrinho?',
+                                  'Remover item',
+                                  () => {
+                                    removeItemCart(element.id);
+                                  },
+                                );
+                              }}
+                            >
+                              <BsFillTrash3Fill
+                                style={{
+                                  fontSize: '1.25rem',
+                                  color: '#B72424',
+                                }}
+                              />
+                            </span>
+                          </div>
                         </div>
+                        <CartAdventure data={element} getCart={getCart} />
                       </div>
-                      <CartAdventure data={element} />
                     </div>
                   );
                 })}
@@ -162,58 +232,62 @@ const UserCart = () => {
                 className={`${styles.divReceiptSection} d-flex justify-content-between align-items-center w-100`}
               >
                 <span>Subtotal</span>
-                <span>R$ 2.000,99</span>
+                <span>{total && summary ? summary : 'Calculando...'}</span>
               </div>
-              <div
+              {/* <div
                 className={`${styles.divReceiptSection} d-flex justify-content-between align-items-center w-100`}
               >
                 <span>Taxas</span>
                 <span>R$ 250</span>
-              </div>
-              <div
-                className={`${styles.divReceiptSection} d-flex flex-column justify-content-center align-items-center w-100`}
-              >
-                <div className="d-flex justify-content-between align-items-center w-100 pb-2">
-                  <span
-                    className={styles.divDescount}
-                    onClick={() => {
-                      setShowMore(!showMore);
-                    }}
-                  >
-                    Descontos <BsChevronDown />
-                  </span>
-                  <span className={styles.discountSpan}>- R$ 250</span>
+              </div> */}
+              {discount && discount.length ? (
+                <div
+                  className={`${styles.divReceiptSection} d-flex flex-column justify-content-center align-items-center w-100`}
+                >
+                  <div className="d-flex justify-content-between align-items-center w-100 pb-2">
+                    <span
+                      className={styles.divDescount}
+                      onClick={() => {
+                        setShowMore(!showMore);
+                      }}
+                    >
+                      Descontos <BsChevronDown />
+                    </span>
+                    <span className={styles.discountSpan}>- R$ 250</span>
+                  </div>
+                  <Accordion className="w-100" activeKey={showMore ? '0' : ''}>
+                    <Accordion.Item eventKey="0">
+                      <Accordion.Header className="visually-hidden">
+                        Descontos
+                      </Accordion.Header>
+                      <Accordion.Body>
+                        <div className="d-flex flex-column justify-content-center align-items-center">
+                          <div
+                            className={`${styles.discountSpan} d-flex justify-content-between align-items-center w-100 pb-2`}
+                          >
+                            <span>Descontos</span>
+                            <span>- R$ 250</span>
+                          </div>
+                          <div
+                            className={`${styles.discountSpan} d-flex justify-content-between align-items-center w-100 pb-2`}
+                          >
+                            <span>Descontos</span>
+                            <span>- R$ 250</span>
+                          </div>
+                          <div
+                            className={`${styles.discountSpan} d-flex justify-content-between align-items-center w-100 pb-2`}
+                          >
+                            <span>Descontos</span>
+                            <span>- R$ 250</span>
+                          </div>
+                        </div>
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  </Accordion>
                 </div>
-                <Accordion className="w-100" activeKey={showMore ? '0' : ''}>
-                  <Accordion.Item eventKey="0">
-                    <Accordion.Header className="visually-hidden">
-                      Descontos
-                    </Accordion.Header>
-                    <Accordion.Body>
-                      <div className="d-flex flex-column justify-content-center align-items-center">
-                        <div
-                          className={`${styles.discountSpan} d-flex justify-content-between align-items-center w-100 pb-2`}
-                        >
-                          <span>Descontos</span>
-                          <span>- R$ 250</span>
-                        </div>
-                        <div
-                          className={`${styles.discountSpan} d-flex justify-content-between align-items-center w-100 pb-2`}
-                        >
-                          <span>Descontos</span>
-                          <span>- R$ 250</span>
-                        </div>
-                        <div
-                          className={`${styles.discountSpan} d-flex justify-content-between align-items-center w-100 pb-2`}
-                        >
-                          <span>Descontos</span>
-                          <span>- R$ 250</span>
-                        </div>
-                      </div>
-                    </Accordion.Body>
-                  </Accordion.Item>
-                </Accordion>
-              </div>
+              ) : (
+                <div className={`${styles.divReceiptSection} w-100`}></div>
+              )}
               <div
                 className={`d-flex flex-column justify-content-center align-items-center w-100`}
               >
@@ -221,48 +295,92 @@ const UserCart = () => {
                   className={`d-flex justify-content-between align-items-center w-100 pb-2`}
                 >
                   <span className="fw-bold fs-5">Total:</span>
-                  <span className="fw-bold fs-5">R$ 250</span>
+                  <span className="fw-bold fs-5">
+                    {total && summary ? summary : 'Calculando...'}
+                  </span>
                 </div>
               </div>
-              <div
-                className={`d-flex flex-column justify-content-center align-items-center w-100`}
-              >
+
+              {summary !== 'R$ 0,00' ? (
                 <div
-                  className={`d-flex justify-content-end align-items-end w-100 pb-2`}
+                  className={`d-flex flex-column justify-content-center align-items-center w-100`}
                 >
-                  <span
-                    className="fw-semibold"
-                    style={{
-                      fontSize: '1rem',
-                      textDecoration: 'line-through',
-                      color: '#9B9B9B',
-                    }}
+                  <div
+                    className={`d-flex justify-content-end align-items-end w-100 pb-2`}
                   >
-                    R$ 2.000,99
-                  </span>
-                  <span
-                    className={`${styles.discountSpan} ms-2 fw-bold`}
-                    style={{ fontSize: '1.5rem' }}
-                  >
-                    R$ 1.850,99
-                  </span>
+                    <span
+                      className="fw-semibold"
+                      style={{
+                        fontSize: '1rem',
+                        textDecoration: 'line-through',
+                        color: '#9B9B9B',
+                      }}
+                    >
+                      {summary ? summary : 'Calculando...'}
+                    </span>
+                    <span
+                      className={`${styles.discountSpan} ms-2 fw-bold`}
+                      style={{ fontSize: '1.5rem' }}
+                    >
+                      {summary
+                        ? FormatPrice(
+                            Number.parseFloat(
+                              summary
+                                .replace('R$ ', '')
+                                .replace(',', '.')
+                                .replace('.', ''),
+                            ) -
+                              Number.parseFloat(
+                                summary
+                                  .replace('R$ ', '')
+                                  .replace(',', '.')
+                                  .replace('.', ''),
+                              ) *
+                                0.1,
+                          )
+                        : 'Calculando...'}
+                    </span>
+                  </div>
+                  <div className={`${styles.discountSpan} text-end mb-4`}>
+                    <span>
+                      <span className="fw-bold">10% de desconto</span> ao pagar
+                      no PIX ou boleto
+                    </span>
+                  </div>
                 </div>
-                <div className={`${styles.discountSpan} text-end mb-4`}>
-                  <span>
-                    <span className="fw-bold">10% de desconto</span> ao pagar no
-                    PIX ou boleto
-                  </span>
-                </div>
-              </div>
-              <div>
-                <ButtonCustom
-                  onClick={() => {
-                    navigate('/processo-de-compra');
-                  }}
-                >
-                  Fechar pedido
-                </ButtonCustom>
-              </div>
+              ) : (
+                ''
+              )}
+
+              {summary !== 'R$ 0,00' ? (
+                <>
+                  <div>
+                    <ButtonCustom
+                      onClick={() => {
+                        if (!itensCart) {
+                          setCartError('Selecione um item para continuar');
+                          setTimeout(() => {
+                            setCartError('');
+                          }, 3000);
+                        } else {
+                          navigate('/processo-de-compra');
+                        }
+                      }}
+                    >
+                      Fechar pedido
+                    </ButtonCustom>
+                  </div>
+                  {cartError ? (
+                    <span className="error-mensage d-block text-center mt-2">
+                      {cartError}
+                    </span>
+                  ) : (
+                    ''
+                  )}
+                </>
+              ) : (
+                ''
+              )}
             </div>
             <div
               className="position-fixed position-absolute start-50 translate-middle-x d-flex d-lg-none flex-column justify-content-start align-items-start text-start rounded text-center"
@@ -277,7 +395,9 @@ const UserCart = () => {
                     className={`d-flex justify-content-between align-items-center w-100 pb-2 border-bottom border-top`}
                   >
                     <span className="fw-bold fs-5">Total:</span>
-                    <span className="fw-bold fs-5">R$ 250</span>
+                    <span className="fw-bold fs-5">
+                      {total ? total : 'Calculando...'}
+                    </span>
                   </div>
                 </div>
                 <div
@@ -294,13 +414,29 @@ const UserCart = () => {
                         color: '#9B9B9B',
                       }}
                     >
-                      R$ 2.000,99
+                      {total ? total : 'Calculando...'}
                     </span>
                     <span
                       className={`${styles.discountSpan} ms-2 fw-bold`}
                       style={{ fontSize: '1.15rem' }}
                     >
-                      R$ 1.850,99
+                      {total
+                        ? FormatPrice(
+                            Number.parseFloat(
+                              total
+                                .replace('R$ ', '')
+                                .replace(',', '.')
+                                .replace('.', ''),
+                            ) -
+                              Number.parseFloat(
+                                total
+                                  .replace('R$ ', '')
+                                  .replace(',', '.')
+                                  .replace('.', ''),
+                              ) *
+                                0.1,
+                          )
+                        : 'Calculando...'}
                     </span>
                   </div>
                   <div className={`${styles.discountSpan} text-end mb-4`}>
@@ -310,6 +446,7 @@ const UserCart = () => {
                     </span>
                   </div>
                 </div>
+
                 <ButtonCustom
                   onClick={() => {
                     navigate('/processo-de-compra');

@@ -4,10 +4,14 @@ import styles from './ModalShowMore.module.css';
 import { BsChevronRight } from 'react-icons/bs';
 import LabelCard from './LabelCard';
 import CardPrice from './CardPrice';
+import FormatPrice from '../Helpers/FormatPrice';
+import { Link } from 'react-router-dom';
+import { noUserImageBase64 } from '../Helpers/NoUserBase64';
 
 const ModalShowMore = ({ data }) => {
   const [show, setShow] = React.useState(false);
   const [section, setSection] = React.useState('informações');
+  const date = new Date(data.idAtividade.Data_e_Hora);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -65,79 +69,126 @@ const ModalShowMore = ({ data }) => {
             <div
               className={`${styles.section} ${
                 section === 'informações' ? 'd-flex' : 'd-none'
-              } flex-column justify-content-start align-items-start text-center text-sm-start`}
+              } flex-column justify-content-start align-items-start text-center text-sm-start w-100 px-4`}
             >
               <div className="mb-4">
                 <h3>Sobre a aventura</h3>
-                <p className="mb-0">
-                  Mussum Ipsum, cacilds vidis litro abertis. Quem num gosta di
-                  mim que vai caçá sua turmis!Suco de cevadiss deixa as pessoas
-                  mais interessantis.Cevadis im ampola pa arma uma
-                  pindureta.Praesent malesuada urna nisi, quis volutpat erat
-                  hendrerit non. Nam vulputate dapibus.
-                </p>
+                <p className="mb-0">{data.idAtividade['Descrição']}</p>
               </div>
               <div className="mb-4">
                 <h3>Passageiros</h3>
-                <LabelCard text={'3 pessoas'} />
+                <LabelCard
+                  text={`${
+                    data.qtdPessoa > 1
+                      ? `${data.qtdPessoa} Pessoas`
+                      : `${data.qtdPessoa} Pessoa`
+                  }`}
+                />
               </div>
               <div className="mb-4 mx-auto mx-sm-0">
                 <h3>Periodo</h3>
                 <div className="d-flex justify-content-center align-items-center">
                   <LabelCard
                     title="Data de ida"
-                    text={'20/20/2020 - 09:30'}
+                    text={`${date.toLocaleDateString('pt-BR', {
+                      day: '2-digit',
+                    })}/${date.toLocaleDateString('pt-BR', {
+                      month: '2-digit',
+                    })}/${date.getFullYear()} - ${date.getHours()}:${date
+                      .getMinutes()
+                      .toString()
+                      .padStart(2, '0')}`}
                     bsClass={'me-3 me-sm-0'}
-                  />
-                  <div
-                    className={`${styles.separator} d-none d-sm-block`}
-                  ></div>
-                  <LabelCard
-                    title="Data de volta"
-                    text={'21/20/2020 - 14:30'}
                   />
                 </div>
               </div>
               <div className="mb-4">
                 <h3>Modalidades da aventura</h3>
                 <div className="d-flex justify-content-center justify-content-sm-start align-items-center flex-wrap">
-                  <LabelCard
-                    text="Paraquedismo"
-                    bsClass={'mt-1 me-1 me-sm-0'}
-                  />
-                  <LabelCard text="Bungue Jump" bsClass={'mt-1 me-1 me-sm-0'} />
-                  <LabelCard text="Surf" bsClass={'mt-1 me-1 me-sm-0'} />
-                  <LabelCard text="Rafting" bsClass={'mt-1 me-1 me-sm-0'} />
-                  <LabelCard text="SnowBoard" bsClass={'mt-1 me-1 me-sm-0'} />
-                  <LabelCard text="Skating" bsClass={'mt-1 me-1 me-sm-0'} />
+                  {data.idAtividade.modalidade.map(
+                    ({ id, nome, descricao }) => {
+                      return (
+                        <LabelCard
+                          key={id + nome}
+                          text={nome}
+                          tip={true}
+                          tipText={descricao}
+                          bsClass={'mt-1 me-1 me-sm-0'}
+                        />
+                      );
+                    },
+                  )}
                 </div>
               </div>
               <div>
                 <h3>Preço</h3>
                 <div className="d-flex justify-content-center justify-content-lg-start align-items-center flex-wrap">
                   <CardPrice
-                    price={'350'}
+                    price={FormatPrice(data.idAtividade.preco)}
                     per={'por pessoa'}
                     texts={[
-                      { text: '3 adultos:', price: '1050' },
-                      { text: 'Taxa de serviço:', price: '275' },
-                      { text: 'Taxa de equipamentos:', price: '120' },
+                      {
+                        text:
+                          data.qtdPessoa > 1
+                            ? `${data.qtdPessoa} pessoas`
+                            : `${data.qtdPessoa} pessoa`,
+                        price:
+                          data.qtdPessoa > 1
+                            ? FormatPrice(
+                                Number.parseFloat(data.idAtividade.preco) *
+                                  data.qtdPessoa,
+                              )
+                            : FormatPrice(data.idAtividade.preco),
+                      },
                     ]}
-                    total={'1445'}
-                    totalDescount={'1300,5'}
+                    total={
+                      data.qtdPessoa > 1
+                        ? FormatPrice(
+                            Number.parseFloat(data.idAtividade.preco) *
+                              data.qtdPessoa,
+                          )
+                        : FormatPrice(data.idAtividade.preco)
+                    }
+                    totalDescount={FormatPrice(
+                      (data.qtdPessoa > 1
+                        ? Number.parseFloat(data.idAtividade.preco) *
+                          data.qtdPessoa
+                        : data.idAtividade.preco) -
+                        (data.qtdPessoa > 1
+                          ? Number.parseFloat(data.idAtividade.preco) *
+                            data.qtdPessoa
+                          : data.idAtividade.preco) *
+                          0.1,
+                    )}
                     method={'No boleto ou Pix'}
                     bsClass={'mb-3 mb-sm-0 me-0 me-sm-3'}
                   />
                   <CardPrice
-                    price={'350'}
+                    price={FormatPrice(data.idAtividade.preco)}
                     per={'por pessoa'}
                     texts={[
-                      { text: '3 adultos:', price: '1050' },
-                      { text: 'Taxa de serviço:', price: '275' },
-                      { text: 'Taxa de equipamentos:', price: '120' },
+                      {
+                        text:
+                          data.qtdPessoa > 1
+                            ? `${data.qtdPessoa} pessoas`
+                            : `${data.qtdPessoa} pessoa`,
+                        price:
+                          data.qtdPessoa > 1
+                            ? FormatPrice(
+                                Number.parseFloat(data.idAtividade.preco) *
+                                  data.qtdPessoa,
+                              )
+                            : FormatPrice(data.idAtividade.preco),
+                      },
                     ]}
-                    total={'1445'}
-                    totalDescount={'1445'}
+                    totalDescount={
+                      data.qtdPessoa > 1
+                        ? FormatPrice(
+                            Number.parseFloat(data.idAtividade.preco) *
+                              data.qtdPessoa,
+                          )
+                        : FormatPrice(data.idAtividade.preco)
+                    }
                     method={'No cartão de credito'}
                   />
                 </div>
@@ -146,29 +197,51 @@ const ModalShowMore = ({ data }) => {
             <div
               className={`${styles.section} ${
                 section === 'guia turistico' ? 'd-flex' : 'd-none'
-              } flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center align-items-lg-start text-center text-lg-start`}
+              } flex-column flex-lg-row justify-content-center justify-content-lg-start align-items-center align-items-lg-start text-center text-lg-start w-100 px-4`}
             >
               <div className="mb-4 text-center me-lg-5">
-                <div
-                  className={styles.divGuideImg}
-                  style={{ backgroundImage: `url(/imgs/${'aboutimg2.png'})` }}
-                ></div>
-                <h3>Guia turístico</h3>
-                <p>José ramos</p>
-                <div></div>
+                {data.idAtividade.guia.foto && (
+                  <div
+                    className={styles.divGuideImg}
+                    style={{
+                      backgroundImage: `url(/imgs/${data.idAtividade.guia.foto})`,
+                    }}
+                  ></div>
+                )}
+                {!data.idAtividade.guia.foto && (
+                  <div
+                    className={styles.divGuideImg}
+                    style={{ backgroundImage: `url(${noUserImageBase64})` }}
+                  ></div>
+                )}
+
+                <h4>Guia turístico</h4>
+                <p className="mb-2">{data.idAtividade.guia.nome}</p>
+                <div>
+                  <Link
+                    to={`/perfil/${data.idAtividade.guia.id}`}
+                    className="text-center mb-0 fw-semibold"
+                    style={{
+                      color: '#00A3FF',
+                      cursor: 'pointer',
+                      textDecoration: 'none',
+                    }}
+                    target="_blanck"
+                  >
+                    Ver perfil
+                  </Link>
+                </div>
               </div>
               <div>
                 <div className="mb-4">
                   <h3>Sobre mim</h3>
                   <p className="mb-0">
-                    Mussum Ipsum, cacilds vidis litro abertis. Quem num gosta di
-                    mim que vai caçá sua turmis!Suco de cevadiss deixa as
-                    pessoas mais interessantis.Cevadis im ampola pa arma uma
-                    pindureta.Praesent malesuada urna nisi, quis volutpat erat
-                    hendrerit non. Nam vulputate dapibus.
+                    {data.idAtividade.guia.bio
+                      ? data.idAtividade.guia.bio
+                      : 'Texto não inserido'}
                   </p>
                 </div>
-                <div className="mb-4">
+                {/* <div className="mb-4">
                   <h3>Avaliações em minhas aventuras</h3>
                   <div className="d-flex justify-content-center justify-content-sm-between align-items-center flex-wrap">
                     <LabelCard aval={'9.8'} text={'Paraquedismo'} />
@@ -180,44 +253,38 @@ const ModalShowMore = ({ data }) => {
                     <LabelCard aval={'9.8'} text={'Paraquedismo'} />
                     <LabelCard aval={'9.8'} text={'Paraquedismo'} />
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
             <div
               className={`${styles.section} ${
                 section === 'localização' ? 'd-flex' : 'd-none'
-              } flex-column justify-content-center align-items-center w-100`}
+              } flex-column justify-content-center align-items-center w-100 px-4`}
             >
-              <div className="row justify-content-center justify-content-lg-between align-items-start text-center text-lg-start">
-                <div className="col-12 col-lg-8">
-                  <div className="w-100">
-                    <iframe
-                      title="map"
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3654.160208892237!2d-46.70170893501999!3d-23.670228034628934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5036539648d5%3A0x78501a72680ea23a!2sCentro%20Universit%C3%A1rio%20Senac%20-%20Santo%20Amaro!5e0!3m2!1spt-BR!2sbr!4v1685295644547!5m2!1spt-BR!2sbr"
-                      width="100%"
-                      height="225"
-                      style={{ border: 0 }}
-                      allowFullScreen=""
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      className="rounded"
-                    />
+              <div className="d-flex justify-content-start align-items-center w-100 text-start">
+                <div>
+                  <div className="mb-3">
+                    <h3>Localização</h3>
+                    <p>
+                      {`${data.idAtividade.cidade.nome}, ${data.idAtividade.cidade.uf} - ${data.idAtividade.cidade.pais}`}
+                    </p>
                   </div>
-                </div>
-                <div className="col-12 col-lg-4">
-                  <div>
-                    <div className="mb-3">
-                      <h3>Localização</h3>
-                      <p>Rua lá no rio, 250 - Rio de Janeiro - 00000-000</p>
-                    </div>
-                    <div className="mb-3">
-                      <h3>Estado</h3>
-                      <p>Rua lá no rio,</p>
-                    </div>
-                    <div className="mb-3">
-                      <h3>Pais</h3>
-                      <p>Rua lá no rio</p>
-                    </div>
+                  <div className="mb-3">
+                    <h3>Mapa</h3>
+                    <p>
+                      <a
+                        href={`https://www.google.com/maps/place/${`${data.idAtividade.cidade.nome}, ${data.idAtividade.cidade.uf} - ${data.idAtividade.cidade.pais}`}`}
+                        className="text-center mb-0 fw-semibold"
+                        style={{
+                          color: '#00A3FF',
+                          cursor: 'pointer',
+                          textDecoration: 'none',
+                        }}
+                        target="_blanck"
+                      >
+                        Ver no mapa
+                      </a>
+                    </p>
                   </div>
                 </div>
               </div>

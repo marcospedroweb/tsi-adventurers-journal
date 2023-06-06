@@ -17,9 +17,9 @@ const AdventureCard = ({ data, best, hotel }) => {
   const [section, setSection] = React.useState('informações');
   const date = new Date(data.Data_e_Hora);
 
-  React.useEffect(() => {
-    // console.log(data);
-  }, []);
+  // React.useEffect(() => {
+  //   console.log(data);
+  // }, []);
 
   if (hotel)
     return (
@@ -250,7 +250,7 @@ const AdventureCard = ({ data, best, hotel }) => {
                 {data.modalidade.slice(0, 3).map(({ id, nome, descricao }) => {
                   return (
                     <LabelCard
-                      key={id}
+                      key={id + nome + data.id + 1}
                       text={nome}
                       tip={true}
                       tipText={descricao}
@@ -270,7 +270,7 @@ const AdventureCard = ({ data, best, hotel }) => {
                 {data.modalidade.slice(0, 2).map(({ id, nome, descricao }) => {
                   return (
                     <LabelCard
-                      key={id}
+                      key={id + nome + data.id + 2}
                       text={nome}
                       tip={true}
                       tipText={descricao}
@@ -373,7 +373,7 @@ const AdventureCard = ({ data, best, hotel }) => {
                     {data.modalidade.map(({ id, nome, descricao }) => {
                       return (
                         <LabelCard
-                          key={id}
+                          key={id + nome + data.id + 3}
                           text={nome}
                           tip={true}
                           tipText={descricao}
@@ -467,15 +467,15 @@ const AdventureCard = ({ data, best, hotel }) => {
                 } flex-column flex-lg-row justify-content-center justify-content-lg-start align-items-center align-items-lg-start text-center text-lg-start w-100`}
               >
                 <div className="mb-4 text-center me-lg-5">
-                  {data.guia.profile_photo_path && (
+                  {data.guia.foto && (
                     <div
                       className={styles.divGuideImg}
                       style={{
-                        backgroundImage: `url(/imgs/${data.guia.profile_photo_path})`,
+                        backgroundImage: `url(/imgs/${data.guia.foto})`,
                       }}
                     ></div>
                   )}
-                  {!data.guia.profile_photo_path && (
+                  {!data.guia.foto && (
                     <div
                       className={styles.divGuideImg}
                       style={{ backgroundImage: `url(${noUserImageBase64})` }}
@@ -483,7 +483,7 @@ const AdventureCard = ({ data, best, hotel }) => {
                   )}
 
                   <h4>Guia turístico</h4>
-                  <p className="mb-2">{data.guia.name}</p>
+                  <p className="mb-2">{data.guia.nome}</p>
                   <div>
                     <Link
                       to={`/perfil/${data.guia.id}`}
@@ -503,7 +503,9 @@ const AdventureCard = ({ data, best, hotel }) => {
                   <div className="mb-4">
                     <h4>Sobre mim</h4>
                     <p className="mb-0">
-                      {data.guia.bio ? data.guia.bio : 'Texto não inserido'}
+                      {data.idAtividade.guia.bio
+                        ? data.idAtividade.guia.bio
+                        : 'Texto não inserido'}
                     </p>
                   </div>
                   {/* <div className="mb-4">
