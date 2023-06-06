@@ -21,8 +21,7 @@ import FormatPrice from '../Helpers/FormatPrice';
 const UserCart = () => {
   const { session, itensCart, setItensCart } = React.useContext(GlobalContext);
   const { request, loading } = useFetch();
-  const [selectAll, setSelectAll] = React.useState(false);
-  const [cart, setCart] = React.useState('');
+  const [cart, setCart] = React.useState([]);
   const [show, setShow] = React.useState(false);
   const [total, setTotal] = React.useState(0);
   const [discount, setDiscount] = React.useState([]);
@@ -30,6 +29,11 @@ const UserCart = () => {
   const [modalInfo, setModalInfo] = React.useState('');
   const [showMore, setShowMore] = React.useState(false);
   const [cartError, setCartError] = React.useState('');
+
+  // Checkboxcustom
+  // const [selectedItens, setSelectedItens] = React.useState([]);
+  const [itensId, setItensId] = React.useState([]);
+  const [selectAll, setSelectAll] = React.useState(false);
   const navigate = useNavigate();
 
   async function getCart() {
@@ -67,15 +71,29 @@ const UserCart = () => {
   React.useEffect(() => {
     let totalPrice = 0;
 
-    if (itensCart.length && cart.length)
-      itensCart.forEach((idItem) => {
-        const item = cart.filter(({ id }) => idItem === id)[0];
+    if (selectAll && itensId.length === cart.length) {
+      cart.forEach((item) => {
         totalPrice +=
           Number.parseFloat(item.idAtividade.preco) * item.qtdPessoa;
       });
+    } else if (!selectAll && itensId.length) {
+      cart.forEach((item) => {
+        if (itensId.includes(item.id))
+          totalPrice +=
+            Number.parseFloat(item.idAtividade.preco) * item.qtdPessoa;
+      });
+    }
+
+    if (itensId.length === cart.length) setSelectAll(true);
+    else if (itensId.length !== cart.length) setSelectAll(false);
 
     setSummary(FormatPrice(totalPrice));
-  }, [cart, itensCart, total]);
+  }, [itensId]);
+
+  React.useEffect(() => {
+    if (itensId.length === cart.length) setSelectAll(true);
+    else if (itensId.length !== cart.length) setSelectAll(false);
+  }, [cart]);
 
   async function removeItemCart(id) {
     const removeItem = await request(
@@ -95,17 +113,6 @@ const UserCart = () => {
     if (removeItem) getCart();
   }
 
-  function selectAllItems(select) {
-    if (cart.length) {
-      cart.forEach(({ id }) => {
-        if (select) {
-          if (!itensCart.includes(id)) setItensCart([...itensCart, id]);
-        } else setItensCart([]);
-      });
-      setSelectAll(!selectAll);
-    }
-  }
-
   if (loading) return <Loading />;
   else
     return (
@@ -117,9 +124,12 @@ const UserCart = () => {
               <div className="d-flex justify-content-between align-items-center w-100 mt-3">
                 <CheckboxCustom
                   text={'Selecionar todos os itens'}
-                  onClick={() => {
-                    selectAllItems(!selectAll);
-                  }}
+                  cart={cart ? cart : []}
+                  allCheck={true}
+                  itensId={itensId}
+                  setItensId={setItensId}
+                  selectAll={selectAll}
+                  setSelectAll={setSelectAll}
                 />
                 <div>
                   <span
@@ -189,7 +199,10 @@ const UserCart = () => {
                             text={'Aventura nas alturas'}
                             bsClass={'fw-bold'}
                             id={element.id}
+                            itensId={itensId}
+                            setItensId={setItensId}
                             selectAll={selectAll}
+                            setSelectAll={setSelectAll}
                           />
                           <div style={{ cursor: 'pointer' }}>
                             <span
@@ -221,7 +234,7 @@ const UserCart = () => {
                 })}
             </div>
           </div>
-          <div className="col-12 col-lg-4">
+          <div className="col-12 col-lg-4 sticky-top" style={{ top: '64px' }}>
             <div
               className={`${styles.divReceipt} bg-white p-3 d-none d-lg-flex flex-column justify-content-center align-items-center text-start rounded`}
             >
@@ -234,12 +247,7 @@ const UserCart = () => {
                 <span>Subtotal</span>
                 <span>{total && summary ? summary : 'Calculando...'}</span>
               </div>
-              {/* <div
-                className={`${styles.divReceiptSection} d-flex justify-content-between align-items-center w-100`}
-              >
-                <span>Taxas</span>
-                <span>R$ 250</span>
-              </div> */}
+
               {discount && discount.length ? (
                 <div
                   className={`${styles.divReceiptSection} d-flex flex-column justify-content-center align-items-center w-100`}
@@ -324,17 +332,17 @@ const UserCart = () => {
                     >
                       {summary
                         ? FormatPrice(
-                            Number.parseFloat(
+                            parseFloat(
                               summary
                                 .replace('R$ ', '')
-                                .replace(',', '.')
-                                .replace('.', ''),
+                                .replace('.', '')
+                                .replace(',', '.'),
                             ) -
-                              Number.parseFloat(
+                              parseFloat(
                                 summary
                                   .replace('R$ ', '')
-                                  .replace(',', '.')
-                                  .replace('.', ''),
+                                  .replace('.', '')
+                                  .replace(',', '.'),
                               ) *
                                 0.1,
                           )

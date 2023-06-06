@@ -3,8 +3,10 @@ import styles from './ThanksComponent.module.css';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import ButtonCustom from './ButtonCustom';
 import { useNavigate } from 'react-router-dom';
+import { GlobalContext } from '../Context/GlobalStorage';
 
-const ThanksComponent = () => {
+const ThanksComponent = ({ data }) => {
+  const { completedOrder } = React.useContext(GlobalContext);
   const navigate = useNavigate();
   return (
     <section className={`${styles.section} container-xl`}>
@@ -15,10 +17,11 @@ const ThanksComponent = () => {
             <BsCheckCircleFill size={'4rem'} color="#87FAD1" />
           </div>
           <h3>Obrigado pela sua compra!</h3>
-          <p>O ID da sua compra é: ADVENTURE058856541</p>
+
+          <p>O ID da sua compra é: {completedOrder[0].codigo}</p>
           <ButtonCustom
             onClick={() => {
-              navigate('/');
+              navigate('/aventurar-se');
             }}
           >
             Continuar comprando

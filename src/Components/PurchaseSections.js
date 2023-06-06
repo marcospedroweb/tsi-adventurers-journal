@@ -10,12 +10,15 @@ import {
   BsUpc,
 } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
-import { apiRoute } from '../DB/data';
+import { apiRoute, completeOrderRoute, optionsFetch } from '../DB/data';
 import FormatPrice from '../Helpers/FormatPrice';
+import useFetch from '../Hooks/useFetch';
+import { GlobalContext } from '../Context/GlobalStorage';
 
 const PurchaseSections = ({ cart }) => {
   const navigate = useNavigate();
-
+  const { itensCart, session, setCompletedOrder } =
+    React.useContext(GlobalContext);
   const date = new Date();
   const formattedDate = `${('0' + date.getDate()).slice(-2)}/${(
     '0' +
@@ -30,7 +33,7 @@ const PurchaseSections = ({ cart }) => {
   const [formPayment, setFormPayment] = React.useState(false);
   const [formPaymentSelected, setFormPaymentSelected] = React.useState(false);
   const [total, setTotal] = React.useState(0);
-  const [discount, setDiscount] = React.useState('');
+  const [discount, setDiscount] = React.useState([]);
   const [selectedInstallment, setSelectedInstallment] = React.useState(null);
   const [errorCheck, setErrorCheck] = React.useState('');
   const [section, setSection] = React.useState('identificação');
@@ -44,6 +47,7 @@ const PurchaseSections = ({ cart }) => {
   const [show, setShow] = React.useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const completeOrder = useFetch();
 
   const checkPrivacy = React.useRef();
 
@@ -99,20 +103,32 @@ const PurchaseSections = ({ cart }) => {
       setErrorCheck('');
       setLoading(true);
       setTimeout(() => {
-        setSelectedInstallment('metodo - ' + formPayment);
         setFormPayment(false);
         setCreditCardNumber('');
-        if (nameRef.current) nameRef.current.value = '';
-        if (monthRef.current) monthRef.current.value = '';
-        if (yearRef.current) yearRef.current.value = '';
-        if (codeRef.current) codeRef.current.value = '';
-        if (selectRef.current) selectRef.current.selectedIndex = 0;
+        nameRef.current.value = '';
+        monthRef.current.value = '';
+        yearRef.current.value = '';
+        codeRef.current.value = '';
+        selectRef.current.selectedIndex = 0;
         setLoading(false);
         setSectionCompleted({
           identificacao: true,
           pagamento: true,
           resumo: false,
         });
+        if (formPaymentSelected === 'pix' || formPaymentSelected === 'boleto') {
+          setDiscount([
+            ...discount,
+            {
+              text: 'Pagamento á vista',
+              price: FormatPrice(
+                parseFloat(
+                  total.replace('R$ ', '').replace('.', '').replace(',', '.'),
+                ) * 0.1,
+              ),
+            },
+          ]);
+        }
         setSection('resumo');
       }, 1500);
     } else {
@@ -121,7 +137,56 @@ const PurchaseSections = ({ cart }) => {
   }
   async function handleSubmitOrder(event) {
     event.preventDefault();
-    navigate('/pedido-finalizado');
+    const FormaPag = formPaymentSelected;
+    let totalPrice = '';
+    if (formPaymentSelected === 'cartao' && selectedInstallment) {
+      totalPrice =
+        parseFloat(
+          selectedInstallment
+            .replace(' c/ Juros', '')
+            .replace(' s/ Juros', '')
+            .replace('R$ ', '')
+            .replace('.', '')
+            .replace(',', '.')
+            .split('x - ')[1],
+        ) *
+        parseInt(
+          selectedInstallment
+            .replace(' c/ Juros', '')
+            .replace(' s/ Juros', '')
+            .replace('R$ ', '')
+            .replace('.', '')
+            .replace(',', '.')
+            .split('x - ')[0],
+        );
+    } else {
+      totalPrice =
+        parseFloat(
+          total.replace('R$ ', '').replace('.', '').replace(',', '.'),
+        ) -
+        parseFloat(
+          total.replace('R$ ', '').replace('.', '').replace(',', '.'),
+        ) *
+          0.1;
+    }
+
+    const { json } = await completeOrder.request(
+      `${apiRoute}${completeOrderRoute}`,
+      optionsFetch({
+        method: 'POST',
+        token: session.user.token,
+        body: {
+          FormaPag,
+          totalPrice,
+          cart: itensCart.join(','),
+        },
+      }),
+    );
+
+    if (json) {
+      setCompletedOrder(json['itens do pedido']);
+      navigate('/pedido-finalizado');
+    }
   }
 
   React.useEffect(() => {
@@ -505,6 +570,7 @@ const PurchaseSections = ({ cart }) => {
                       event.target.value = nameCredit;
                     }}
                     name="cartao_nome"
+                    ref={nameRef}
                     required={formPayment === 'cartao'}
                   />
                 </Form.Group>
@@ -533,6 +599,7 @@ const PurchaseSections = ({ cart }) => {
                         }
                       }}
                       name="cartao_mes"
+                      ref={monthRef}
                       required={formPayment === 'cartao'}
                     />
                   </Form.Group>
@@ -558,6 +625,7 @@ const PurchaseSections = ({ cart }) => {
                           target.value = new Date().getFullYear();
                         }
                       }}
+                      ref={yearRef}
                       required={formPayment === 'cartao'}
                     />
                   </Form.Group>
@@ -582,6 +650,7 @@ const PurchaseSections = ({ cart }) => {
                     minLength={11}
                     maxLength={19}
                     name="cartao_codigo"
+                    ref={codeRef}
                     required={formPayment === 'cartao'}
                   />
                 </Form.Group>
@@ -642,7 +711,9 @@ const PurchaseSections = ({ cart }) => {
                 </h4>
                 <p className="fs-5 mb-4">
                   Valor do pedido:{' '}
-                  <p className="fw-bold d-inline">
+                  <span
+                    className={`${styles.discountSpanPayment} fw-bold d-inline`}
+                  >
                     {total && formPayment === 'pix'
                       ? FormatPrice(
                           parseFloat(
@@ -660,20 +731,20 @@ const PurchaseSections = ({ cart }) => {
                               0.1,
                         )
                       : ''}
-                  </p>
+                  </span>
                 </p>
                 <p
                   className="fw-semibold"
                   style={{ color: '#4AAE51', fontSize: '.9rem' }}
                 >
                   Desconto de{' '}
-                  <p className={`${styles.discountSpan} fw-bold d-inline`}>
+                  <span className={`${styles.discountSpan} fw-bold d-inline`}>
                     10% para pagamento
-                  </p>{' '}
+                  </span>{' '}
                   á vista{' '}
-                  <p className={`${styles.discountSpan} fw-bold d-inline`}>
+                  <span className={`${styles.discountSpan} fw-bold d-inline`}>
                     já aplicado
-                  </p>
+                  </span>
                 </p>
                 <ul className="ps-3" style={{ fontSize: '.7rem' }}>
                   <li className="fw-semibold">
@@ -712,7 +783,9 @@ const PurchaseSections = ({ cart }) => {
                 </h4>
                 <p className="fs-5 mb-4">
                   Valor do pedido:{' '}
-                  <p className="fw-bold d-inline">
+                  <span
+                    className={`${styles.discountSpanPayment} fw-bold d-inline`}
+                  >
                     {' '}
                     {total
                       ? FormatPrice(
@@ -735,7 +808,7 @@ const PurchaseSections = ({ cart }) => {
                               0.1,
                         )
                       : ''}
-                  </p>
+                  </span>
                 </p>
                 <p
                   className="fw-semibold"
@@ -782,7 +855,7 @@ const PurchaseSections = ({ cart }) => {
             </div>
             {formPaymentSelected === 'cartao' && section === 'resumo' ? (
               <div>
-                <p>Cartão de credito</p>
+                <p>Cartão de credito, {selectedInstallment}</p>
               </div>
             ) : formPaymentSelected === 'pix' && section === 'resumo' ? (
               <div>
@@ -816,8 +889,9 @@ const PurchaseSections = ({ cart }) => {
                       pagamento: false,
                       resumo: false,
                     });
-                    setSection('pagamento');
+                    setDiscount([]);
                     setFormPaymentSelected(false);
+                    setSection('pagamento');
                   }}
                 >
                   Mudar forma de pagamento
@@ -895,39 +969,45 @@ const PurchaseSections = ({ cart }) => {
                         {showMore ? <BsChevronUp /> : <BsChevronDown />}
                       </span>
                       {section === 'resumo' ? (
-                        <span className={styles.discountSpan}>- R$ 250</span>
+                        <span className={styles.discountSpan}>
+                          -{' '}
+                          {FormatPrice(
+                            parseFloat(
+                              total
+                                .replace('R$ ', '')
+                                .replace('.', '')
+                                .replace(',', '.'),
+                            ) * 0.1,
+                          )}
+                        </span>
                       ) : (
                         <span>Confirmando...</span>
                       )}
                     </div>
                     <Accordion
-                      className="w-100"
+                      className="w-100 border-0"
                       activeKey={showMore ? '0' : ''}
                     >
-                      <Accordion.Item eventKey="0">
+                      <Accordion.Item
+                        eventKey="0"
+                        className={showMore ? '' : 'border-0'}
+                      >
                         <Accordion.Header className="visually-hidden">
                           Descontos
                         </Accordion.Header>
                         <Accordion.Body>
                           <div className="d-flex flex-column justify-content-center align-items-center">
-                            <div
-                              className={`${styles.discountSpan} d-flex justify-content-between align-items-center w-100 pb-2`}
-                            >
-                              <span>Descontos</span>
-                              <span>- R$ 250</span>
-                            </div>
-                            <div
-                              className={`${styles.discountSpan} d-flex justify-content-between align-items-center w-100 pb-2`}
-                            >
-                              <span>Descontos</span>
-                              <span>- R$ 250</span>
-                            </div>
-                            <div
-                              className={`${styles.discountSpan} d-flex justify-content-between align-items-center w-100 pb-2`}
-                            >
-                              <span>Descontos</span>
-                              <span>- R$ 250</span>
-                            </div>
+                            {discount.map(({ text, price }) => {
+                              return (
+                                <div
+                                  key={text}
+                                  className={`${styles.discountSpan} d-flex justify-content-between align-items-center w-100 pb-2`}
+                                >
+                                  <span>{text}</span>
+                                  <span>- {price}</span>
+                                </div>
+                              );
+                            })}
                           </div>
                         </Accordion.Body>
                       </Accordion.Item>
@@ -944,12 +1024,12 @@ const PurchaseSections = ({ cart }) => {
                   <span>Método:</span>
                   {total ? (
                     <span>
-                      {formPayment === 'cartao'
+                      {formPaymentSelected === 'cartao'
                         ? 'Cartão de credito'
-                        : formPayment === 'pix'
-                        ? 'Pix'
-                        : formPayment === 'boleto'
-                        ? 'Boleto'
+                        : formPaymentSelected === 'pix'
+                        ? 'Pix á vista'
+                        : formPaymentSelected === 'boleto'
+                        ? 'Boleto á vista'
                         : 'Não escolhido'}
                     </span>
                   ) : (
@@ -1078,8 +1158,11 @@ const PurchaseSections = ({ cart }) => {
             <div
               className={section === 'resumo' ? 'text-center mt-4' : 'd-none'}
             >
-              <ButtonCustom type="submit" loading={loading}>
-                {loading ? 'Carregando...' : 'Finalizar pedido'}
+              <ButtonCustom
+                type={completeOrder.loading ? 'button' : 'submit'}
+                loading={completeOrder.loading}
+              >
+                {completeOrder.loading ? 'Carregando...' : 'Finalizar pedido'}
               </ButtonCustom>
             </div>
           </div>

@@ -45,54 +45,110 @@ const AdventurePrice = ({
     return;
   }
 
-  return (
-    <div className={`${styles.divMain} align-self-stretch`}>
-      {best && (
-        <LabelCard
-          text="Menor preço"
-          bsClass={'py-2 px-3 text-uppercase'}
-          stylesCss={{
-            color: '#87FAD1',
-            backgroundColor: '#283040',
-          }}
-        />
-      )}
+  if (isHotel)
+    return (
+      <div className={`${styles.divMain} align-self-stretch`}>
+        {best && (
+          <LabelCard
+            text="Menor preço"
+            bsClass={'py-2 px-3 text-uppercase'}
+            stylesCss={{
+              color: '#87FAD1',
+              backgroundColor: '#283040',
+            }}
+          />
+        )}
 
-      <div className={`d-flex justify-content-center align-items-end`}>
-        <span className="text-white fw-bold me-2" style={{ fontSize: '2rem' }}>
-          R$
-        </span>
-        <span
-          className="text-white fw-bold"
-          style={{ fontSize: '2.625rem', lineHeight: '60px' }}
-        >
-          {FormatPrice(data.preco, true)}
-        </span>
+        <div className={`d-flex justify-content-center align-items-end`}>
+          <span
+            className="text-white fw-bold me-2"
+            style={{ fontSize: '2rem' }}
+          >
+            R$
+          </span>
+          <span
+            className="text-white fw-bold"
+            style={{ fontSize: '2.625rem', lineHeight: '60px' }}
+          >
+            {FormatPrice(data.price, true)}
+          </span>
+        </div>
+        <div>
+          <span className="text-white" style={{ fontSize: '.9rem' }}>
+            por pessoa
+          </span>
+        </div>
+        <div>
+          {!isHotel && loading && (
+            <ButtonCustom bsClass={'mt-3'} onClick={addInCart} loading={true}>
+              Carregando...
+            </ButtonCustom>
+          )}
+          {!isHotel && !loading && (
+            <ButtonCustom bsClass={'mt-3'} onClick={addInCart}>
+              Escolher aventura
+            </ButtonCustom>
+          )}
+          {isHotel && (
+            <ButtonCustom type="link" bsClass={'mt-3'} link={'#'}>
+              Saber mais
+            </ButtonCustom>
+          )}
+        </div>
       </div>
-      <div>
-        <span className="text-white" style={{ fontSize: '.9rem' }}>
-          por pessoa
-        </span>
+    );
+  else
+    return (
+      <div className={`${styles.divMain} align-self-stretch`}>
+        {best && (
+          <LabelCard
+            text="Menor preço"
+            bsClass={'py-2 px-3 text-uppercase'}
+            stylesCss={{
+              color: '#87FAD1',
+              backgroundColor: '#283040',
+            }}
+          />
+        )}
+
+        <div className={`d-flex justify-content-center align-items-end`}>
+          <span
+            className="text-white fw-bold me-2"
+            style={{ fontSize: '2rem' }}
+          >
+            R$
+          </span>
+          <span
+            className="text-white fw-bold"
+            style={{ fontSize: '2.625rem', lineHeight: '60px' }}
+          >
+            {FormatPrice(data.preco, true)}
+          </span>
+        </div>
+        <div>
+          <span className="text-white" style={{ fontSize: '.9rem' }}>
+            por pessoa
+          </span>
+        </div>
+        <div>
+          {!isHotel && loading && (
+            <ButtonCustom bsClass={'mt-3'} onClick={addInCart} loading={true}>
+              Carregando...
+            </ButtonCustom>
+          )}
+          {!isHotel && !loading && (
+            <ButtonCustom bsClass={'mt-3'} onClick={addInCart}>
+              Escolher aventura
+            </ButtonCustom>
+          )}
+          {isHotel && (
+            <ButtonCustom type="link" bsClass={'mt-3'} link={'#'}>
+              Saber mais
+            </ButtonCustom>
+          )}
+        </div>
       </div>
-      <div>
-        {!isHotel && loading && (
-          <ButtonCustom bsClass={'mt-3'} onClick={addInCart} loading={true}>
-            Carregando...
-          </ButtonCustom>
-        )}
-        {!isHotel && !loading && (
-          <ButtonCustom bsClass={'mt-3'} onClick={addInCart}>
-            Escolher aventura
-          </ButtonCustom>
-        )}
-        {isHotel && (
-          <ButtonCustom type="link" bsClass={'mt-3'} link={'#'}>
-            Saber mais
-          </ButtonCustom>
-        )}
-      </div>
-    </div>
-  );
+    );
 };
 
 export default AdventurePrice;

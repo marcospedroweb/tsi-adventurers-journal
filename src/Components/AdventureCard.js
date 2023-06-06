@@ -12,10 +12,10 @@ import { Link } from 'react-router-dom';
 import { apiRoute } from '../DB/data';
 
 const AdventureCard = ({ data, best, hotel }) => {
-  const { searchAdventure } = React.useContext(GlobalContext);
+  const { searchAdventure, completedOrder } = React.useContext(GlobalContext);
   const [showMore, setShowMore] = React.useState(false);
   const [section, setSection] = React.useState('informações');
-  const date = new Date(data.Data_e_Hora);
+  const date = new Date(hotel ? '' : data.Data_e_Hora);
 
   // React.useEffect(() => {
   //   console.log(data);
@@ -32,9 +32,9 @@ const AdventureCard = ({ data, best, hotel }) => {
           ></div>
           <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-center align-items-center align-items-lg-center pt-3 px-3 w-100">
             <div className="d-flex flex-column justify-content-center justify-content-lg-start align-items-center align-items-lg-start px-3 w-100">
-              <h3>Aventura nas alturas</h3>
-              <p>Rio de Janeiro</p>
-              <p>Av. Em algum lugar - Rio</p>
+              <h3>{data.name}</h3>
+              <p>{data.state}</p>
+              <p>{data.address}</p>
               <div
                 className={`${styles.divMore} d-flex justify-content-between align-items-center my-4 my-lg-3 mb-2 w-100`}
                 style={{ cursor: 'pointer' }}
@@ -83,77 +83,74 @@ const AdventureCard = ({ data, best, hotel }) => {
               <div
                 className={`${styles.section} ${
                   section === 'informações' ? 'd-flex' : 'd-none'
-                } flex-column justify-content-start align-items-start text-center text-sm-start`}
+                } flex-column justify-content-start align-items-start text-center text-sm-start w-100`}
               >
                 <div className="mb-4">
                   <h4>Sobre a hospedagem</h4>
-                  <p className="mb-0 text-center text-lg-start">
-                    Mussum Ipsum, cacilds vidis litro abertis. Quem num gosta di
-                    mim que vai caçá sua turmis!Suco de cevadiss deixa as
-                    pessoas mais interessantis.Cevadis im ampola pa arma uma
-                    pindureta.Praesent malesuada urna nisi, quis volutpat erat
-                    hendrerit non. Nam vulputate dapibus.
-                  </p>
+                  <p className="mb-0 text-center text-lg-start">{data.about}</p>
                 </div>
                 <div className="mb-4">
                   <h4>Principais comodidades do hotel</h4>
                   <div className="d-flex justify-content-center justify-content-sm-start align-items-center flex-wrap">
-                    <LabelCard
-                      text="Wi-fi gratutio"
-                      bsClass={'mt-1 me-1 me-sm-0'}
-                    />
-                    <LabelCard
-                      text="Wi-fi no lobby"
-                      bsClass={'mt-1 me-1 me-sm-0'}
-                    />
-                    <LabelCard text="Piscina" bsClass={'mt-1 me-1 me-sm-0'} />
-                    <LabelCard
-                      text="Area de lazer"
-                      bsClass={'mt-1 me-1 me-sm-0'}
-                    />
-                    <LabelCard text="Sauna" bsClass={'mt-1 me-1 me-sm-0'} />
+                    {data.hotelAmenities.map((text) => {
+                      return (
+                        <div className="mt-1 me-1">
+                          <LabelCard text={text} />
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
                 <div>
                   <h4>Preço</h4>
                   <div className="row justify-content-between align-items-center ">
                     <CardPrice
-                      price={'350'}
+                      price={FormatPrice(data.price)}
                       per={'por pessoa'}
                       texts={[
-                        { text: '3 adultos:', price: '1050' },
-                        { text: 'Taxa de serviço:', price: '275' },
+                        {
+                          text: '1 pessoa',
+                          price: FormatPrice(data.price),
+                        },
                       ]}
-                      total={'1445'}
-                      totalDescount={'1300,5'}
+                      total={FormatPrice(data.price)}
+                      totalDescount={FormatPrice(
+                        data.price - data.price * 0.15,
+                      )}
                       method={'No boleto ou Pix'}
-                      bsClass={'col-12 col-md-6 col-lg-4'}
+                      bsClass={'col-12 col-md-6 col-lg-4 align-self-stretch'}
                       size={'small'}
                       seal={'plus'}
                     />
                     <CardPrice
-                      price={'350'}
+                      price={FormatPrice(data.price)}
                       per={'por pessoa'}
                       texts={[
-                        { text: '3 adultos:', price: '1050' },
-                        { text: 'Taxa de serviço:', price: '275' },
+                        {
+                          text: '1 pessoa',
+                          price: FormatPrice(data.price),
+                        },
                       ]}
-                      total={'1445'}
-                      totalDescount={'1300,5'}
+                      total={FormatPrice(data.price)}
+                      totalDescount={FormatPrice(data.price - data.price * 0.1)}
                       method={'No boleto ou Pix'}
                       bsClass={'col-12 col-md-6 col-lg-4 mt-3 mt-md-0'}
                       size={'small'}
                       seal={'adventurer'}
                     />
                     <CardPrice
-                      price={'350'}
+                      price={FormatPrice(data.price)}
                       per={'por pessoa'}
                       texts={[
-                        { text: '3 adultos:', price: '1050' },
-                        { text: 'Taxa de serviço:', price: '275' },
+                        {
+                          text: '1 pessoa',
+                          price: FormatPrice(data.price),
+                        },
                       ]}
-                      total={'1445'}
-                      totalDescount={'1300,5'}
+                      total={FormatPrice(data.price)}
+                      totalDescount={FormatPrice(
+                        data.price - data.price * 0.05,
+                      )}
                       method={'No boleto ou Pix'}
                       bsClass={'col-12 col-md-6 col-lg-4 mt-3 mt-lg-0'}
                       size={'small'}
@@ -167,35 +164,12 @@ const AdventureCard = ({ data, best, hotel }) => {
                   section === 'localização' ? 'd-flex' : 'd-none'
                 } flex-column justify-content-center align-items-center w-100`}
               >
-                <div className="row justify-content-center justify-content-lg-between align-items-start text-center text-lg-start">
-                  <div className="col-12 col-lg-8">
-                    <div className="w-100">
-                      <iframe
-                        title="map"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3654.160208892237!2d-46.70170893501999!3d-23.670228034628934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5036539648d5%3A0x78501a72680ea23a!2sCentro%20Universit%C3%A1rio%20Senac%20-%20Santo%20Amaro!5e0!3m2!1spt-BR!2sbr!4v1685295644547!5m2!1spt-BR!2sbr"
-                        width="100%"
-                        height="225"
-                        style={{ border: 0 }}
-                        allowFullScreen=""
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                        className="rounded"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-12 col-lg-4">
+                <div className="row justify-content-center justify-content-lg-start align-items-start text-start text-lg-start w-100">
+                  <div className="col-12">
                     <div>
                       <div className="mb-3">
                         <h4>Localização</h4>
-                        <p>Rua lá no rio, 250 - Rio de Janeiro - 00000-000</p>
-                      </div>
-                      <div className="mb-3">
-                        <h4>Estado</h4>
-                        <p>Rua lá no rio,</p>
-                      </div>
-                      <div className="mb-3">
-                        <h4>Pais</h4>
-                        <p>Rua lá no rio</p>
+                        <p style={{ width: 'fit-content' }}>{data.address}</p>
                       </div>
                     </div>
                   </div>
@@ -503,9 +477,7 @@ const AdventureCard = ({ data, best, hotel }) => {
                   <div className="mb-4">
                     <h4>Sobre mim</h4>
                     <p className="mb-0">
-                      {data.idAtividade.guia.bio
-                        ? data.idAtividade.guia.bio
-                        : 'Texto não inserido'}
+                      {data.guia.bio ? data.guia.bio : 'Texto não inserido'}
                     </p>
                   </div>
                   {/* <div className="mb-4">

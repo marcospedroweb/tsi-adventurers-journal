@@ -13,7 +13,7 @@
   color: #87FAD1 !important;
 }
 
-.btn:hover:not(.btn.loading) {
+.btn:hover:not(.btn.loading, .btn.dark) {
   background-color: #63d4ac !important;
   border: 1px solid #63d4ac !important;
 }
@@ -21,7 +21,6 @@
 .btn.dark:hover {
   background-color: #283040 !important;
   border: 1px solid #283040 !important;
-
 }
 
 .loading {

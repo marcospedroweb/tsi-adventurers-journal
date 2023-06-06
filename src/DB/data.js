@@ -24,6 +24,10 @@ export const updateCartRoute = '/carrinho/';
 export const deleteItemCartRoute = '/carrinho/';
 export const deleteAllCartRoute = '/carrinho/all';
 
+//ORDER
+export const completeOrderRoute = '/itensdopedido';
+export const getOrdersRoute = '/itensdopedido';
+
 export const optionsFetch = ({ method, body = '', token = '', file }) => {
   if (method === 'POST')
     return {

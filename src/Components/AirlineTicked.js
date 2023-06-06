@@ -4,25 +4,35 @@ import LabelCard from './LabelCard';
 import { BsFillAirplaneFill } from 'react-icons/bs';
 import ButtonCustom from './ButtonCustom';
 
-const AirlineTicked = ({ best }) => {
+const AirlineTicked = ({ data, best }) => {
   return (
     <div
-      className={`${styles.divMain} d-flex justify-content-between align-items-center gap-5`}
+      className={`${styles.divMain} d-flex justify-content-between align-items-center gap-5 w-100`}
     >
-      <div className={styles.divImg}>
-        <img src="/imgs/gol_logo.png" alt="" />
+      <div
+        className={`${styles.divImg} d-flex justify-content-center align-items-center bg-white p-4 rounded align-self-stretch`}
+      >
+        <div className="bg-white rounded h-100 d-flex justify-content-center align-items-center">
+          <img src={`/imgs/${data.image}`} alt="" />
+        </div>
       </div>
       <div className="d-flex justify-content-between align-items-center">
         <div className="d-flex justify-content-between align-items-center">
-          <LabelCard title={'Origem'} text={'GRU - 08:30'} />
+          <LabelCard
+            title={'Origem'}
+            text={`${data.origin.name} - ${data.origin.time}`}
+          />
           <BsFillAirplaneFill
             className="mx-2"
             style={{ transform: 'rotate(90deg)' }}
           />
-          <LabelCard title={'Origem'} text={'GRI - 10:50'} />
+          <LabelCard
+            title={'Origem'}
+            text={`${data.destination.name} - ${data.destination.time}`}
+          />
         </div>
-        <LabelCard title={'Data do Voo'} text={'20/12/2020'} bsClass={'ms-3'} />
-        <LabelCard title={'Duração'} text={'2h 20min'} bsClass={'ms-3'} />
+        <LabelCard title={'Data do Voo'} text={data.date} bsClass={'ms-3'} />
+        <LabelCard title={'Duração'} text={data.duration} bsClass={'ms-3'} />
       </div>
       <div className={styles.price}>
         {best && (
@@ -36,10 +46,8 @@ const AirlineTicked = ({ best }) => {
           />
         )}
         <div>
-          <p>R$ 1.150,99</p>
-          <ButtonCustom type="link" link="#">
-            Saber mais
-          </ButtonCustom>
+          <p>{data.price}</p>
+          <ButtonCustom type="link">Saber mais</ButtonCustom>
         </div>
       </div>
     </div>

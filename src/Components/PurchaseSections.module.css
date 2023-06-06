@@ -178,14 +178,14 @@
   color: #000;
 }
 
-.divMainFormPayment span:not(.divMainFormPayment span.discountSpan) {
+.divMainFormPayment span:not(.divMainFormPayment span.discountSpan, span.discountSpanPayment) {
   display: inline-block;
   color: #35C6F3;
   border-bottom: 1px solid #35C6F3;
   cursor: pointer;
 }
 
-.divMainFormPayment span:hover {
+.divMainFormPayment span:hover:not(.divMainFormPayment span.discountSpan, span.discountSpanPayment) {
   color: #1AA2CD;
   border-bottom: 1px solid #1AA2CD;
 }

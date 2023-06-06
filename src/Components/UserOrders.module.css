@@ -1,3 +1,27 @@
 .section {
   margin: 92px auto;
 }
+
+.divOrder {
+  background-color: #fff;
+  padding: 12px 24px;
+  border-radius: 24px;
+  border: 1px solid #ACB6C9;
+}
+
+.divOrder+.divOrder {
+  margin-top: 32px;
+}
+
+.divAboutOrder {
+  padding: 12px;
+
+}
+
+.divAboutOrder h3 {
+  font-size: 1.15rem;
+}
+
+.divAboutOrder h3 span {
+  font-weight: 700;
+}

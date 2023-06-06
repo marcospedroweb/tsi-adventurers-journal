@@ -17,6 +17,7 @@ export const GlobalStorage = ({ children }) => {
   const [floatAlert, setFloatAlert] = React.useState('');
   const [itensCart, setItensCart] = React.useState('');
   const [alertFloat, setAlertFloat] = React.useState('');
+  const [completedOrder, setCompletedOrder] = React.useState('');
 
   return (
     <GlobalContext.Provider
@@ -33,6 +34,8 @@ export const GlobalStorage = ({ children }) => {
         setFloatAlert,
         itensCart,
         setItensCart,
+        completedOrder,
+        setCompletedOrder,
       }}
     >
       {/* {children} será to elemento/pagina dentro do contexto */}

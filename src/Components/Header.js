@@ -91,14 +91,14 @@ const Header = () => {
                   <Link to="/carrinho" className="dropdown-item text-start">
                     Meu carrinho
                   </Link>
+                  <Link to="/meus-pedidos" className="dropdown-item text-start">
+                    Meus pedidos
+                  </Link>
                   <Link
                     to="/configurações"
                     className="dropdown-item text-start"
                   >
                     Configurações
-                  </Link>
-                  <Link to="/meus-pedidos" className="dropdown-item text-start">
-                    Meus pedidos
                   </Link>
                   <Dropdown.Item onClick={handleLogout} className="text-danger">
                     Encerrar sessão

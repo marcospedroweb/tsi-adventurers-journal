@@ -48,6 +48,10 @@ const ResearchedAdventures = ({ adventurers, getAdventurers }) => {
     getAdventurers();
   }
 
+  React.useEffect(() => {
+    console.log(adventurers);
+  }, []);
+
   return (
     <section className="row justify-content-between align-items-start">
       <div className="d-none d-lg-block col-12 col-lg-3">
