@@ -23,7 +23,7 @@ const SectionAwakenTheAdventurer = () => {
           <ModalityCard
             modalityName={'Trekking'}
             img={
-              'http://localhost:8000/storage/modalidades_images/trekking.png'
+              'https://tsi-adventurers-journal.vercel.app/storage/modalidades_images/trekking.png'
             }
             desc={
               'Explore trilhas incríveis e descubra paisagens deslumbrantes em caminhadas pela natureza.'
@@ -34,7 +34,7 @@ const SectionAwakenTheAdventurer = () => {
           <ModalityCard
             modalityName={'Paraquedismo'}
             img={
-              'http://localhost:8000/storage/modalidades_images/paraquedismo.png'
+              'https://tsi-adventurers-journal.vercel.app/storage/modalidades_images/paraquedismo.png'
             }
             desc={
               'Experimente a emoção da queda livre e a sensação de liberdade enquanto desce suavemente com um paraquedas.'
@@ -44,7 +44,9 @@ const SectionAwakenTheAdventurer = () => {
           />
           <ModalityCard
             modalityName={'Rapel'}
-            img={'http://localhost:8000/storage/modalidades_images/rapel.png'}
+            img={
+              'https://tsi-adventurers-journal.vercel.app/storage/modalidades_images/rapel.png'
+            }
             desc={
               'Desça paredões e encare desafios verticais com segurança e adrenalina.'
             }
