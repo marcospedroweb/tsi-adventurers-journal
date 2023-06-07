@@ -3,6 +3,7 @@ import styles from './ModalPlan.module.css';
 import ButtonCustom from './ButtonCustom';
 import { Form, Modal } from 'react-bootstrap';
 import SealPlanCard from './SealPlanCard';
+import CardsPlans from './CardsPlans';
 
 const ModalPlan = () => {
   const [show, setShow] = React.useState(false);
@@ -16,12 +17,12 @@ const ModalPlan = () => {
         Alterar plano
       </ButtonCustom>
 
-      <Modal size="lg" show={show} onHide={handleClose}>
+      <Modal size="xl" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Escolha o tipo de plano</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <div className="row justify-content-between align-items-center">
+        <Modal.Body style={{ backgroundColor: '#1c2331' }}>
+          {/* <div className="row justify-content-between align-items-center">
             <div className="col-12 col-lg-4 align-self-stretch mb-4 mb-lg-0">
               <div className={`${styles.divPlan} position-relative`}>
                 <h2>Plano</h2>
@@ -99,7 +100,8 @@ const ModalPlan = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
+          <CardsPlans dark={true} />
         </Modal.Body>
       </Modal>
     </>
