@@ -21,11 +21,7 @@ const MoreContact = () => {
       </p>
 
       <div className="d-flex flex-column gap-4 gap-lg-0 align-self-lg-start mb-4 mb-lg-0">
-        <SmallContact
-          icon={'whatsapp.svg'}
-          text="(11) 90000-0000"
-          link="https://wa.me//5511978712340?text=Olá! Gostaria de falar com a Lordello Joias."
-        />
+        <SmallContact icon={'whatsapp.svg'} text="(11) 90000-0000" link="" />
         <SmallContact
           icon={'email.svg'}
           text="adventurer.suporte@adventurer.com"
