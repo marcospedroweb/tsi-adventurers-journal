@@ -12,7 +12,6 @@ const ProfileUserSide = ({ user }) => {
 
   return (
     <section className="col-12 col-lg-4 sticky-lg-top">
-      {console.log(user)}
       <div className={`${styles.divMain}`}>
         <div
           className={`${styles.divImg} position-absolute top-0 start-50 translate-middle`}

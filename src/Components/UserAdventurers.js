@@ -4,9 +4,6 @@ import ModalityCard from './ModalityCard';
 import { apiRoute } from '../DB/data';
 
 const UserAdventurers = ({ user, modalitys }) => {
-  React.useEffect(() => {
-    console.log(modalitys);
-  }, []);
   return (
     <div className="">
       <h3 className={styles.divTitle}>Algumas das minhas aventuras</h3>

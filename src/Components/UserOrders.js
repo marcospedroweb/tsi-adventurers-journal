@@ -68,7 +68,6 @@ const UserOrders = () => {
           <div className="row flex-column justify-content-center align-items-center">
             {data.length > 0 ? (
               <div className="col-12">
-                {console.log(dataGrouped)}
                 {dataGrouped.map((group) => {
                   const date = new Date(group[0].data);
 

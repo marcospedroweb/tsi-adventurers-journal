@@ -25,7 +25,6 @@ const Profile = () => {
   const [modalitys, setModalitys] = React.useState([]);
 
   async function getAdventurers(userData) {
-    console.log(userData.identify);
     if (userData.Guia) {
       const { json } = await request(
         `${apiRoute}${getGuiaActivitiesRoute}${userData.identify}`,
