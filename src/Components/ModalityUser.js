@@ -34,17 +34,17 @@ const ModalityUser = ({ data, change, getTripList }) => {
             <div>
               <h3 className="mt-4 mt-lg-0">Comentário</h3>
               <p className={`position-relative px-4`}>
-                <img
+                {/* <img
                   src="/imgs/Mark_Left_White.svg"
                   className="position-absolute top-0 start-0"
                   alt="aspas"
-                />
+                /> */}
                 {data.comentario ? data.comentario : 'Nenhum comentário feito'}
-                <img
+                {/* <img
                   src="/imgs/Mark_Right_White.svg"
                   className="position-absolute bottom-0 end-0"
                   alt="aspas"
-                />
+                /> */}
               </p>
               <div className="mt-4 text-center text-lg-end">
                 <ModalTrip data={data} getTripList={getTripList} />
