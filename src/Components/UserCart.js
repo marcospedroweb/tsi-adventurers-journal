@@ -434,7 +434,7 @@ const UserCart = () => {
                   >
                     <span className="fw-bold fs-5">Total:</span>
                     <span className="fw-bold fs-5">
-                      {total ? total : 'Calculando...'}
+                      {summary ? summary : 'Calculando...'}
                     </span>
                   </div>
                 </div>
@@ -452,22 +452,22 @@ const UserCart = () => {
                         color: '#9B9B9B',
                       }}
                     >
-                      {total ? total : 'Calculando...'}
+                      {summary ? summary : 'Calculando...'}
                     </span>
                     <span
                       className={`${styles.discountSpan} ms-2 fw-bold`}
                       style={{ fontSize: '1.15rem' }}
                     >
-                      {total
+                      {summary
                         ? FormatPrice(
                             Number.parseFloat(
-                              total
+                              summary
                                 .replace('R$ ', '')
                                 .replace(',', '.')
                                 .replace('.', ''),
                             ) -
                               Number.parseFloat(
-                                total
+                                summary
                                   .replace('R$ ', '')
                                   .replace(',', '.')
                                   .replace('.', ''),
@@ -485,13 +485,35 @@ const UserCart = () => {
                   </div>
                 </div>
 
-                <ButtonCustom
-                  onClick={() => {
-                    navigate('/processo-de-compra');
-                  }}
-                >
-                  Fechar pedido
-                </ButtonCustom>
+                {summary !== 'R$ 0,00' ? (
+                  <>
+                    <div>
+                      <ButtonCustom
+                        onClick={() => {
+                          if (!itensCart) {
+                            setCartError('Selecione um item para continuar');
+                            setTimeout(() => {
+                              setCartError('');
+                            }, 3000);
+                          } else {
+                            navigate('/processo-de-compra');
+                          }
+                        }}
+                      >
+                        Fechar pedido
+                      </ButtonCustom>
+                    </div>
+                    {cartError ? (
+                      <span className="error-mensage d-block text-center mt-2">
+                        {cartError}
+                      </span>
+                    ) : (
+                      ''
+                    )}
+                  </>
+                ) : (
+                  ''
+                )}
               </div>
             </div>
           </div>
