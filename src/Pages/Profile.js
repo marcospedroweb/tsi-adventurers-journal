@@ -50,6 +50,8 @@ const Profile = () => {
   }
 
   React.useEffect(() => {
+    window.scrollTo(0, 0);
+
     if (window.sessionStorage.getItem('user')) {
       const user = JSON.parse(window.sessionStorage.getItem('user'));
       setSession({

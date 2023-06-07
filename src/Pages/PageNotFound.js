@@ -2,6 +2,8 @@ import React from 'react';
 
 const PageNotFound = () => {
   React.useEffect(() => {
+    window.scrollTo(0, 0);
+
     window.document.title = "Adventurer's Journal | Pagina não encontrada";
     return () => {
       // Restaurar o título original quando o componente for desmontado
