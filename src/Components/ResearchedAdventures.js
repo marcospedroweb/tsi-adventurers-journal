@@ -71,7 +71,7 @@ const ResearchedAdventures = ({ adventurers, getAdventurers }) => {
       </div>
       <div className="col-12 col-lg-9 text-center">
         <div
-          className="d-flex justify-content-between align-items-center mb-4 p-3 rounded"
+          className="d-flex flex-column flex-sm-row justify-content-between align-items-center mb-4 p-3 rounded"
           style={{ backgroundColor: '#1C2331' }}
         >
           <div className="d-flex justify-content-between align-items-center text-white">
