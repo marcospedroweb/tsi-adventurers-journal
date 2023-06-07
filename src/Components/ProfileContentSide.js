@@ -1,15 +1,14 @@
 import React from 'react';
-import styles from './ProfileContentSide.module.css';
 import UserAdventurers from './UserAdventurers';
 import UserPreferences from './UserPreferences';
 
-const ProfileContentSide = () => {
+const ProfileContentSide = ({ user, modalitys }) => {
   return (
-    <section className="col-12 col-lg-8 mt-5">
+    <section className="col-12 col-lg-8 mt-5" style={{ marginBottom: '150px' }}>
       <div className="px-3">
-        <UserAdventurers />
+        <UserAdventurers user={user} modalitys={modalitys} />
       </div>
-      <UserPreferences />
+      {/* <UserPreferences /> */}
     </section>
   );
 };

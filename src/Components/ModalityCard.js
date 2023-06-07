@@ -53,13 +53,7 @@ const ModalityCard = ({
             <h2 className={showIn === 'adventure' ? 'm-0' : ''}>
               {modalityName}
             </h2>
-            <p>
-              {desc
-                ? desc
-                : `O paraquedismo é um esporte radical que consiste em saltar de um
-              avião ou outra aeronave em altitude elevada, e usar um paraquedas
-              para desacelerar a queda e aterrissar com segurança no solo.`}
-            </p>
+            <p>{desc ? desc : `Nenhum comentario feito`}</p>
           </div>
         </div>
       </div>
@@ -83,10 +77,7 @@ const ModalityCard = ({
             <h2>{modalityName}</h2>
             <div className={`${styles.divAdventureText} text-start`}>
               <p>
-                Local:{' '}
-                <span className="fw-bold">
-                  Itacoatiara - Rio de Janeiro, Brasil
-                </span>
+                Local: <span className="fw-bold">{location}</span>
               </p>
               {/* <p>
                 Pratiquei com <span className="fw-bold">2 Amigos</span>
@@ -94,15 +85,10 @@ const ModalityCard = ({
             </div>
             <p style={{ fontSize: '.9rem' }}>
               {/* Maximo: 250 caracteres */}
-              {desc
-                ? desc
-                : `"Ah, cara, eu sempre sonhei em surfar e finalmente tive a chance
-                de realizar esse sonho em Itacoatiara. A vibe da cidade é incrível
-                e a praia é simplesmente maravilhosa. Confesso que foi muito
-                divertido espero que eu faça isso maisaa a gogigiowig og=-"`}
+              {desc ? `"${desc}"` : `"Nenhum comentário feito"`}
             </p>
             <p className="mt-3">
-              Praticado em <span className="fw-bold">15/04/2020</span>
+              Praticado em <span className="fw-bold">{date}</span>
             </p>
           </div>
         </div>

@@ -21,8 +21,8 @@ const SearchAdventure = () => {
       query = `${query}&modalidade=${searchAdventure.modalitysIds.join(',')}`;
     if (searchAdventure.location.length)
       query = `${query}&cidade=${searchAdventure.location}`;
-    if (searchAdventure.hour)
-      query = `${query}&horario=${searchAdventure.hour}`;
+    if (searchAdventure.time)
+      query = `${query}&horario=${searchAdventure.time}`;
     if (searchAdventure.day) query = `${query}&dia=${searchAdventure.day}`;
     if (searchAdventure.minPrice)
       query = `${query}&preco_min=${searchAdventure.minPrice}`;

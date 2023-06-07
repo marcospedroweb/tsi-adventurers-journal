@@ -4,25 +4,64 @@ import { FloatingLabel, Form, Modal } from 'react-bootstrap';
 import ButtonCustom from './ButtonCustom';
 import GetSimpleInputObj from '../Helpers/GetSimpleInputObj';
 import UnsavedChanges from './UnsavedChanges';
+import { apiRoute, optionsFetch, updateOrdersRoute } from '../DB/data';
+import useFetch from '../Hooks/useFetch';
+import { GlobalContext } from '../Context/GlobalStorage';
 
-const ModalTrip = ({ data }) => {
+const ModalTrip = ({ data, getTripList }) => {
+  const { session } = React.useContext(GlobalContext);
+  const date = new Date(data.idAtividade[0].Data_e_Hora);
   //Modal
   const [show, setShow] = React.useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const bio = GetSimpleInputObj('bio');
-  const avaliation = GetSimpleInputObj('avaliation');
+  const bio = React.useRef();
+  const [bioLength, setBioLength] = React.useState(0);
+  const avaliation = React.useRef();
+  const { loading, request } = useFetch();
 
   React.useEffect(() => {
-    bio.validation.setValue(data.feedback);
-    avaliation.validation.setValue(data.nota);
+    // bio.validation.setValue(data.feedback);
+    // avaliation.validation.setValue(data.nota);
   }, []);
 
   async function handleSubmit(event) {
     event.preventDefault();
-    alert('Form enviado' + data.modality);
-    setShow(false);
+    const newBio = bio.current.value;
+    const newAvaliation = avaliation.current.value.replace(',', '.');
+    if (newBio !== data.comentario || newAvaliation !== data.nota) {
+      console.log(
+        optionsFetch({
+          method: 'PUT',
+          token: session.user.token,
+          body: {
+            comentario: newBio,
+            nota: parseFloat(newAvaliation),
+          },
+        }),
+      );
+      const { json } = await request(
+        `${apiRoute}${updateOrdersRoute}${data.id}`,
+        optionsFetch({
+          method: 'PUT',
+          token: session.user.token,
+          body: {
+            comentario: newBio,
+            nota: parseFloat(newAvaliation),
+          },
+        }),
+      );
+      if (json.status === 200) {
+        getTripList();
+        handleClose();
+      } else {
+        handleClose();
+      }
+    }
+
+    // alert('Form enviado' + data.modality);
+    // setShow(false);
   }
 
   return (
@@ -57,18 +96,40 @@ const ModalTrip = ({ data }) => {
               <div className="col-12 col-lg-6">
                 <div
                   className={styles.divImg}
-                  style={{ backgroundImage: `url(/imgs/${data.image})` }}
+                  style={{
+                    backgroundImage: `url(${
+                      data.idAtividade[0].foto_url
+                        ? data.idAtividade[0].foto_url
+                        : `${apiRoute}/storage/${data.idAtividade[0].modalidade[0].foto}`
+                    })`,
+                  }}
                 ></div>
               </div>
               <div className="col-12 col-lg-6">
                 <div>
-                  <h3>Modalidade praticada</h3>
-                  <p>{data.modality}</p>
+                  <h3>Modalidade(s) praticada</h3>
+                  <p>
+                    {[
+                      data.idAtividade[0].modalidade.map(
+                        ({ nome }) => ` ${nome}`,
+                      ),
+                    ].join(', ')}
+                  </p>
                   <h3>Local</h3>
-                  <p>{data.location}</p>
+                  <p>
+                    {`${data.idAtividade[0].cidade.nome}, ${data.idAtividade[0].cidade.uf}
+                    - ${data.idAtividade[0].cidade.pais}`}
+                  </p>
                   <h3>Data</h3>
                   <p>
-                    {data.data_chegada} - {data.data_partida}
+                    {`${date.toLocaleDateString('pt-BR', {
+                      day: '2-digit',
+                    })}/${date.toLocaleDateString('pt-BR', {
+                      month: '2-digit',
+                    })}/${date.getFullYear()} - ${date.getHours()}:${date
+                      .getMinutes()
+                      .toString()
+                      .padStart(2, '0')}`}
                   </p>
                 </div>
               </div>
@@ -88,23 +149,27 @@ const ModalTrip = ({ data }) => {
                       as="textarea"
                       placeholder="Seu comentário sobre a viagem"
                       maxLength={250}
-                      style={{ height: '170px', resize: 'none' }}
-                      ref={bio.ref}
-                      value={bio.validation.value}
+                      style={{ height: '150px', resize: 'none' }}
+                      ref={bio}
                       onChange={(event) => {
-                        bio.validation.onChange(event);
+                        let formated = event.target.value;
+
+                        // Limitar para no máximo 250 caracteres, incluindo espaços
+                        if (formated.length > 250) {
+                          formated = formated.slice(0, 250);
+                        }
+
+                        // Remover caracteres especiais, permitindo apenas letras, números, "?" e "!"
+                        formated = formated.replace(/[^a-zA-Z0-9\s!?]/g, '');
+
+                        setBioLength(formated.length);
+                        event.target.value = formated;
                       }}
-                      onBlur={bio.validation.onBlur}
                     />
                   </FloatingLabel>
-                  {bio.validation.error ? (
-                    <p style={{ color: '#FF7979', fontSize: '.9rem' }}>
-                      {bio.validation.error}
-                    </p>
-                  ) : (
-                    ''
-                  )}
-                  {bio.validation.value && <UnsavedChanges />}
+                  <div className="text-end">
+                    <span>{bioLength ? bioLength : 0}/250</span>
+                  </div>
                 </div>
               </div>
               <div className="col-12 col-lg-4">
@@ -118,25 +183,28 @@ const ModalTrip = ({ data }) => {
                     <Form.Control
                       type="number"
                       placeholder="name@example.com"
-                      ref={avaliation.ref}
-                      value={avaliation.validation.value}
+                      ref={avaliation}
                       onChange={(event) => {
-                        avaliation.validation.onChange(event);
+                        let formated = event.target.value;
+
+                        // formated = formated.replace(/^\d+(,\d+)?$/g, '');
+                        // Limitar para no máximo 250 caracteres, incluindo espaços
+                        if (Number.parseFloat(formated) > 10) {
+                          formated = 10;
+                        }
+                        // if (formated.split(',')[1].length > 1) {
+                        //   formated = parseFloat(formated).toFixed(1);
+                        // }
+                        // Remover caracteres especiais, permitindo apenas letras, números, "?" e "!"
+
+                        console.log(Number.parseFloat(formated));
+                        event.target.value = formated;
                       }}
-                      onBlur={avaliation.validation.onBlur}
                       min={0}
                       max={10}
                       step={0.1}
                     />
                   </FloatingLabel>
-                  {avaliation.validation.error ? (
-                    <p style={{ color: '#FF7979', fontSize: '.9rem' }}>
-                      {avaliation.validation.error}
-                    </p>
-                  ) : (
-                    ''
-                  )}
-                  {avaliation.validation.value && <UnsavedChanges />}
                 </div>
               </div>
               <div className="col-12">

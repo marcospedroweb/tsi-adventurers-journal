@@ -11,6 +11,7 @@ export const logoutRoute = '/logout';
 
 //ACTIVITIES
 export const activitiesSearchRoute = '/atividades';
+export const getGuiaActivitiesRoute = '/atividades/id/';
 
 //CITY
 export const getCitiesRoute = '/cidade';
@@ -28,6 +29,8 @@ export const deleteAllCartRoute = '/carrinho/all';
 //ORDER
 export const completeOrderRoute = '/itensdopedido';
 export const getOrdersRoute = '/itensdopedido';
+export const updateOrdersRoute = '/itensdopedido/';
+export const getOrdersByIdRoute = '/itensdopedido/id/';
 
 export const optionsFetch = ({ method, body = '', token = '', file }) => {
   if (method === 'POST')
