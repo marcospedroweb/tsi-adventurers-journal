@@ -13,6 +13,8 @@ const ConfigUser = ({ user }) => {
   const [component, setComponent] = React.useState('perfil');
   const [nextComponent, setNextComponent] = React.useState('');
 
+  console.log(user);
+
   if (!user.user) return <Loading />;
   else
     return (

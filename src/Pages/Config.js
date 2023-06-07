@@ -17,6 +17,9 @@ const Config = () => {
       `${apiRoute}${showUserRoute}`,
       optionsFetch({ method: 'GET', token: session.user.token }),
     );
+    if (!json || json.api_status) {
+      navigate('/');
+    }
 
     setUser(json.data);
   }
@@ -28,6 +31,7 @@ const Config = () => {
         logged: true,
         user: user,
       });
+      console.log(user.token);
     } else {
       navigate('/');
     }

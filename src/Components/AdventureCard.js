@@ -205,7 +205,10 @@ const AdventureCard = ({ data, best, hotel }) => {
                     day: '2-digit',
                   })}/${date.toLocaleDateString('pt-BR', {
                     month: '2-digit',
-                  })}/${date.getFullYear()} - ${date.getHours()}:${date
+                  })}/${date.getFullYear()} - ${date
+                    .getHours()
+                    .toString()
+                    .padStart(2, '0')}:${date
                     .getMinutes()
                     .toString()
                     .padStart(2, '0')}`}
@@ -325,7 +328,10 @@ const AdventureCard = ({ data, best, hotel }) => {
                         day: '2-digit',
                       })}/${date.toLocaleDateString('pt-BR', {
                         month: '2-digit',
-                      })}/${date.getFullYear()} - ${date.getHours()}:${date
+                      })}/${date.getFullYear()} - ${date
+                        .getHours()
+                        .toString()
+                        .padStart(2, '0')}:${date
                         .getMinutes()
                         .toString()
                         .padStart(2, '0')}`}

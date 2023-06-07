@@ -29,6 +29,7 @@ const PurchaseSections = ({ cart }) => {
     pagamento: false,
     resumo: false,
   });
+  const [backError, setBackError] = React.useState('');
   const [loading, setLoading] = React.useState(false);
   const [formPayment, setFormPayment] = React.useState(false);
   const [formPaymentSelected, setFormPaymentSelected] = React.useState(false);
@@ -908,7 +909,6 @@ const PurchaseSections = ({ cart }) => {
                     key={element.id}
                     className={`${styles.product} d-flex justify-content-between align-items-center`}
                   >
-                    {console.log(element)}
                     <div
                       className={`${styles.productImg} me-3`}
                       style={{

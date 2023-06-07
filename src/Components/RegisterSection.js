@@ -17,7 +17,7 @@ const RegisterSection = () => {
   const { session, setSession, searchAdventure } =
     React.useContext(GlobalContext);
   const navigate = useNavigate();
-  const [isGuia, setIsGuia] = React.useState(false);
+  const [isGuia, setIsGuia] = React.useState(0);
   const name = GetSimpleInputObj('name');
   const email = GetSimpleInputObj('email');
   const password = GetSimpleInputObj('password');
@@ -39,6 +39,17 @@ const RegisterSection = () => {
     )
       return;
 
+    console.log(
+      optionsFetch({
+        method: 'POST',
+        body: {
+          name: nameData,
+          email: emailData,
+          password: passData,
+          isGuia: isGuia,
+        },
+      }),
+    );
     // Faz o fetch para realizar o cadastro de novo usuario
     const { json } = await request(
       `${apiRoute}${registerRoute}`,
@@ -52,6 +63,7 @@ const RegisterSection = () => {
         },
       }),
     );
+    console.log(email.validation);
 
     if (json === null) {
       setBackError(true);
@@ -64,7 +76,7 @@ const RegisterSection = () => {
           if (
             json.errors[errorName][0] === 'The email has already been taken.'
           ) {
-            email.validationRegister.setError(
+            email.validation.setError(
               'Este email já esta sendo usado. Tente outro.',
             );
           }
@@ -74,7 +86,7 @@ const RegisterSection = () => {
             json.errors[errorName][0] ===
             'The password field must be at least 6 characters.'
           ) {
-            password.validationRegister.setError(
+            password.validation.setError(
               'Este email já esta sendo usado. Tente outro.',
             );
           }
@@ -118,7 +130,7 @@ const RegisterSection = () => {
   React.useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const guia = params.get('guia');
-    if (guia) setIsGuia(true);
+    if (guia) setIsGuia(1);
 
     if (window.sessionStorage.getItem('user')) {
       const user = JSON.parse(window.sessionStorage.getItem('user'));
@@ -175,9 +187,9 @@ const RegisterSection = () => {
                 onBlur={email.validation.onBlur}
                 required
               />
-              {email.error[0] && (
+              {email.validation.error && (
                 <span className="d-block text-danger mt-1">
-                  {email.error[0]}
+                  {email.validation.error}
                 </span>
               )}
             </FloatingLabel>
@@ -192,9 +204,9 @@ const RegisterSection = () => {
                 onBlur={password.validation.onBlur}
                 required
               />
-              {password.error[0] && (
+              {password.validation.error && (
                 <span className="d-block text-danger mt-1">
-                  {password.error[0]}
+                  {password.validation.error}
                 </span>
               )}
             </FloatingLabel>
