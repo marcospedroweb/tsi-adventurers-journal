@@ -5,6 +5,13 @@ import DontWasteTime from '../Components/DontWasteTime';
 import FormAnyQuestions from '../Components/FormAnyQuestions';
 
 const Plans = () => {
+  React.useEffect(() => {
+    window.document.title = "Adventurer's Journal | Planos";
+    return () => {
+      // Restaurar o título original quando o componente for desmontado
+      window.document.title = "Adventurer's Journal";
+    };
+  }, []);
   return (
     <main>
       <StartWithPlan />

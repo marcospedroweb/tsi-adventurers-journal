@@ -20,6 +20,11 @@ const Cart = () => {
     } else {
       navigate('/');
     }
+    window.document.title = "Adventurer's Journal | Carrinho";
+    return () => {
+      // Restaurar o título original quando o componente for desmontado
+      window.document.title = "Adventurer's Journal";
+    };
   }, []);
 
   if (!session.user) return <Loading />;

@@ -6,6 +6,14 @@ import SectionReviews from '../Components/SectionReviews';
 import SectionAbout from '../Components/SectionAbout';
 
 const Home = () => {
+  React.useEffect(() => {
+    window.document.title = "Adventurer's Journal | Home";
+    return () => {
+      // Restaurar o título original quando o componente for desmontado
+      window.document.title = "Adventurer's Journal";
+    };
+  }, []);
+
   return (
     <main>
       <BannerHome />

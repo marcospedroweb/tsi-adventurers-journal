@@ -4,6 +4,14 @@ import SectionFormContact from '../Components/SectionFormContact';
 
 const Contact = () => {
   // Coloca o de "entre em contato" aqui mesmo, ai depois usa o componentes abaixo
+
+  React.useEffect(() => {
+    window.document.title = "Adventurer's Journal | Contato";
+    return () => {
+      // Restaurar o título original quando o componente for desmontado
+      window.document.title = "Adventurer's Journal";
+    };
+  }, []);
   return (
     <main>
       <FormAnyQuestions />

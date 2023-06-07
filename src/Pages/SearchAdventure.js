@@ -48,6 +48,12 @@ const SearchAdventure = () => {
   React.useEffect(() => {
     if (!searchAdventure) navigate('/aventurar-se');
     getAdventurers();
+
+    window.document.title = "Adventurer's Journal | Aventuras";
+    return () => {
+      // Restaurar o título original quando o componente for desmontado
+      window.document.title = "Adventurer's Journal";
+    };
   }, []);
 
   if (loading) return <Loading />;

@@ -11,7 +11,12 @@ const OrderCompleted = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
     if (!completedOrder) navigate('/');
-    // console.log(completedOrder);
+
+    window.document.title = "Adventurer's Journal | Pedido realizado";
+    return () => {
+      // Restaurar o título original quando o componente for desmontado
+      window.document.title = "Adventurer's Journal";
+    };
   }, []);
 
   if (!completedOrder) return <Loading />;

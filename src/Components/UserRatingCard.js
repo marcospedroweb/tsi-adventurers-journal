@@ -8,7 +8,6 @@ const UserRatingCard = ({ plan, text }) => {
   async function getRandomUser() {
     const { json } = await request('https://randomuser.me/api');
     setUser(json.results[0]);
-    console.log(json.results[0]);
   }
 
   React.useEffect(() => {

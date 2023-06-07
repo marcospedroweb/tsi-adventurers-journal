@@ -39,7 +39,7 @@ root.render(
           <Route path="/perfil/:id" element={<Profile />} />
           <Route path="/meus-pedidos" element={<Orders />} />
           <Route path="/procurar-aventuras" element={<SearchAdventure />} />
-          <Route path="/produto-adicionado" element={<AddedToCart />} />
+          {/* <Route path="/produto-adicionado" element={<AddedToCart />} /> */}
           <Route path="/carrinho" element={<Cart />} />
           <Route path="/processo-de-compra" element={<Purchase />} />
           <Route path="/pedido-finalizado" element={<OrderCompleted />} />

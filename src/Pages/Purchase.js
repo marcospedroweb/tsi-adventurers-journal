@@ -50,6 +50,12 @@ const Purchase = () => {
 
     getUserData();
     getCart();
+
+    window.document.title = "Adventurer's Journal | Finalizando pedido";
+    return () => {
+      // Restaurar o título original quando o componente for desmontado
+      window.document.title = "Adventurer's Journal";
+    };
   }, []);
 
   if (true && !cart.length) return <Loading />;

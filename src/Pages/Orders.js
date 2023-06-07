@@ -2,13 +2,6 @@ import React from 'react';
 import UserOrders from '../Components/UserOrders';
 import { GlobalContext } from '../Context/GlobalStorage';
 import { useNavigate } from 'react-router-dom';
-import {
-  apiRoute,
-  getOrdersRoute,
-  optionsFetch,
-  showUserRoute,
-} from '../DB/data';
-import useFetch from '../Hooks/useFetch';
 import Loading from '../Components/Loading';
 
 const Orders = () => {
@@ -25,6 +18,12 @@ const Orders = () => {
     } else {
       navigate('/');
     }
+
+    window.document.title = "Adventurer's Journal | Pedidos";
+    return () => {
+      // Restaurar o título original quando o componente for desmontado
+      window.document.title = "Adventurer's Journal";
+    };
   }, []);
 
   if (!session.logged) return <Loading />;

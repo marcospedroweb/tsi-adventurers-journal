@@ -56,6 +56,12 @@ const Profile = () => {
     }
 
     getUserData();
+
+    window.document.title = "Adventurer's Journal | Perfil";
+    return () => {
+      // Restaurar o título original quando o componente for desmontado
+      window.document.title = "Adventurer's Journal";
+    };
   }, []);
 
   if (loading) return <Loading />;

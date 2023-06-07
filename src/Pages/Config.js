@@ -31,6 +31,11 @@ const Config = () => {
     } else {
       navigate('/');
     }
+    window.document.title = "Adventurer's Journal | Configurações";
+    return () => {
+      // Restaurar o título original quando o componente for desmontado
+      window.document.title = "Adventurer's Journal";
+    };
   }, []);
 
   React.useEffect(() => {
