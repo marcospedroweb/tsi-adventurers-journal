@@ -11,11 +11,7 @@ const ModalityUser = ({ data, change, getTripList }) => {
           <div
             className={styles.divImg}
             style={{
-              backgroundImage: `url(${
-                data.idAtividade[0].foto_url
-                  ? data.idAtividade[0].foto_url
-                  : `${apiRoute}/storage/${data.idAtividade[0].modalidade[0].foto}`
-              })`,
+              backgroundImage: `url(${`${apiRoute}/storage/${data.idAtividade[0].modalidade[0].foto}`})`,
             }}
           ></div>
         </div>

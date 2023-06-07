@@ -4,7 +4,7 @@ export const apiRoute = 'https://tsi-adventurers-journal.vercel.app';
 //USER / LOGIN / REGISTER
 export const registerRoute = '/users';
 export const loginRoute = '/login';
-export const updateUserRoute = '/user/';
+export const updateUserRoute = '/user';
 export const showUserRoute = '/user';
 export const showOtherUserRoute = '/users/';
 export const logoutRoute = '/logout';

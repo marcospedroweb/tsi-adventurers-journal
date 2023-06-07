@@ -31,7 +31,6 @@ const Config = () => {
         logged: true,
         user: user,
       });
-      console.log(user.token);
     } else {
       navigate('/');
     }

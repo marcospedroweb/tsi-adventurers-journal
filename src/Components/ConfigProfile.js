@@ -41,14 +41,6 @@ const ConfigProfile = ({ user }) => {
       const file = photo.ref.current.files[0];
       formData.append('profile_photo_path', file);
 
-      console.log(
-        optionsFetch({
-          method: 'POST',
-          body: formData,
-          token: session.user.token,
-          file: true,
-        }),
-      );
       const { json } = await photo.request(
         `${apiRoute}${updateUserRoute}`,
         optionsFetch({

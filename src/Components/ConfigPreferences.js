@@ -55,7 +55,6 @@ const ConfigPreferences = ({ user }) => {
             >
               {tripList.length > 0 ? (
                 tripList.map((trip, index) => {
-                  // console.log(trip);
                   return (
                     <div className="w-100" key={trip.id}>
                       <ModalityUser
