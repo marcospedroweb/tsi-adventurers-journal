@@ -65,6 +65,7 @@ const UserOrders = () => {
           >
             Seus pedidos
           </h2>
+          {console.log(dataGrouped)}
           <div className="row flex-column justify-content-center align-items-center">
             {data.length > 0 ? (
               <div className="col-12">

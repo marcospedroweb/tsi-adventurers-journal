@@ -43,19 +43,23 @@ const CartAdventure = ({ data, getCart, orders, bsClass }) => {
                     day: '2-digit',
                   })}/${date.toLocaleDateString('pt-BR', {
                     month: '2-digit',
-                  })}/${date.getFullYear()} - ${date.getHours()}:${date
+                  })}/${date.getFullYear()} - ${date
+                    .getHours()
+                    .toString()
+                    .padStart(2, '0')}:${date
                     .getMinutes()
                     .toString()
                     .padStart(2, '0')}`}
                   stylesCss={{ backgroundColor: '#283040' }}
                   bsClass={'me-0 me-sm-2 mb-2 w-100'}
                 />
+
                 <LabelCard
                   title={'Forma de pagamento'}
                   text={
-                    data.FormPag === 'boleto'
+                    data.FormaPag === 'Boleto'
                       ? 'Boleto bancario á vista'
-                      : data.FormPag === 'pix'
+                      : data.FormaPag === 'PIX'
                       ? 'Pix á vista'
                       : 'Cartão de credito'
                   }
@@ -82,7 +86,10 @@ const CartAdventure = ({ data, getCart, orders, bsClass }) => {
                     day: '2-digit',
                   })}/${dateActivitie.toLocaleDateString('pt-BR', {
                     month: '2-digit',
-                  })}/${dateActivitie.getFullYear()} - ${dateActivitie.getHours()}:${dateActivitie
+                  })}/${dateActivitie.getFullYear()} - ${dateActivitie
+                    .getHours()
+                    .toString()
+                    .padStart(2, '0')}:${dateActivitie
                     .getMinutes()
                     .toString()
                     .padStart(2, '0')}`}
@@ -167,7 +174,10 @@ const CartAdventure = ({ data, getCart, orders, bsClass }) => {
                     day: '2-digit',
                   })}/${date.toLocaleDateString('pt-BR', {
                     month: '2-digit',
-                  })}/${date.getFullYear()} - ${date.getHours()}:${date
+                  })}/${date.getFullYear()} - ${date
+                    .getHours()
+                    .toString()
+                    .padStart(2, '0')}:${date
                     .getMinutes()
                     .toString()
                     .padStart(2, '0')}`}
