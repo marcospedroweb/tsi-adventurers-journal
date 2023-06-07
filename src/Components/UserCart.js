@@ -139,6 +139,7 @@ const UserCart = () => {
                     setSelectAll={setSelectAll}
                   />
                   <div>
+                    {/*
                     <span
                       onClick={() => {
                         handleShow(
@@ -155,6 +156,7 @@ const UserCart = () => {
                     >
                       Remover itens
                     </span>
+                    */}
 
                     <Modal show={show} onHide={handleClose}>
                       <Modal.Header closeButton>

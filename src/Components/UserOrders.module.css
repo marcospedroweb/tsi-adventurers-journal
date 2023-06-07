@@ -24,3 +24,14 @@
 .divAboutOrder h3 span {
   font-weight: 700;
 }
+
+.qrLink {
+  color: #00A3FF;
+  border-bottom: 1px solid #00A3FF;
+  transition: all .25s ease-out;
+}
+
+.qrLink:hover {
+  color: #0F80C0;
+  border-bottom: 1px solid #0F80C0;
+}

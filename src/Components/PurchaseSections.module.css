@@ -209,14 +209,14 @@
 }
 
 .productImg {
-  width: 115px;
+  min-width: 80px;
   height: 100px;
   background: #ccc url(../../public/imgs/aboutimg2.png) center/cover no-repeat;
   border-radius: 16px;
 }
 
 .product h3 {
-  font-size: .9rem;
+  font-size: .8rem;
   margin-bottom: 8px;
 }
 

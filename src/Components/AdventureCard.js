@@ -438,11 +438,12 @@ const AdventureCard = ({ data, best, hotel }) => {
                 } flex-column flex-lg-row justify-content-center justify-content-lg-start align-items-center align-items-lg-start text-center text-lg-start w-100`}
               >
                 <div className="mb-4 text-center me-lg-5">
+                  {console.log(data)}
                   {data.guia.foto && (
                     <div
                       className={styles.divGuideImg}
                       style={{
-                        backgroundImage: `url(/imgs/${data.guia.foto})`,
+                        backgroundImage: `url(${apiRoute}/storage/${data.guia.foto})`,
                       }}
                     ></div>
                   )}

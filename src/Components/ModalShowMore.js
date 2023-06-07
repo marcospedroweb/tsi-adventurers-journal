@@ -7,6 +7,7 @@ import CardPrice from './CardPrice';
 import FormatPrice from '../Helpers/FormatPrice';
 import { Link } from 'react-router-dom';
 import { noUserImageBase64 } from '../Helpers/NoUserBase64';
+import { apiRoute } from '../DB/data';
 
 const ModalShowMore = ({ data, orders }) => {
   const [show, setShow] = React.useState(false);
@@ -210,7 +211,7 @@ const ModalShowMore = ({ data, orders }) => {
                     <div
                       className={styles.divGuideImg}
                       style={{
-                        backgroundImage: `url(/imgs/${data.idAtividade[0].guia.foto})`,
+                        backgroundImage: `url(${apiRoute}/storage/${data.idAtividade[0].guia.foto})`,
                       }}
                     ></div>
                   )}

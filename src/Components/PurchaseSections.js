@@ -908,14 +908,11 @@ const PurchaseSections = ({ cart }) => {
                     key={element.id}
                     className={`${styles.product} d-flex justify-content-between align-items-center`}
                   >
+                    {console.log(element)}
                     <div
-                      className={styles.productImg}
+                      className={`${styles.productImg} me-3`}
                       style={{
-                        backgroundImage: `url(${
-                          element.idAtividade.foto_url
-                            ? element.idAtividade.foto_url
-                            : `${apiRoute}/storage/${element.idAtividade.modalidade[0].foto}`
-                        })`,
+                        backgroundImage: `url(${`${apiRoute}/storage/${element.idAtividade.modalidade[0].foto}`})`,
                       }}
                     ></div>
                     <div>
@@ -942,7 +939,7 @@ const PurchaseSections = ({ cart }) => {
               className={`d-flex flex-column justify-content-center align-items-center w-100 mt-4`}
             >
               <div
-                className={`${styles.divReceipt} p-3 d-none d-lg-flex flex-column justify-content-center align-items-center text-start rounded w-100`}
+                className={`${styles.divReceipt} p-3 d-flex flex-column justify-content-center align-items-center text-start rounded w-100`}
               >
                 <div
                   className={`${styles.divReceiptSection} d-flex justify-content-between align-items-center w-100`}
