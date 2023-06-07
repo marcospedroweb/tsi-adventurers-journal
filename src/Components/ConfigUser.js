@@ -43,7 +43,7 @@ const ConfigUser = ({ user }) => {
                   } else setComponent('preferencias');
                 }}
               >
-                Preferências
+                Aventuras
               </li>
               <li
                 className={`${component === 'segurança' ? styles.active : ''}`}

@@ -8,6 +8,8 @@ import useFetch from '../Hooks/useFetch';
 import Loading from '../Components/Loading';
 import {
   apiRoute,
+  getGuiaActivitiesRoute,
+  getOrdersByIdRoute,
   optionsFetch,
   showOtherUserRoute,
   showUserRoute,
@@ -20,6 +22,33 @@ const Profile = () => {
   const navigate = useNavigate();
   const { request, loading } = useFetch();
   const [user, setUser] = React.useState();
+  const [modalitys, setModalitys] = React.useState([]);
+
+  async function getAdventurers(userData) {
+    console.log(userData.identify);
+    if (userData.Guia) {
+      const { json } = await request(
+        `${apiRoute}${getGuiaActivitiesRoute}${userData.identify}`,
+        optionsFetch({ method: 'GET' }),
+      );
+      if (json.data) {
+        setModalitys(json.data);
+      } else {
+        setModalitys([]);
+      }
+    } else {
+      const { json } = await request(
+        `${apiRoute}${getOrdersByIdRoute}${userData.identify}`,
+        optionsFetch({ method: 'GET' }),
+      );
+
+      if (json.itens_do_pedido) {
+        setModalitys(json.itens_do_pedido);
+      } else {
+        setModalitys([]);
+      }
+    }
+  }
 
   React.useEffect(() => {
     if (window.sessionStorage.getItem('user')) {
@@ -40,8 +69,8 @@ const Profile = () => {
         if (json.error) {
           navigate('/');
         }
-
         setUser(json.data);
+        getAdventurers(json.data);
       } else {
         const { json } = await request(
           `${apiRoute}${showUserRoute}`,
@@ -52,6 +81,7 @@ const Profile = () => {
         }
 
         setUser(json.data);
+        getAdventurers(json.data);
       }
     }
 
@@ -73,8 +103,8 @@ const Profile = () => {
 
         <div className="container-xl">
           <div className="row flex-column flex-lg-row justify-content-between align-items-start">
-            <ProfileUserSide user={user} context={{ session, setSession }} />
-            <ProfileContentSide />
+            <ProfileUserSide user={user} />
+            <ProfileContentSide user={user} modalitys={modalitys} />
           </div>
         </div>
       </main>
