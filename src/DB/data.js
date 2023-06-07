@@ -1,5 +1,5 @@
-// export const apiRoute = 'https://tsi-adventurers-journal.vercel.app';
-export const apiRoute = 'http://localhost:8000';
+export const apiRoute = 'https://tsi-adventurers-journal.vercel.app';
+// export const apiRoute = 'http://localhost:8000';
 
 //USER / LOGIN / REGISTER
 export const registerRoute = '/users';
