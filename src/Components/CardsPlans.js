@@ -71,7 +71,7 @@ const CardsPlans = ({ dark }) => {
             </div>
             <h3 className="fw-bold">Adventurer</h3>
             <p>
-              <span>R$ 120</span>/mensal
+              <span>R$ 150</span>/mensal
             </p>
             <div className={styles.textHidden}>
               <p>Para quem quer encontrar viagens dentro do seu orçamento</p>

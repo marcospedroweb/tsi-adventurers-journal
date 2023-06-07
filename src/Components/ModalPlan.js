@@ -56,7 +56,7 @@ const ModalPlan = () => {
                 <h2>Plano</h2>
                 <SealPlanCard type="adventurer" classN="mx-auto mb-3" />
                 <h3>
-                  R$ 30 <span>/mensal</span>
+                  R$ 150 <span>/mensal</span>
                 </h3>
                 <ul>
                   <li>Lorem ipsum dolor sit amet.</li>
@@ -83,7 +83,7 @@ const ModalPlan = () => {
                 <h2>Plano</h2>
                 <SealPlanCard type="plus" classN="mx-auto mb-3" />
                 <h3>
-                  R$ 120 <span>/mensal</span>
+                  R$ 280 <span>/mensal</span>
                 </h3>
                 <ul>
                   <li>Lorem ipsum dolor sit amet.</li>
