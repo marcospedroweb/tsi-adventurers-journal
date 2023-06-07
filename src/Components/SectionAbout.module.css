@@ -23,6 +23,15 @@
     text-align: center;
 }
 
+@media screen and (max-width: 576px) {
+    #texto h3 {
+
+        font-size: 2rem;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+}
+
 #texto p {
     font-size: 1.25rem;
 
