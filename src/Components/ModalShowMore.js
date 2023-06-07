@@ -12,7 +12,7 @@ const ModalShowMore = ({ data, orders }) => {
   const [show, setShow] = React.useState(false);
   const [section, setSection] = React.useState('informações');
   const date = new Date(
-    orders ? data.idAtividade[0].Data_e_Hora : data.idAtividade.Data_e_Hor,
+    orders ? data.idAtividade[0].Data_e_Hora : data.idAtividade.Data_e_Hora,
   );
 
   const handleClose = () => setShow(false);
@@ -22,7 +22,7 @@ const ModalShowMore = ({ data, orders }) => {
     return (
       <>
         <span onClick={handleShow} className={styles.divBtn}>
-          Ver mais informações{' '}
+          Ver mais informações {orders ? 'da atividade ' : ''}
           <span>
             <BsChevronRight />
           </span>
@@ -94,7 +94,7 @@ const ModalShowMore = ({ data, orders }) => {
                   <h3>Periodo</h3>
                   <div className="d-flex justify-content-center align-items-center">
                     <LabelCard
-                      title="Data de ida"
+                      title="Data da atividade"
                       text={`${date.toLocaleDateString('pt-BR', {
                         day: '2-digit',
                       })}/${date.toLocaleDateString('pt-BR', {
@@ -167,6 +167,7 @@ const ModalShowMore = ({ data, orders }) => {
                       )}
                       method={'No boleto ou Pix'}
                       bsClass={'mb-3 mb-sm-0 me-0 me-sm-3'}
+                      order={true}
                     />
                     <CardPrice
                       price={FormatPrice(data.idAtividade[0].preco)}
@@ -372,7 +373,7 @@ const ModalShowMore = ({ data, orders }) => {
                 <h3>Periodo</h3>
                 <div className="d-flex justify-content-center align-items-center">
                   <LabelCard
-                    title="Data de ida"
+                    title="Data da atividade"
                     text={`${date.toLocaleDateString('pt-BR', {
                       day: '2-digit',
                     })}/${date.toLocaleDateString('pt-BR', {

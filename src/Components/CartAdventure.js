@@ -7,8 +7,11 @@ import FormatPrice from '../Helpers/FormatPrice';
 import ModalEditAdventure from './ModalEditAdventure';
 import { apiRoute } from '../DB/data';
 
-const CartAdventure = ({ data, getCart, orders }) => {
-  const date = new Date(orders ? data.data : data.idAtividade.Data_e_Hor);
+const CartAdventure = ({ data, getCart, orders, bsClass }) => {
+  const date = new Date(orders ? data.data : data.idAtividade.Data_e_Hora);
+  const dateActivitie = new Date(
+    orders ? data.idAtividade[0].Data_e_Hora : data.idAtividade.Data_e_Hora,
+  );
   const modalitys = [
     orders
       ? data.idAtividade[0].modalidade.map(({ nome }) => nome)
@@ -17,7 +20,9 @@ const CartAdventure = ({ data, getCart, orders }) => {
 
   if (orders)
     return (
-      <div className="row justify-content-between align-items-center w-100">
+      <div
+        className={`${bsClass} row justify-content-center justify-content-lg-between align-items-center w-100 mx-auto`}
+      >
         <div className="col-12 col-lg-2">
           <div
             className={styles.divImg}
@@ -35,7 +40,7 @@ const CartAdventure = ({ data, getCart, orders }) => {
             className={`${styles.divInfo} d-flex flex-column flex-xl-row justify-content-between align-items-center rounded w-100`}
           >
             <div className="w-100">
-              <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+              <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
                 <LabelCard
                   title={'Data da compra'}
                   text={`${date.toLocaleDateString('pt-BR', {
@@ -59,7 +64,7 @@ const CartAdventure = ({ data, getCart, orders }) => {
                       : 'Cartão de credito'
                   }
                   stylesCss={{ backgroundColor: '#283040' }}
-                  bsClass={'mb-2  w-100'}
+                  bsClass={'me-0 me-sm-2 mb-2  w-100'}
                 />
                 <LabelCard
                   title={'Status do pedido'}
@@ -68,10 +73,23 @@ const CartAdventure = ({ data, getCart, orders }) => {
                   bsClass={'mb-2  w-100'}
                 />
               </div>
-              <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+              <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
                 <LabelCard
                   title={'Modalidades'}
                   text={LimitText(modalitys.join(', '))}
+                  stylesCss={{ backgroundColor: '#283040' }}
+                  bsClass={'me-2 mb-2  w-100'}
+                />
+                <LabelCard
+                  title={'Data da atividade'}
+                  text={`${dateActivitie.toLocaleDateString('pt-BR', {
+                    day: '2-digit',
+                  })}/${dateActivitie.toLocaleDateString('pt-BR', {
+                    month: '2-digit',
+                  })}/${dateActivitie.getFullYear()} - ${dateActivitie.getHours()}:${dateActivitie
+                    .getMinutes()
+                    .toString()
+                    .padStart(2, '0')}`}
                   stylesCss={{ backgroundColor: '#283040' }}
                   bsClass={'me-2 mb-2  w-100'}
                 />
@@ -95,7 +113,7 @@ const CartAdventure = ({ data, getCart, orders }) => {
             <div
               className={`${styles.divPrice} px-4 d-flex flex-column justify-content-center align-items-center`}
             >
-              <h3 style={{ whiteSpace: 'nowrap' }}>Total do pedido</h3>
+              <h3 style={{ whiteSpace: 'nowrap' }}>Total da aventura</h3>
               <p
                 style={
                   (data.qtdPessoa > 1
@@ -109,7 +127,9 @@ const CartAdventure = ({ data, getCart, orders }) => {
                     : {}
                 }
               >
-                {FormatPrice(data.TotalPedido)}
+                {FormatPrice(
+                  Number.parseFloat(data.idAtividade[0].preco) * data.qtdPessoa,
+                )}
               </p>
             </div>
           </div>

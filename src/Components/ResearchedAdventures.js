@@ -48,9 +48,9 @@ const ResearchedAdventures = ({ adventurers, getAdventurers }) => {
     getAdventurers();
   }
 
-  React.useEffect(() => {
-    console.log(adventurers);
-  }, []);
+  // React.useEffect(() => {
+  //   console.log(adventurers);
+  // }, []);
 
   return (
     <section className="row justify-content-between align-items-start">

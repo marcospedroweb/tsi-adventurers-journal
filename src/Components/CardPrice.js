@@ -12,6 +12,7 @@ const CardPrice = ({
   bsClass,
   size,
   seal,
+  order,
 }) => {
   if (size === 'small')
     return (
@@ -110,7 +111,9 @@ const CardPrice = ({
           </div>
         </div>
         <div className="text-center mt-4">
-          {method === 'No boleto ou Pix' && (
+          {order ? (
+            <span className="text-uppercase mt-4">{method}</span>
+          ) : method === 'No boleto ou Pix' ? (
             <>
               <span
                 className="mt-4"
@@ -125,8 +128,7 @@ const CardPrice = ({
                 {method}
               </span>
             </>
-          )}
-          {method === 'No cartão de credito' && (
+          ) : (
             <span className="text-uppercase mt-4">{method}</span>
           )}
         </div>

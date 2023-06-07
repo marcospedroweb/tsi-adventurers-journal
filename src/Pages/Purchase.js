@@ -50,7 +50,6 @@ const Purchase = () => {
 
     getUserData();
     getCart();
-    console.log(itensCart);
   }, []);
 
   if (true && !cart.length) return <Loading />;

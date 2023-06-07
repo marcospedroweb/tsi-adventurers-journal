@@ -1,5 +1,5 @@
 .section {
-  margin: 92px auto;
+  margin: 92px auto 150px auto;
 }
 
 .divOrder {
@@ -15,7 +15,6 @@
 
 .divAboutOrder {
   padding: 12px;
-
 }
 
 .divAboutOrder h3 {

@@ -41,7 +41,8 @@ const UserCart = () => {
       `${apiRoute}${getCartRoute}`,
       optionsFetch({ method: 'GET', token: session.user.token }),
     );
-    setCart(json.carrinho);
+    if (json.carrinho) setCart(json.carrinho);
+    else setCart([]);
     // console.log(json.carrinho);
   }
 
@@ -118,122 +119,149 @@ const UserCart = () => {
     return (
       <section className={styles.section}>
         <div className="row justify-content-between align-items-start">
-          <div className="col-12 col-lg-8">
+          <div
+            className="col-12 col-lg-8"
+            style={cart.length > 0 ? {} : { marginBottom: '150px' }}
+          >
             <div className="bg-white p-3 d-flex flex-column justify-content-start align-items-start text-start rounded">
               <h2>Carrinho de compras</h2>
-              <div className="d-flex justify-content-between align-items-center w-100 mt-3">
-                <CheckboxCustom
-                  text={'Selecionar todos os itens'}
-                  cart={cart ? cart : []}
-                  allCheck={true}
-                  itensId={itensId}
-                  setItensId={setItensId}
-                  selectAll={selectAll}
-                  setSelectAll={setSelectAll}
-                />
-                <div>
-                  <span
-                    onClick={() => {
-                      handleShow(
-                        'Remover todos os itens',
-                        'Deseja remover todos os itens do carrinho?',
-                        'Remover itens',
-                        () => {
-                          removeAllCart();
-                        },
-                      );
-                    }}
-                    className="fw-bold"
-                    style={{ cursor: 'pointer' }}
-                  >
-                    Remover itens
-                  </span>
-
-                  <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>{modalInfo.title}</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body className="text-center">
-                      <h2 className="fw-bold" style={{ fontSize: '1.5rem' }}>
-                        {modalInfo.text}
-                      </h2>
-                      <p>
-                        Essa ação é{' '}
-                        <span className="fw-bold">irreversível</span>
-                      </p>
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <Button
-                        variant="secondary"
-                        onClick={() => {
-                          handleClose();
-                        }}
-                      >
-                        Cancelar
-                      </Button>
-                      <Button
-                        variant="danger"
-                        onClick={() => {
-                          modalInfo.action();
-                          handleClose();
-                        }}
-                      >
-                        {modalInfo.actionText}
-                      </Button>
-                    </Modal.Footer>
-                  </Modal>
-                </div>
-              </div>
-            </div>
-            <div className="d-flex flex-column justify-content-start align-items-start text-start mt-4 w-100">
-              {cart &&
-                cart.map((element) => {
-                  return (
-                    <div
-                      className="bg-white p-3 w-100 mt-4 rounded"
-                      key={element.id}
+              {cart.length > 0 ? (
+                <div
+                  className={`d-flex justify-content-between align-items-center w-100 mt-3`}
+                >
+                  <CheckboxCustom
+                    text={'Selecionar todos os itens'}
+                    cart={cart ? cart : []}
+                    allCheck={true}
+                    itensId={itensId}
+                    setItensId={setItensId}
+                    selectAll={selectAll}
+                    setSelectAll={setSelectAll}
+                  />
+                  <div>
+                    <span
+                      onClick={() => {
+                        handleShow(
+                          'Remover todos os itens',
+                          'Deseja remover todos os itens do carrinho?',
+                          'Remover itens',
+                          () => {
+                            removeAllCart();
+                          },
+                        );
+                      }}
+                      className="fw-bold"
+                      style={{ cursor: 'pointer' }}
                     >
-                      <div className="d-flex flex-column justify-content-center align-items-center w-100 border-bottom">
-                        <div className="d-flex justify-content-between align-items-center py-3 w-100 border-bottom mb-2">
-                          <CheckboxCustom
-                            text={'Aventura nas alturas'}
-                            bsClass={'fw-bold'}
-                            id={element.id}
-                            itensId={itensId}
-                            setItensId={setItensId}
-                            selectAll={selectAll}
-                            setSelectAll={setSelectAll}
-                          />
-                          <div style={{ cursor: 'pointer' }}>
-                            <span
-                              className="fw-bold"
-                              onClick={() => {
-                                handleShow(
-                                  'Remove item do carrinho',
-                                  'Deseja remover esse item do carrinho?',
-                                  'Remover item',
-                                  () => {
-                                    removeItemCart(element.id);
-                                  },
-                                );
-                              }}
-                            >
-                              <BsFillTrash3Fill
-                                style={{
-                                  fontSize: '1.25rem',
-                                  color: '#B72424',
-                                }}
-                              />
-                            </span>
-                          </div>
-                        </div>
-                        <CartAdventure data={element} getCart={getCart} />
-                      </div>
-                    </div>
-                  );
-                })}
+                      Remover itens
+                    </span>
+
+                    <Modal show={show} onHide={handleClose}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>{modalInfo.title}</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body className="text-center">
+                        <h2 className="fw-bold" style={{ fontSize: '1.5rem' }}>
+                          {modalInfo.text}
+                        </h2>
+                        <p>
+                          Essa ação é{' '}
+                          <span className="fw-bold">irreversível</span>
+                        </p>
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button
+                          variant="secondary"
+                          onClick={() => {
+                            handleClose();
+                          }}
+                        >
+                          Cancelar
+                        </Button>
+                        <Button
+                          variant="danger"
+                          onClick={() => {
+                            modalInfo.action();
+                            handleClose();
+                          }}
+                        >
+                          {modalInfo.actionText}
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <h3 className="mt-4 fs-6">
+                    Você não tem nenhuma aventura no carrinho
+                  </h3>
+
+                  <ButtonCustom
+                    bsClass={'mt-2'}
+                    onClick={() => {
+                      navigate('/aventurar-se');
+                    }}
+                  >
+                    Buscar aventuras
+                  </ButtonCustom>
+                </div>
+              )}
             </div>
+            {cart.length > 0 ? (
+              <div className="d-flex flex-column justify-content-start align-items-start text-start mt-4 w-100">
+                {cart &&
+                  cart.map((element) => {
+                    return (
+                      <div
+                        className="bg-white p-3 w-100 mt-4 rounded"
+                        key={element.id}
+                      >
+                        <div className="d-flex flex-column justify-content-center align-items-center w-100 border-bottom">
+                          <div className="d-flex justify-content-between align-items-center py-3 w-100 border-bottom mb-2">
+                            <CheckboxCustom
+                              text={'Aventura nas alturas'}
+                              bsClass={'fw-bold'}
+                              id={element.id}
+                              itensId={itensId}
+                              setItensId={setItensId}
+                              selectAll={selectAll}
+                              setSelectAll={setSelectAll}
+                            />
+                            <div style={{ cursor: 'pointer' }}>
+                              <span
+                                className="fw-bold"
+                                onClick={() => {
+                                  handleShow(
+                                    'Remove item do carrinho',
+                                    'Deseja remover esse item do carrinho?',
+                                    'Remover item',
+                                    () => {
+                                      removeItemCart(element.id);
+                                    },
+                                  );
+                                }}
+                              >
+                                <BsFillTrash3Fill
+                                  style={{
+                                    fontSize: '1.25rem',
+                                    color: '#B72424',
+                                  }}
+                                />
+                              </span>
+                            </div>
+                          </div>
+                          <CartAdventure data={element} getCart={getCart} />
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+            ) : (
+              ''
+            )}
           </div>
+
           <div className="col-12 col-lg-4 sticky-top" style={{ top: '64px' }}>
             <div
               className={`${styles.divReceipt} bg-white p-3 d-none d-lg-flex flex-column justify-content-center align-items-center text-start rounded`}

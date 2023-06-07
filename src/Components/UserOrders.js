@@ -5,11 +5,36 @@ import Loading from './Loading';
 import { apiRoute, getOrdersRoute, optionsFetch } from '../DB/data';
 import { GlobalContext } from '../Context/GlobalStorage';
 import useFetch from '../Hooks/useFetch';
+import FormatPrice from '../Helpers/FormatPrice';
+import ButtonCustom from './ButtonCustom';
+import { useNavigate } from 'react-router-dom';
 
 const UserOrders = () => {
   const { session, setSession } = React.useContext(GlobalContext);
   const [data, setData] = React.useState([]);
+  const [dataGrouped, setDataGrouped] = React.useState([]);
+  const navigate = useNavigate();
   const { loading, request } = useFetch();
+
+  function juntarObjetosPorCodigo(array) {
+    const objetosAgrupados = {};
+    for (const objeto of array) {
+      if (objeto.codigo) {
+        if (objetosAgrupados[objeto.codigo]) {
+          objetosAgrupados[objeto.codigo].push(objeto);
+        } else {
+          objetosAgrupados[objeto.codigo] = [objeto];
+        }
+      }
+    }
+
+    const resultado = [];
+    for (const codigo in objetosAgrupados) {
+      resultado.push(objetosAgrupados[codigo]);
+    }
+
+    return resultado;
+  }
 
   async function getOrder() {
     const { json } = await request(
@@ -17,14 +42,13 @@ const UserOrders = () => {
       optionsFetch({ method: 'GET', token: session.user.token }),
     );
     if (json.status === 200) {
-      console.log(json.itens_do_pedido);
+      setDataGrouped(juntarObjetosPorCodigo(json.itens_do_pedido));
       setData(json.itens_do_pedido);
     }
   }
 
   React.useEffect(() => {
     getOrder();
-    console.log(data);
   }, []);
 
   if (loading) return <Loading />;
@@ -32,43 +56,105 @@ const UserOrders = () => {
     return (
       <section className={styles.section}>
         <div className="container-xl">
-          <h2 className="fw-bold mb-4" style={{ fontSize: '2.5rem' }}>
+          <h2
+            className="fw-bold mb-4 text-center"
+            style={{ fontSize: '2.5rem' }}
+          >
             Seus pedidos
           </h2>
           <div className="row flex-column justify-content-center align-items-center">
-            <div className="col-12 ">
-              {data.map((element) => {
-                const date = new Date(element.data);
-                const formatedDate = `${date.toLocaleDateString('pt-BR', {
-                  day: '2-digit',
-                })}/${date.toLocaleDateString('pt-BR', {
-                  month: '2-digit',
-                })}/${date.getFullYear()} - ${date.getHours()}:${date
-                  .getMinutes()
-                  .toString()
-                  .padStart(2, '0')}`;
+            {data.length > 0 ? (
+              <div className="col-12">
+                {dataGrouped.map((group) => {
+                  const date = new Date(group[0].data);
 
-                return (
-                  <div key={element.id} className={styles.divOrder}>
-                    {/* <div
-                      className={`${styles.divAboutOrder} d-flex justify-content-between align-items-center`}
-                    >
-                      <div>
-                        <h3>
-                          Pedido feito em: <span>{formatedDate}</span>
-                        </h3>
+                  if (group.length < 2) {
+                    return (
+                      <div key={group[0].id} className={styles.divOrder}>
+                        <div
+                          className={`${styles.divAboutOrder} d-flex flex-column flex-sm-row justify-content-center justify-content-sm-between align-items-center`}
+                        >
+                          <div>
+                            <h3>
+                              Data da compra:{' '}
+                              <span>{`${date.toLocaleDateString('pt-BR', {
+                                day: '2-digit',
+                              })}/${date.toLocaleDateString('pt-BR', {
+                                month: '2-digit',
+                              })}/${date.getFullYear()} - ${date.getHours()}:${date
+                                .getMinutes()
+                                .toString()
+                                .padStart(2, '0')}`}</span>
+                            </h3>
+                          </div>
+                          <div>
+                            <h3>
+                              Total do pedido:{' '}
+                              <span className="fs-4">
+                                {FormatPrice(group[0].TotalPedido)}
+                              </span>
+                            </h3>
+                          </div>
+                        </div>
+                        <CartAdventure data={group[0]} orders={true} />
                       </div>
-                      <div>
-                        <h3>
-                          ID do pedido: <span>{element.codigo}</span>
-                        </h3>
+                    );
+                  } else {
+                    return (
+                      <div key={group[0].id} className={styles.divOrder}>
+                        <div
+                          className={`${styles.divAboutOrder} d-flex flex-column flex-sm-row justify-content-center justify-content-sm-between align-items-center`}
+                        >
+                          <div>
+                            <h3>
+                              Data da compra:{' '}
+                              <span>{`${date.toLocaleDateString('pt-BR', {
+                                day: '2-digit',
+                              })}/${date.toLocaleDateString('pt-BR', {
+                                month: '2-digit',
+                              })}/${date.getFullYear()} - ${date.getHours()}:${date
+                                .getMinutes()
+                                .toString()
+                                .padStart(2, '0')}`}</span>
+                            </h3>
+                          </div>
+                          <div>
+                            <h3>
+                              Total do pedido:{' '}
+                              <span className="fs-4">
+                                {FormatPrice(group[0].TotalPedido)}
+                              </span>
+                            </h3>
+                          </div>
+                        </div>
+                        {group.map((element, index) => {
+                          return (
+                            <div key={element.id + index}>
+                              <CartAdventure
+                                data={element}
+                                orders={true}
+                                bsClass={'mt-4'}
+                              />
+                            </div>
+                          );
+                        })}
                       </div>
-                    </div> */}
-                    <CartAdventure data={element} orders={true} />
-                  </div>
-                );
-              })}
-            </div>
+                    );
+                  }
+                })}
+              </div>
+            ) : (
+              <div className="col-12 text-center mt-5">
+                <h3>Você ainda não fez pedidos</h3>
+                <ButtonCustom
+                  onClick={() => {
+                    navigate('/aventurar-se');
+                  }}
+                >
+                  Procurar aventuras
+                </ButtonCustom>
+              </div>
+            )}
           </div>
         </div>
       </section>

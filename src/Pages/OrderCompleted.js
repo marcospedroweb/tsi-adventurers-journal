@@ -9,8 +9,9 @@ const OrderCompleted = () => {
   const { completedOrder, setCompletedOrder } = React.useContext(GlobalContext);
   const navigate = useNavigate();
   React.useEffect(() => {
+    window.scrollTo(0, 0);
     if (!completedOrder) navigate('/');
-    console.log(completedOrder);
+    // console.log(completedOrder);
   }, []);
 
   if (!completedOrder) return <Loading />;

@@ -94,7 +94,7 @@ const AdventureCard = ({ data, best, hotel }) => {
                   <div className="d-flex justify-content-center justify-content-sm-start align-items-center flex-wrap">
                     {data.hotelAmenities.map((text) => {
                       return (
-                        <div className="mt-1 me-1">
+                        <div className="mt-1 me-1" key={text}>
                           <LabelCard text={text} />
                         </div>
                       );

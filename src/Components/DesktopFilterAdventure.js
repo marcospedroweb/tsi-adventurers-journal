@@ -86,7 +86,7 @@ const DesktopFilterAdventure = ({ mobile, getAdventurers }) => {
     searchAdventure.modalitysIds = modalitysIds;
     if (minAgeRef.current.value)
       searchAdventure.minAge = minAgeRef.current.value;
-    console.log(searchAdventure);
+
     setSearchAdventure(searchAdventure);
 
     getAdventurers();
