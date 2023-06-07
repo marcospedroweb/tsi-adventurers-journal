@@ -6,10 +6,13 @@ import { noUserImageBase64 } from '../Helpers/NoUserBase64';
 
 const ProfileUserSide = ({ user }) => {
   const date = new Date(user.created);
-  const dateFormated = `Desde ${date.getFullYear()}`;
+  const dateFormated = `Desde ${
+    date.getFullYear() ? date.getFullYear() : '2023'
+  }`;
 
   return (
     <section className="col-12 col-lg-4 sticky-lg-top">
+      {console.log(user)}
       <div className={`${styles.divMain}`}>
         <div
           className={`${styles.divImg} position-absolute top-0 start-50 translate-middle`}
@@ -31,7 +34,16 @@ const ProfileUserSide = ({ user }) => {
               stylesCss={{ width: 'fit-content', fontSize: '1rem' }}
             />
           ) : (
-            <SealPlanCard type={'plus'} classN={'mx-auto'} />
+            <SealPlanCard
+              type={
+                user.Assinatura === 'Adventurer plus'
+                  ? 'plus'
+                  : user.Assinatura === 'Adventurer'
+                  ? 'adventurer'
+                  : 'gratis'
+              }
+              classN={'mx-auto'}
+            />
           )}
           <p className="mt-2">{dateFormated}</p>
         </div>

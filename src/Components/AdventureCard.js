@@ -183,17 +183,14 @@ const AdventureCard = ({ data, best, hotel }) => {
   else
     return (
       <div className={`${styles.divMain} mb-4`}>
+        {console.log(data)}
         <div className="d-flex flex-column flex-lg-row justify-content-between align-items-start">
           <div
             className={`${styles.divImg} align-self-stretch ${
               showMore ? styles.divImgWithRounded : ''
             }`}
             style={{
-              backgroundImage: `url(${
-                data.foto_url
-                  ? data.foto_url
-                  : `${apiRoute}/storage/${data.modalidade[0].foto}`
-              })`,
+              backgroundImage: `url(${`${apiRoute}/storage/${data.modalidade[0].foto}`})`,
             }}
           ></div>
           <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start align-items-center align-items-lg-start pt-3 px-3 w-100">

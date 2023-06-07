@@ -22,11 +22,7 @@ const UserAdventurers = ({ user, modalitys }) => {
                     ? `+${modality.idAtividade[0].modalidade.length - 1}`
                     : ''
                 }`}
-                img={
-                  modality.idAtividade[0].foto_url
-                    ? modality.idAtividade[0].foto_url
-                    : `${apiRoute}/storage/${modality.idAtividade[0].modalidade[0].foto}`
-                }
+                img={`${apiRoute}/storage/${modality.idAtividade[0].modalidade[0].foto}`}
                 desc={modality.comentario}
                 location={`${modality.idAtividade[0].cidade.nome}, ${modality.idAtividade[0].cidade.uf} - ${modality.idAtividade[0].cidade.pais}`}
                 date={`${date.toLocaleDateString('pt-BR', {
@@ -50,11 +46,7 @@ const UserAdventurers = ({ user, modalitys }) => {
                     ? `+${modality.modalidade.length - 1}`
                     : ''
                 }`}
-                img={
-                  modality.foto_url
-                    ? modality.foto_url
-                    : `${apiRoute}/storage/${modality.modalidade[0].foto}`
-                }
+                img={`${apiRoute}/storage/${modality.modalidade[0].foto}`}
                 desc={modality.comentario}
                 location={`${modality.cidade.nome}, ${modality.cidade.uf} - ${modality.cidade.pais}`}
                 date={`${date.toLocaleDateString('pt-BR', {
@@ -69,8 +61,8 @@ const UserAdventurers = ({ user, modalitys }) => {
           })
         ) : (
           <div className="col-12">
-            <div>
-              <h4>Ainda não tive nenhuma aventura</h4>
+            <div className="text-center mt-5">
+              <h4 className="fs-5">Ainda não tive nenhuma aventura</h4>
             </div>
           </div>
         )}

@@ -99,7 +99,7 @@ const Profile = () => {
     return (
       <main>
         {user.banner_URL && <BannerProfile img={user.banner_URL} />}
-        {!user.banner_URL && <BannerProfile img={noUserBannerBase64} />}
+        {!user.banner_URL && <BannerProfile img={'/imgs/login_mobile.png'} />}
 
         <div className="container-xl">
           <div className="row flex-column flex-lg-row justify-content-between align-items-start">

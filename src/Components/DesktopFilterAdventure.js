@@ -61,6 +61,7 @@ const DesktopFilterAdventure = ({ mobile, getAdventurers }) => {
     setModalitysIds(searchAdventure.modalitysIds);
     getModalitys();
     if (searchAdventure.minPrice) setMinPrice(searchAdventure.minPrice);
+
     if (searchAdventure.maxPrice) setMaxPrice(searchAdventure.maxPrice);
     if (searchAdventure.time) setTime(searchAdventure.time);
     if (searchAdventure.modalitysIds)
@@ -80,12 +81,17 @@ const DesktopFilterAdventure = ({ mobile, getAdventurers }) => {
     event.preventDefault();
     if (minPriceRef.current.value)
       searchAdventure.minPrice = minPriceRef.current.value;
+    else searchAdventure.minPrice = '';
     if (maxPriceRef.current.value)
       searchAdventure.maxPrice = maxPriceRef.current.value;
+    else searchAdventure.maxPrice = '';
     if (timeRef.current.value) searchAdventure.time = timeRef.current.value;
-    searchAdventure.modalitysIds = modalitysIds;
+    else searchAdventure.time = '';
+    if (modalitysIds.length) searchAdventure.modalitysIds = modalitysIds;
+    else searchAdventure.modalitysIds = [];
     if (minAgeRef.current.value)
       searchAdventure.minAge = minAgeRef.current.value;
+    else searchAdventure.minAge = '';
 
     setSearchAdventure(searchAdventure);
 

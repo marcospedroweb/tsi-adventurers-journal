@@ -98,7 +98,10 @@ const ModalityCard = ({
               {desc ? `"${desc}"` : `"Nenhum comentário feito"`}
             </p>
             <p className="mt-3">
-              Praticado em <span className="fw-bold">{date}</span>
+              {new Date(date) < new Date()
+                ? 'Praticado em'
+                : 'Será praticado em'}{' '}
+              <span className="fw-bold">{date}</span>
             </p>
           </div>
         </div>

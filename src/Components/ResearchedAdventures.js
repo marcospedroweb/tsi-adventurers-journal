@@ -52,6 +52,19 @@ const ResearchedAdventures = ({ adventurers, getAdventurers }) => {
   //   console.log(adventurers);
   // }, []);
 
+  const MAX_VISIBLE_PAGES = 8; // Altere o número conforme necessário
+
+  let visiblePageNumbers = [];
+  if (totalPages <= MAX_VISIBLE_PAGES) {
+    visiblePageNumbers = pageNumbers;
+  } else {
+    const halfMaxVisiblePages = Math.floor(MAX_VISIBLE_PAGES / 2);
+    const startPage = Math.max(1, currentPage - halfMaxVisiblePages);
+    const endPage = Math.min(totalPages, startPage + MAX_VISIBLE_PAGES - 1);
+
+    visiblePageNumbers = pageNumbers.slice(startPage - 1, endPage);
+  }
+
   return (
     <section className="row justify-content-between align-items-start">
       <div className="d-none d-lg-block col-12 col-lg-3">
@@ -175,6 +188,7 @@ const ResearchedAdventures = ({ adventurers, getAdventurers }) => {
             {totalPages > 1 ? (
               <div className="d-flex justify-content-center align-items-center">
                 <Pagination>
+                  {/* Primeira página */}
                   <Pagination.First
                     disabled={currentPage === 1}
                     onClick={() => {
@@ -186,6 +200,7 @@ const ResearchedAdventures = ({ adventurers, getAdventurers }) => {
                     }}
                   />
 
+                  {/* Página anterior */}
                   <Pagination.Prev
                     disabled={currentPage === 1}
                     onClick={() => handlePageChange(currentPage - 1)}
@@ -193,9 +208,10 @@ const ResearchedAdventures = ({ adventurers, getAdventurers }) => {
                     Página Anterior
                   </Pagination.Prev>
 
-                  {pageNumbers.map((pageNumber) => (
+                  {/* Páginas visíveis */}
+                  {visiblePageNumbers.map((pageNumber, index) => (
                     <Pagination.Item
-                      key={pageNumber}
+                      key={index}
                       active={pageNumber === currentPage}
                       onClick={() => handlePageChange(pageNumber)}
                     >
@@ -203,6 +219,7 @@ const ResearchedAdventures = ({ adventurers, getAdventurers }) => {
                     </Pagination.Item>
                   ))}
 
+                  {/* Próxima página */}
                   <Pagination.Next
                     disabled={currentPage === totalPages}
                     onClick={() => handlePageChange(currentPage + 1)}
@@ -210,6 +227,7 @@ const ResearchedAdventures = ({ adventurers, getAdventurers }) => {
                     Próxima Página
                   </Pagination.Next>
 
+                  {/* Última página */}
                   <Pagination.Last
                     disabled={currentPage === totalPages}
                     onClick={() => {
