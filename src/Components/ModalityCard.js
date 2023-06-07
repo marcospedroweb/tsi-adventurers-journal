@@ -44,7 +44,12 @@ const ModalityCard = ({
       >
         <div
           className={`${styles.divImg} ${showData ? styles.show : ''}`}
-          style={{ backgroundImage: `url(${img})` }}
+          style={{
+            backgroundImage: `url(${img.replace(
+              'http://18.222.111.91',
+              'https://tsi-adventurers-journal.vercel.app',
+            )})`,
+          }}
         >
           <div className={`${styles.filter} position-absolute`}></div>
           <div
@@ -66,7 +71,12 @@ const ModalityCard = ({
       >
         <div
           className={`${styles.divImg} ${showData ? styles.show : ''}`}
-          style={{ backgroundImage: `url(${img})` }}
+          style={{
+            backgroundImage: `url(${img.replace(
+              'http://18.222.111.91',
+              'https://tsi-adventurers-journal.vercel.app',
+            )})`,
+          }}
         >
           <div
             className={`${styles.filter} position-absolute top-50 start-50 translate-middle`}
