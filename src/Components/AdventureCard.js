@@ -17,10 +17,6 @@ const AdventureCard = ({ data, best, hotel }) => {
   const [section, setSection] = React.useState('informações');
   const date = new Date(hotel ? '' : data.Data_e_Hora);
 
-  // React.useEffect(() => {
-  //   console.log(data);
-  // }, []);
-
   if (hotel)
     return (
       <div className={`${styles.divMain} ${styles.hotel} mb-4`}>
@@ -183,7 +179,6 @@ const AdventureCard = ({ data, best, hotel }) => {
   else
     return (
       <div className={`${styles.divMain} mb-4`}>
-        {console.log(data)}
         <div className="d-flex flex-column flex-lg-row justify-content-between align-items-start">
           <div
             className={`${styles.divImg} align-self-stretch ${
@@ -438,7 +433,6 @@ const AdventureCard = ({ data, best, hotel }) => {
                 } flex-column flex-lg-row justify-content-center justify-content-lg-start align-items-center align-items-lg-start text-center text-lg-start w-100`}
               >
                 <div className="mb-4 text-center me-lg-5">
-                  {console.log(data)}
                   {data.guia.foto && (
                     <div
                       className={styles.divGuideImg}

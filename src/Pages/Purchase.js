@@ -24,7 +24,6 @@ const Purchase = () => {
       optionsFetch({ method: 'GET', token: session.user.token }),
     );
     setCart(json.carrinho);
-    // console.log(json.carrinho);
   }
 
   React.useEffect(() => {
