@@ -183,7 +183,7 @@ const ResearchedAdventures = ({ adventurers, getAdventurers }) => {
             })}
             {totalPages > 1 ? (
               <div className="d-flex justify-content-center align-items-center">
-                <Pagination>
+                <Pagination className="flex-column flex-sm-row">
                   {/* Primeira página */}
                   <Pagination.First
                     disabled={currentPage === 1}
