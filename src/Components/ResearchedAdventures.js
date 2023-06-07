@@ -48,10 +48,6 @@ const ResearchedAdventures = ({ adventurers, getAdventurers }) => {
     getAdventurers();
   }
 
-  // React.useEffect(() => {
-  //   console.log(adventurers);
-  // }, []);
-
   const MAX_VISIBLE_PAGES = 8; // Altere o número conforme necessário
 
   let visiblePageNumbers = [];
