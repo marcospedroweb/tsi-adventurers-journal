@@ -183,7 +183,6 @@ const AdventureCard = ({ data, best, hotel }) => {
   else
     return (
       <div className={`${styles.divMain} mb-4`}>
-        {console.log(data)}
         <div className="d-flex flex-column flex-lg-row justify-content-between align-items-start">
           <div
             className={`${styles.divImg} align-self-stretch ${
