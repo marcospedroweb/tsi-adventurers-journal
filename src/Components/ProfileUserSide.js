@@ -3,6 +3,7 @@ import styles from './ProfileUserSide.module.css';
 import SealPlanCard from './SealPlanCard';
 import LabelCard from './LabelCard';
 import { noUserImageBase64 } from '../Helpers/NoUserBase64';
+import { apiRoute } from '../DB/data';
 
 const ProfileUserSide = ({ user }) => {
   const date = new Date(user.created);
@@ -17,7 +18,15 @@ const ProfileUserSide = ({ user }) => {
           className={`${styles.divImg} position-absolute top-0 start-50 translate-middle`}
         >
           {user.foto_URL && (
-            <div style={{ backgroundImage: `url(${user.foto_URL})` }}></div>
+            <div
+              style={{
+                backgroundImage: `url(${
+                  user.foto_URL.includes('http://18.222.111.91')
+                    ? user.foto_URL.replace('http://18.222.111.91', apiRoute)
+                    : user.foto_URL
+                })`,
+              }}
+            ></div>
           )}
           {!user.foto_URL && (
             <div style={{ backgroundImage: `url(${noUserImageBase64})` }}></div>
