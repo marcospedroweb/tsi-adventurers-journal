@@ -1,5 +1,5 @@
-// export const apiRoute = 'http://18.222.111.91';
-export const apiRoute = 'http://localhost:8000';
+export const apiRoute = 'http://18.222.111.91';
+// export const apiRoute = 'http://localhost:8000';
 
 //USER / LOGIN / REGISTER
 export const registerRoute = '/users';
