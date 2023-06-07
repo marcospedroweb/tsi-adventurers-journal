@@ -46,6 +46,8 @@ const SearchAdventure = () => {
   }
 
   React.useEffect(() => {
+    window.scrollTo(0, 0);
+
     if (!searchAdventure) navigate('/aventurar-se');
     getAdventurers();
 
