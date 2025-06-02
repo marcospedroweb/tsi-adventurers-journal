@@ -1,24 +1,70 @@
 # Adventurer's Journal
 
-Site que ajuda o cliente a agregar aventuras com esportes radicais em suas viagens. Facilitamos a conexão entre guias turisticos que querem divulgar suas aventuras e usuarios que buscam aventuras com esportes radicais.
+Projeto final do curso de Tecnologia em Sistemas para Internet, desenvolvido no 5º semestre da faculdade. O Adventurer's Journal é um site que conecta usuários a aventuras radicais e guias turísticos especializados em esportes de aventura.
 
-## Passo a Passo para o instalar o projeto
+## 💡 Ideia do Projeto
 
-Faça o git clone do projeto (Front-end):
+O projeto visa oferecer uma experiência personalizada para viajantes em busca de esportes radicais, como paraquedismo, surf e outros. Ele conecta guias turísticos a usuários, permitindo:
 
-### `git clone https://github.com/marcospedroweb/tsi-adventurers-journal.git`
+- Busca de aventuras por localização, datas, número de passageiros e modalidade.
+- Login e criação de conta.
+- Adicionar aventuras ao carrinho e realizar compras.
+- Edição de perfil e visualização do perfil de outros usuários.
 
-No diretorio, instale os pacotes necessarios:
+## 🛠️ Tecnologias Utilizadas
 
-### `npm install`
+**Front-end:**
+- React JS
+- HTML, CSS, JavaScript
+- Bootstrap 5
 
-Inicie o servidor:
+**Back-end:**
+- Laravel PHP
 
-### `npm start`
+## 🧑‍💻 Sobre o Desenvolvimento
 
-## Atenção!!
+O projeto foi desenvolvido em equipe, com colaboração de cinco membros. Contribuí com:
+- Prototipação completa do site.
+- Desenvolvimento significativo do front-end.
 
-Para que funcione completamente e consumindo banco de dados.
-Instale tambem o back end desse projeto
+O back-end foi desenvolvido por outros membros.
 
-Repositorio Back-end: https://github.com/PauloHenriqueBento/api-tsi-adventurers-journal.git
+Durante o projeto, realizamos reuniões, revisões de código e aprendemos na prática a importância da colaboração em equipe.
+
+## 🚀 Como Executar Localmente
+
+### Front-end
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/marcospedroweb/tsi-adventurers-journal.git
+   ```
+2. Acesse o diretório:
+   ```bash
+   cd tsi-adventurers-journal
+   ```
+3. Instale as dependências:
+   ```bash
+   npm install
+   ```
+4. Inicie o servidor:
+   ```bash
+   npm start
+   ```
+
+> **⚠️ Atenção:**  
+> Para que o site funcione completamente, é necessário rodar o back-end em conjunto.
+
+### Back-end
+
+O back-end do projeto está disponível neste repositório:  
+👉 [API Adventurer's Journal](https://github.com/PauloHenriqueBento/api-tsi-adventurers-journal.git)
+
+## 📖 Saiba Mais
+
+Para mais informações sobre o projeto, acesse meu LinkedIn:  
+👉 [LinkedIn - Marcos Pedro Alves](https://www.linkedin.com/in/marcospedroalves/details/projects/)
+
+---
+
+Este projeto foi uma conquista importante na minha trajetória acadêmica e profissional.
